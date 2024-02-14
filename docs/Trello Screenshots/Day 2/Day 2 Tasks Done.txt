@@ -1,0 +1,6 @@
+- Completed draft 1 and draft 2 of architecture diagram
+- Completed draft 2 of architecture diagram legend
+- Completed draft 2 of overview dataflow diagram
+- Completed draft 1 of login dataflow diagram
+- Completed draft 1 of website description
+- Added and completed the card Document Preparation in Trello board
