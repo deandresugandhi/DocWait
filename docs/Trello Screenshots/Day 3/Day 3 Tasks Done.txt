@@ -1,0 +1,3 @@
+- Added the following lists to Trello board: To Do (Code General), To Do (Code Front-End), To Do (Code Back-End)
+- Added the following cards to Trello board: two cards for each of the following features (front and back-end), Queue System for Patients, Queue Management for GPs, Patient Notification, User Authentication, Remote Queue Registration, Data Driven Insights
+- Added the following labels to Trello board: Feature, Core, Nice to Have, Front-End, Back-End, Database 
