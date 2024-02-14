@@ -1,0 +1,3 @@
+- Created Trello board
+- Completed first draft of dataflow diagram
+- Progressing on Website Description
