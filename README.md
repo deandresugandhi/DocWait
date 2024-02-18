@@ -127,6 +127,7 @@ ___
 
 ### R5 - Wireframes
 
+![Sitemap](./docs/Images/Sitemap_wait_app.png)
 
 
 ___
