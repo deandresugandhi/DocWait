@@ -96,7 +96,7 @@ ___
 
 ![Architecture-diagram](./docs/Images/Application_Architecture_Diagram.png)
 
-![Architecture-diagram-legend](./docs/Images/Application_Architecture_Diagram_legend.png)
+![Architecture-diagram-legend](./docs/Images/Application_Architecture_Diagram_Legend.png)
 
 ___
 
