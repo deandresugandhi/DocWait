@@ -74,7 +74,7 @@ Jest is a JavaScript testing framework, and Supertest is a testing library for t
 #### Netlify, Render, MongoDB Atlas
 Netlify is used to deploy the app’s front-end, while Render is used to deploy the app’s back-end. MongoDB Atlas is the cloud database service used to host the app’s MongoDB database.
 
-### Summary
+#### Summary
 This patient queue monitoring app represents a strategic fusion of technology and healthcare, aimed at improving the efficiency of GP clinics and enriching the patient care experience. Through its innovative features and thoughtful design, the app stands as a testament to our commitment to technological excellence and user-centric development. As we present this project to prospective employers, we are confident in its potential to showcase our technical acumen, problem-solving abilities, and dedication to making a positive impact in the healthcare sector.
 
 
@@ -83,16 +83,20 @@ ___
 ### R2 - Dataflow Diagram
 
 #### Legend
+![Legend](./docs/images/DFD_legends.png)
 
 #### Login
+![Login](./docs/images/Login_DFD.png)
 
 #### Application
-
-
+![Dataflow](./docs/images/Dataflow.png)
 ___
 
 ### R3 - Application Architecture Diagram
 
+![Architecture-diagram](./docs/images/Application_Architecture_Diagram.png)
+
+![Architecture-diagram-legend](./docs/images/Application_Architecture_Diagram_legend.png)
 
 ___
 
