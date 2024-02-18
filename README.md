@@ -83,20 +83,20 @@ ___
 ### R2 - Dataflow Diagram
 
 #### Legend
-![Legend](./docs/images/DFD_legends.png)
+![Legend](docs/images/DFD_legends.png)
 
 #### Login
-![Login](./docs/images/Login_DFD.png)
+![Login](docs/images/Login_DFD.png)
 
 #### Application
-![Dataflow](./docs/images/Dataflow.png)
+![Dataflow](docs/images/Dataflow.png)
 ___
 
 ### R3 - Application Architecture Diagram
 
-![Architecture-diagram](./docs/images/Application_Architecture_Diagram.png)
+![Architecture-diagram](docs/images/Application_Architecture_Diagram.png)
 
-![Architecture-diagram-legend](./docs/images/Application_Architecture_Diagram_legend.png)
+![Architecture-diagram-legend](docs/images/Application_Architecture_Diagram_legend.png)
 
 ___
 
