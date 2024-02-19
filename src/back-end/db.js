@@ -31,12 +31,22 @@ process.on('SIGINT', async () => {
     }
 });
 
+// Define DB schemas
+const clinicsSchema = new mongoose.Schema({
+    name: {type: String, required: true},
+    address: {type: mongoose.ObjectID, ref: 'Address'},
+    url: {type: String, required: true},
+    logo: {type: mongoose.ObjectID, ref: 'Image'},
+    openingHours: {type: String, required: true}
+})
+
 const patientsSchema = new mongoose.Schema({
+    clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     address: {type: mongoose.ObjectID, ref: 'Address'},
     phoneNumber: {type: String, required: true},
-    queueState: {type: String, required: true}
+    queueState: {type: String, enum: ['In Queue', 'Serving', 'Completed'], default: 'In Queue'}
 })
 
 const addressesSchema = new mongoose.Schema({
@@ -50,6 +60,7 @@ const addressesSchema = new mongoose.Schema({
 })
 
 const practitionersSchema = new mongoose.Schema({
+    clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     phoneNumber: {type: String, required: true},
@@ -60,6 +71,17 @@ const imagesSchema = new mongoose.Schema({
     image_url: {type: String, required: true}
 })
 
-const queueEntriesSchema = new mongoose.Schema({
-    image_url: {type: String, required: true}
-})
+
+// Define DB models
+const ClinicModel = mongoose.model('Clinic', clinicsSchema)
+
+const PatientModel = mongoose.model('Patient', patientsSchema)
+
+const AddressModel = mongoose.model('Address', addressesSchema)
+
+const PractitionerModel = mongoose.model('Practitioner', practitionersSchema)
+
+const ImageModel = mongoose.model('Image', imagesSchema)
+
+// Export
+export { closeConnection, ClinicModel, PatientModel, AddressModel, PractitionerModel, ImageModel}
