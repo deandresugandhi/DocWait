@@ -3,8 +3,11 @@ import cors from 'cors'
 
 const app = express()
 
-app.use(cors())
-
+// Middleware to parse incoming JSON requests
 app.use(express.json())
+
+// app.use(cors())
+
+
 
 export default app

@@ -1,14 +1,13 @@
-import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 
-// Configure .env
 dotenv.config()
 
-// Connect to MongoDB database via Mongoose
 try {
-    const m = await mongoose.connect(process.env.DB_URI);
-    console.log(m.connection.readyState === 1 ? "Database connected!" : "Database failed to connect");
-} catch (err) {
+    const m = await mongoose.connect(process.env.DB_URI)
+    console.log(m.connection.readyState === 1 ? 'MongoDB connected!' : 'MongoDB failed to connect')
+}
+catch (err) {
     console.error(err)
 }
 
@@ -41,7 +40,7 @@ const clinicsSchema = new mongoose.Schema({
 })
 
 const patientsSchema = new mongoose.Schema({
-    clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
+    //clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     address: {type: mongoose.ObjectID, ref: 'Address'},
@@ -60,7 +59,7 @@ const addressesSchema = new mongoose.Schema({
 })
 
 const practitionersSchema = new mongoose.Schema({
-    clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
+   // clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     phoneNumber: {type: String, required: true},
@@ -72,7 +71,7 @@ const imagesSchema = new mongoose.Schema({
 })
 
 
-// Define DB models
+//Define DB models
 const ClinicModel = mongoose.model('Clinic', clinicsSchema)
 
 const PatientModel = mongoose.model('Patient', patientsSchema)
