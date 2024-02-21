@@ -1,4 +1,4 @@
-import { AddressModel, PatientModel, closeConnection  } from "./db.js";
+import { AddressModel, PatientModel, QueueEntriesModel, PractitionerModel, closeConnection   } from "./db.js";
 
 const addresses = [
     { 
@@ -45,48 +45,96 @@ let addressesRef = await AddressModel.insertMany(addresses)
 console.log('Added addresses')
 
 
-const patientsInfo = [
+const patients = [
     { 
      firstName: 'John',
      lastName: 'Smith', 
      address: addressesRef[0]._id,
-     phoneNumber: '0421544658',
-     queueState: 'Completed'
+     phoneNumber: '0421544658'
     },
     { 
     firstName: 'Michael',
      lastName: 'Jordan',
      address: addressesRef[1]._id,
-     phoneNumber: '0421545555',
-     queueState: 'In Queue'
+     phoneNumber: '0421545555'
     },
     { 
      firstName: 'Laura',
      lastName: 'Cordoba',
      address: addressesRef[2]._id,
-     phoneNumber: '0421546666',
-     queueState: 'In Queue'
+     phoneNumber: '0421546666'
     },
     { 
      firstName: 'Maria',
      lastName: 'Lopez',
      address: addressesRef[3]._id,
-     phoneNumber: '0421547777',
-     queueState: 'In Queue'
+     phoneNumber: '0421547777'
     },
     {
      firstName: 'Simon',
      lastName: 'Rodriguez',
      address: addressesRef[3]._id,
-     phoneNumber: '042154888',
-     queueState: 'Serving'
+     phoneNumber: '042154888'
     },
 ];
 
 await PatientModel.deleteMany()
 console.log('Deleted patient records')
-await PatientModel.insertMany(patientsInfo)
+let patientsRef = await PatientModel.insertMany(patients)
 console.log('Added patient records')
+
+const practitioners = [
+    {
+      firstName: 'Rajesh',
+      lastName: 'Patel',
+      phoneNumber: '9876543210',
+      availability: 'On duty'
+    },
+    {
+      firstName: 'Priya',
+      lastName: 'Kumar',
+      phoneNumber: '1234567890',
+      availability: 'On duty'
+    }
+  ];
+
+await PractitionerModel.deleteMany()
+console.log('Deleted practitioners records')
+let practitionersRef = await PractitionerModel.insertMany(practitioners)
+console.log('Added practitioners records')
+
+const queueEntries = [
+    {
+     patient : patientsRef[0]._id,
+     practitioner : practitionersRef[0]._id,
+     time: new Date(),
+     queueState: 'In progress' 
+    },
+    {
+     patient : patientsRef[1]._id,
+     practitioner : practitionersRef[1]._id,
+     time: new Date(),
+     queueState: 'Pending' 
+    },
+    {
+     patient : patientsRef[2]._id,
+     practitioner : practitionersRef[1]._id,
+     time: new Date(),
+     queueState: 'Pending' 
+    },
+    {
+     patient : patientsRef[3]._id,
+     practitioner : practitionersRef[0]._id ,
+     time: new Date(),
+     queueState: 'Pending' 
+    },
+
+]
+
+await QueueEntriesModel.deleteMany()
+console.log('Deleted all queue entries')
+await QueueEntriesModel.insertMany(queueEntries)
+console.log('Added queue entries')
 
 closeConnection()
 

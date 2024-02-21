@@ -45,7 +45,7 @@ const patientsSchema = new mongoose.Schema({
     lastName: {type: String, required: true},
     address: {type: mongoose.ObjectId, ref: 'Address'},
     phoneNumber: {type: String, required: true},
-    queueState: {type: String, enum: ['In Queue', 'Serving', 'Completed'], default: 'In Queue'}
+    
 })
 
 const addressesSchema = new mongoose.Schema({
@@ -59,15 +59,23 @@ const addressesSchema = new mongoose.Schema({
 })
 
 const practitionersSchema = new mongoose.Schema({
-   // clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
-    firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
-    phoneNumber: {type: String, required: true},
-    availability: {type: String, required: true}
-})
+    // clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    phoneNumber: { type: String, required: true },
+    availability: { type: String, enum: ['On duty', 'Off duty'], default: 'On duty' }
+});
+
 
 const imagesSchema = new mongoose.Schema({
     image_url: {type: String, required: true}
+})
+
+const queueEntriesSchema = new mongoose.Schema({
+    patient : {type: mongoose.ObjectId, ref: 'Patient'},
+    practitioner : {type: mongoose.ObjectId, ref: 'Practitioner'},
+    time: { type: Date, default: Date.now },
+    queueState: { type: String, enum: ['Pending', 'In progress', 'Completed'], default: 'Pending' }
 })
 
 
@@ -82,5 +90,8 @@ const PractitionerModel = mongoose.model('Practitioner', practitionersSchema)
 
 const ImageModel = mongoose.model('Image', imagesSchema)
 
+const QueueEntriesModel = mongoose.model('QueueEntries', queueEntriesSchema)
+
+
 // Export
-export { closeConnection, ClinicModel, PatientModel, AddressModel, PractitionerModel, ImageModel}
+export { closeConnection, ClinicModel, PatientModel, AddressModel, PractitionerModel, ImageModel, QueueEntriesModel}
