@@ -9,10 +9,10 @@ const BoxContainer = ({ children }) => (
   </div>
 );
 
-const CustomerInfo = () => (
+const CustomerInfo = ( { entry } ) => (
   <div className="container is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
-    <h2 className="is-size-6 has-text-weight-bold">Customer Name</h2>
-    <button className="button is-small is-rounded has-background-grey-light"><p>GP Name</p></button>
+    <h2 className="is-size-6 has-text-weight-bold">{entry.name}</h2>
+    <button className="button is-small is-rounded has-background-grey-light"><p>{entry.gp}</p></button>
   </div>
 );
 
@@ -24,9 +24,9 @@ const NotificationIcons = () => (
   </div>
 );
 
-const QueueEntry = () => (
+const QueueEntry = ({ entry }) => (
   <BoxContainer>
-    <CustomerInfo />
+    <CustomerInfo  entry={entry} />
     <NotificationIcons />
   </BoxContainer>
 );

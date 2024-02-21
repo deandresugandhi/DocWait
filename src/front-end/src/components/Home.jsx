@@ -1,7 +1,7 @@
 import React from 'react'
 import QueueEntry from './QueueEntry'
 
-const Home = () => {
+const Home = ({ queueEntries=[] }) => {
   // const [categories, setCategories] = useState([])
   // const [entries, setEntries] = useState([])
 
@@ -19,7 +19,13 @@ const Home = () => {
   return (
     <>
       <div>Home</div>
-      <QueueEntry />
+      <ul>
+        {queueEntries.map((entry, index) => (
+          <li key={index}>
+            <QueueEntry entry={entry} />
+          </li>          
+        ))}
+        </ul>
     </>
   )
 }
