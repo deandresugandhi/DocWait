@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import patientsRoutes from './routes/patients_routes'
+import patientsRoutes from './routes/patients_routes.js'
 
 const app = express()
 
