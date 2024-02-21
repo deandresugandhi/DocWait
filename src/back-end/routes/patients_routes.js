@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { PatientModel } from "./db.js";
+import { PatientModel } from "../db.js";
 
 const router = Router();
 
