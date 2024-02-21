@@ -33,9 +33,9 @@ process.on('SIGINT', async () => {
 // Define DB schemas
 const clinicsSchema = new mongoose.Schema({
     name: {type: String, required: true},
-    address: {type: mongoose.ObjectID, ref: 'Address'},
+    address: {type: mongoose.ObjectId, ref: 'Address'},
     url: {type: String, required: true},
-    logo: {type: mongoose.ObjectID, ref: 'Image'},
+    logo: {type: mongoose.ObjectId, ref: 'Image'},
     openingHours: {type: String, required: true}
 })
 
@@ -43,7 +43,7 @@ const patientsSchema = new mongoose.Schema({
     //clinic: {type: mongoose.ObjectID, ref: 'Clinic'},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    address: {type: mongoose.ObjectID, ref: 'Address'},
+    address: {type: mongoose.ObjectId, ref: 'Address'},
     phoneNumber: {type: String, required: true},
     queueState: {type: String, enum: ['In Queue', 'Serving', 'Completed'], default: 'In Queue'}
 })
