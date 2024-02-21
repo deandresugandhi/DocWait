@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 app.use('/patients', patientsRoutes)
 
-// app.use(cors())
+app.use(cors())
 
 
 
