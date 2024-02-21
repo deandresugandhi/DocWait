@@ -35,8 +35,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const insertedpatient = await PatientModel.create(req.body)
-        res.status(201).send(insertedpatient)
+        const insertedPatient = await PatientModel.create(req.body)
+        res.status(201).send(insertedPatient)
     }
     catch (err) {
         res.status(500).send({ error: err.message })
