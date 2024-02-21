@@ -4,7 +4,7 @@ import { PatientModel } from "./db.js";
 const router = Router();
 
 // Handle GET request to fetch all patients
-router.get('/patients', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         // Fetch all patients from the database
         const patients = await PatientModel.find();
@@ -19,7 +19,7 @@ router.get('/patients', async (req, res) => {
 });
 
 // Handle GET request to fetch one patient
-router.get('/patients/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const patient = await PatientModel.findById(req.params.id);
 
@@ -33,7 +33,7 @@ router.get('/patients/:id', async (req, res) => {
     }
 });
 
-router.post('/patients', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const insertedpatient = await PatientModel.create(req.body)
         res.status(201).send(insertedpatient)
@@ -42,3 +42,5 @@ router.post('/patients', async (req, res) => {
         res.status(500).send({ error: err.message })
     }
 })
+
+export default router
