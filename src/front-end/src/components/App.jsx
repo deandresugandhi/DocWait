@@ -6,6 +6,20 @@ import AboutUs from './AboutUs'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
+  // const [patients, setPatients] = useState([])
+  // const [queueEntries, setEntries] = useState([])
+
+  // useEffect(() => {
+  //     fetch('https://t3a2.onrender.com/patients')
+  //     .then(res => res.json())
+  //     .then(data => setPatients(data))
+  // }, [])
+
+  // useEffect(() => {
+  //     fetch('https://t3a2.onrender.com/entries')
+  //     .then(res => res.json())
+  //     .then(data => setEntries(data))
+  // }, [])
   const queueEntries = [
     {
       name: "John Doe",
