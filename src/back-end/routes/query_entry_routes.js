@@ -7,7 +7,9 @@ const router = Router();
 router.get('/', async (req, res) => {
     try {
         // Fetch all patients from the database
-        const queueEntry = await QueueEntriesModel.find();
+        const queueEntry = await QueueEntriesModel.find()
+            .populate('patient')
+            .populate('practitioner');
 
         // Respond with the fetched patients
         res.send(queueEntry);
@@ -20,7 +22,9 @@ router.get('/', async (req, res) => {
 // Handle GET request to fetch one Queue Entry
 router.get('/:id', async (req, res) => {
     try {
-        const queueEntry = await QueueEntriesModel.findById(req.params.id);
+        const queueEntry = await QueueEntriesModel.findById(req.params.id)
+            .populate('patient')
+            .populate('practitioner');
         if (queueEntry) {
             res.send(queueEntry);
         } else {
@@ -34,6 +38,8 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const insertedEntry = await QueryEntriesModel.create(req.body)
+            .populate('patient')
+            .populate('practitioner');
         res.status(201).send(insertedEntry)
     }
     catch (err) {
