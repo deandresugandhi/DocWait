@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useEffect, React } from 'react'
 import Home from './Home'
 import Settings from './Settings'
 import Customers from './Customers'
@@ -6,39 +6,39 @@ import AboutUs from './AboutUs'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
-  // const [patients, setPatients] = useState([])
-  // const [queueEntries, setEntries] = useState([])
+  const [patients, setPatients] = useState([])
+  const [queueEntries, setEntries] = useState([])
 
-  // useEffect(() => {
-  //     fetch('https://t3a2.onrender.com/patients')
-  //     .then(res => res.json())
-  //     .then(data => setPatients(data))
-  // }, [])
+  useEffect(() => {
+      fetch('https://t3a2.onrender.com/patients')
+      .then(res => res.json())
+      .then(data => setPatients(data))
+  }, [])
 
-  // useEffect(() => {
-  //     fetch('https://t3a2.onrender.com/entries')
-  //     .then(res => res.json())
-  //     .then(data => setEntries(data))
-  // }, [])
-  const queueEntries = [
-    {
-      name: "John Doe",
-      gp: "Doe John"
-    },
-    {
-      name: "Jane Doe",
-      gp: "Doe Jane"
-    },
-    {
-      name: "Bob Doe",
-      gp: "Doe Bob"
-    },
-    {
-      name: "Babe Doe",
-      gp: "Doe Babe"
-    },
+  useEffect(() => {
+      fetch('https://t3a2.onrender.com/entries')
+      .then(res => res.json())
+      .then(data => setEntries(data))
+  }, [])
+  // const queueEntries = [
+  //   {
+  //     name: "John Doe",
+  //     gp: "Doe John"
+  //   },
+  //   {
+  //     name: "Jane Doe",
+  //     gp: "Doe Jane"
+  //   },
+  //   {
+  //     name: "Bob Doe",
+  //     gp: "Doe Bob"
+  //   },
+  //   {
+  //     name: "Babe Doe",
+  //     gp: "Doe Babe"
+  //   },
 
-  ]
+  // ]
   return (
     <>
       <h1>QueueMate</h1>

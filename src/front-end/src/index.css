@@ -1,11 +1,39 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
+
 .button.is-small { font-size: .5rem; }
 
 .custom-width {
     width: 30%;
+    height: 100%;
     max-width: none;
-    margin: 0;
+    margin: 1vw;
+}
+
+.custom-width-2 {
+    width: 80%;
+    height: 100%;
+    max-width: none;
+    margin: 1vw;
+}
+
+.custom-width-3 {
+    width: 12%;
+    height: 100%;
+    max-width: none;
+    margin: 1vw;
+}
+
+.full-height {
+    height: 90vh;
+}
+
+.full-width {
+    width: 100vw ;
+}
+
+.no-margin {
+    margin: 0px;
 }
 
 .custom-rounded-box {
@@ -14,10 +42,4 @@
 
 img {
     margin: 2px;
-}
-
-.custom-parent-width {
-    width: 50%;
-    max-width: none;
-    margin: 0;
 }
