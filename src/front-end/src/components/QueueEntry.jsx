@@ -4,7 +4,7 @@ import tickIconURL from '../assets/Tick.png'
 import crossIconURL from '../assets/Cross.png' 
 
 const BoxContainer = ({ children }) => (
-  <div className="box p-3 custom-rounded-box is-flex is-flex-direction-row">
+  <div className="box p-3 custom-color-2 entry-rounded-box is-flex is-flex-direction-row custom-margin">
     {children}
   </div>
 );
