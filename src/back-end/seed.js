@@ -1,4 +1,5 @@
-import { AddressModel, PatientModel, QueueEntriesModel, PractitionerModel, closeConnection   } from "./db.js";
+import { AddressModel, PatientModel, QueueEntriesModel, PractitionerModel, UserModel, closeConnection   } from "./db.js";
+import bcrypt from 'bcrypt';
 
 const addresses = [
     { 
@@ -135,6 +136,26 @@ await QueueEntriesModel.deleteMany()
 console.log('Deleted all queue entries')
 await QueueEntriesModel.insertMany(queueEntries)
 console.log('Added queue entries')
+
+
+const users = [
+        {
+            username: 'testuser',
+            password: 'testpassword'
+        }
+    ];
+
+ // Hash passwords using bcrypt
+const hashedUsers = await Promise.all(users.map(async (user) => {
+    const hashedPassword = await bcrypt.hash(user.password, 10); 
+    return { ...user, password: hashedPassword };
+}));
+             
+await UserModel.deleteMany(); 
+console.log('Deleted existing users');
+await UserModel.insertMany(hashedUsers);
+console.log('Added user login details');
+
 
 closeConnection()
 

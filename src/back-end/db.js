@@ -78,6 +78,12 @@ const queueEntriesSchema = new mongoose.Schema({
     queueState: { type: String, enum: ['Pending', 'In progress', 'Completed'], default: 'Pending' }
 })
 
+// User schema
+const userSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
+  })
+
 
 //Define DB models
 const ClinicModel = mongoose.model('Clinic', clinicsSchema)
@@ -91,7 +97,9 @@ const PractitionerModel = mongoose.model('Practitioner', practitionersSchema)
 const ImageModel = mongoose.model('Image', imagesSchema)
 
 const QueueEntriesModel = mongoose.model('QueueEntries', queueEntriesSchema)
+///
+const UserModel = mongoose.model('User', userSchema)
 
 
 // Export
-export { closeConnection, ClinicModel, PatientModel, AddressModel, PractitionerModel, ImageModel, QueueEntriesModel}
+export { closeConnection, ClinicModel, PatientModel, AddressModel, PractitionerModel, ImageModel, QueueEntriesModel, UserModel } 

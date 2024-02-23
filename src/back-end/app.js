@@ -3,7 +3,8 @@ import cors from 'cors'
 import patientsRoutes from './routes/patients_routes.js'
 import entriesRoutes from './routes/query_entry_routes.js'
 import addressesRoutes from './routes/addresses_routes.js'
-import practitioners_routes from './routes/practitioners_routes.js'
+import practitionersRoutes from './routes/practitioners_routes.js'
+import loginRoutes from './routes/login_routes.js'
 
 const app = express()
 
@@ -18,7 +19,10 @@ app.use('/addresses', addressesRoutes)
 
 app.use('/entries', entriesRoutes)
 
-app.use( '/practitioners',practitioners_routes)
+app.use( '/practitioners', practitionersRoutes)
+
+////
+app.use('login', loginRoutes)
 
 export default app
 
