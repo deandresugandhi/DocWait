@@ -4,6 +4,7 @@ import customerIconURL from '../assets/People.png'
 import aboutUsIconURL from '../assets/Info Circle.png' 
 import settingsIconURL from '../assets/Settings.png' 
 import logoURL from '../assets/Logo.png'
+import { Link } from "react-router-dom"
 
 const BoxContainer = ({ children }) => (
   <div className="box navbar-padding navbar-color navbar-width navbar-rounded-box is-flex is-flex-direction-column">
@@ -27,10 +28,18 @@ const LinkContainer = ({ imageURL, linkName, position }) => {
 const AdminNavBar = () => (
   <BoxContainer>
     <img src={ logoURL } alt='Logo' className='logo-size' />
-    <LinkContainer imageURL={homeIconURL} linkName="Queue" />
-    <LinkContainer imageURL={customerIconURL} linkName="Customer" />
-    <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" />
-    <LinkContainer imageURL={settingsIconURL} linkName="Settings" position="bottom"/>
+    <Link to="/">
+      <LinkContainer imageURL={homeIconURL} linkName="Queue" />
+    </Link>
+    <Link to="/customers">
+      <LinkContainer imageURL={customerIconURL} linkName="Customer" />
+    </Link>
+    <Link to="/about-us">
+      <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" />
+    </Link>
+    <Link to="/about-us">
+      <LinkContainer imageURL={settingsIconURL} linkName="Settings" position="bottom"/>
+    </Link>
   </BoxContainer>
 );
 

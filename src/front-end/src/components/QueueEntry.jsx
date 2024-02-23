@@ -9,12 +9,23 @@ const BoxContainer = ({ children }) => (
   </div>
 );
 
-const CustomerInfo = ( { entry } ) => (
-  <div className="container is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
-    <h2 className="is-size-7 has-text-weight-bold">{entry.patient.firstName} {entry.patient.lastName}</h2>
-    <button className="button is-small is-rounded has-background-grey-light"><p>{entry.practitioner.firstName} {entry.practitioner.lastName}</p></button>
-  </div>
-);
+const CustomerInfo = ( { entry, patient } ) => {
+  if (entry) {
+    return (
+      <div className="container is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
+        <h2 className="is-size-7 has-text-weight-bold">{entry.patient.firstName} {entry.patient.lastName}</h2>
+        <button className="button is-small is-rounded has-background-grey-light"><p>{entry.practitioner.firstName} {entry.practitioner.lastName}</p></button>
+      </div>
+    )
+  }
+  else if (patient) {
+    return (
+      <>
+        <h2 className="is-size-7 third-width has-text-weight-bold">{patient.firstName} {patient.lastName}</h2>
+      </>
+    )
+  }
+};
 
 const NotificationIcons = () => (
   <div className="container is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-end">
@@ -24,11 +35,24 @@ const NotificationIcons = () => (
   </div>
 );
 
-const QueueEntry = ({ entry }) => (
-  <BoxContainer>
-    <CustomerInfo  entry={entry} />
-    <NotificationIcons />
-  </BoxContainer>
-);
+const QueueEntry = ({ entry, patient }) => {
+  if (entry) {
+    return (
+      <BoxContainer>
+        <CustomerInfo  entry={entry} />
+        <NotificationIcons />
+      </BoxContainer>
+    )
+  }
+  else if (patient) {
+    return (
+      <BoxContainer>
+        <CustomerInfo  patient={patient} />
+        <h2 className="is-size-7 has-text-weight-bold has-text-centered third-width">In Queue</h2>
+        <h2 className="is-size-7 has-text-weight-bold has-text-right third-width">Today</h2>
+      </BoxContainer>
+    )
+  }
+};
 
 export default QueueEntry
