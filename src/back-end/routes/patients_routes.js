@@ -7,7 +7,7 @@ const router = Router();
 router.get('/', async (req, res) => {
     try {
         // Fetch all patients from the database
-        const patients = await PatientModel.find().populate('address');
+        const patients = await PatientModel.find().populate('address')
 
         // Respond with the fetched patients
         res.send(patients);
@@ -33,14 +33,44 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+// handle POST request to create a new patient
+router.post('/create', async (req, res) => {
     try {
-        const insertedPatient = await PatientModel.create(req.body).populate('address')
+        const insertedPatient = await PatientModel.create(req.body)
         res.status(201).send(insertedPatient)
     }
     catch (err) {
         res.status(500).send({ error: err.message })
     }
 })
+
+// handle PUT requests to update patient details
+router.put('/:id', async (req, res) => {
+    try {                
+        const updatePatient = await PatientModel.findOneAndUpdate({_id:req.params.id}, req.body, { new: true });
+        if (updatePatient) {
+            res.send(updatePatient);
+        } else {
+            res.status(404).send({ error: 'Patient not found' });
+        }
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
+
+//handle DELETE requests to remove patient records
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletedPatient = await PatientModel.findByIdAndDelete(req.params.id);
+        if (deletedPatient) {
+            res.status(200).send({message:'Patient info deletion succesful'})
+        } else {
+            res.status(404).send({ error: 'patient not found' });
+        }
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
 
 export default router

@@ -37,7 +37,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const insertedEntry = await QueryEntriesModel.create(req.body)
+        const insertedEntry = await QueueEntriesModel.create(req.body)
             .populate('patient')
             .populate('practitioner');
         res.status(201).send(insertedEntry)
