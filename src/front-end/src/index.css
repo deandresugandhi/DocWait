@@ -1,5 +1,7 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
+
+/* Set font */
 body {
     font-family: 'Poppins', sans-serif;
 }
@@ -8,8 +10,18 @@ body {
 
 .logo-size {
     width: 80px;
+    align-self: center;
     height: auto;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
+}
+
+/* Common utility classes */
+.full-height {
+    height: 90vh;
+}
+
+.full-width {
+    width: 100vw ;
 }
 
 .third-width {
@@ -23,27 +35,29 @@ body {
     width: 100%;
 }
 
-.navbar-padding {
-    padding-left: 18px;
-}
-
-.navbar-width {
-    width: 12%;
+/* Admin Navbar styles */
+.navbar {
     height: 100%;
-    max-width: none;
+    width: 14%;
     margin: 1vw;
+    font-size: 10px;
+    background-color: #14a0a5;
+    white-space: nowrap;
 }
 
-.full-height {
-    height: 90vh;
+.navbar-icon {
+    width: 13px;
+    height: 13px;
 }
 
-.full-width {
-    width: 100vw ;
+.navbar-active {
+    width: 300px;
+    border-radius: 20px;
+    background-color: rgb(56, 107, 114);
 }
 
-.no-margin {
-    margin: 0px;
+.large-rounded-box {
+    border-radius: 12px;
 }
 
 .custom-margin {
@@ -51,25 +65,15 @@ body {
 }
 
 .navbar-text-margin {
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 .entry-rounded-box {
     border-radius: 23px;
 }
 
-.navbar-rounded-box {
-    border-radius: 12px;
-}
-
-.navbar-text {
-    font-size: 7px;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-
-.navbar-container-size {
-    height: 30px;
+.light {
+    font-weight: 400;
 }
 
 .medium {
@@ -91,14 +95,7 @@ img {
     height: 15px;
 }
 
-.navbar-icon {
-    width: 11px;
-    height: 11px;
-}
 
-.navbar-color {
-    background-color: #14a0a5;
-}
 
 .custom-color {
     background-color: #c1e1e2;

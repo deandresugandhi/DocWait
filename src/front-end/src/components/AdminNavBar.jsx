@@ -1,46 +1,46 @@
-import React from 'react'
-import homeIconURL from '../assets/Home.png'
-import customerIconURL from '../assets/People.png' 
-import aboutUsIconURL from '../assets/Info Circle.png' 
-import settingsIconURL from '../assets/Settings.png' 
-import logoURL from '../assets/Logo.png'
-import { Link } from "react-router-dom"
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import homeIconURL from '../assets/Home.png';
+import customerIconURL from '../assets/People.png';
+import aboutUsIconURL from '../assets/Info Circle.png';
+import settingsIconURL from '../assets/Settings.png';
+import logoURL from '../assets/Logo.png';
 
 const BoxContainer = ({ children }) => (
-  <div className="box navbar-padding navbar-color navbar-width navbar-rounded-box is-flex is-flex-direction-column">
+  <aside className="menu py-5 px-5 navbar large-rounded-box is-flex is-flex-direction-column">
     {children}
-  </div>
+  </aside>
 );
 
-const LinkContainer = ({ imageURL, linkName, position }) => {
-  let settings = "navbar-container-size no-margin is-flex is-flex-direction-row is-align-items-flex-end is-justify-content-flex-start"
+const LinkContainer = ({ imageURL, linkName, path, position }) => {
+  let settings = 'py-1 is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start';
   if (position === 'bottom') {
-    settings += " is-flex-grow-1"
+    settings += ' is-flex-grow-1';
   }
+
   return (
-    <div className={ settings }>
-      <img src={ imageURL } alt={ linkName } className='navbar-icon'/>
-      <h2 className="medium navbar-text has-text-white navbar-text-margin">{ linkName }</h2>
-    </div>
-  )
+    <li className={`${settings}`}>
+      <NavLink
+        to={path}
+        className={({ isActive }) => `${settings} ${isActive ? 'navbar-active' : ''}`}
+      >
+        <img src={imageURL} alt={linkName} className="navbar-icon" />
+        <span className="light has-text-white navbar-text-margin">{linkName}</span>
+      </NavLink>
+    </li>
+  );
 };
 
 const AdminNavBar = () => (
   <BoxContainer>
-    <img src={ logoURL } alt='Logo' className='logo-size' />
-    <Link to="/">
-      <LinkContainer imageURL={homeIconURL} linkName="Queue" />
-    </Link>
-    <Link to="/customers">
-      <LinkContainer imageURL={customerIconURL} linkName="Customer" />
-    </Link>
-    <Link to="/about-us">
-      <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" />
-    </Link>
-    <Link to="/about-us">
-      <LinkContainer imageURL={settingsIconURL} linkName="Settings" position="bottom"/>
-    </Link>
+    <img src={logoURL} alt="Logo" className="logo-size" />
+    <ul className="mb-3 menu-list medium">
+      <LinkContainer imageURL={homeIconURL} linkName="Queue" path="/" />
+      <LinkContainer imageURL={customerIconURL} linkName="Customer" path="/customers" />
+      <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" path="/about-us" />
+      <LinkContainer imageURL={settingsIconURL} linkName="Settings" path="/settings" position="bottom"/>
+    </ul>
   </BoxContainer>
 );
 
-export default AdminNavBar
+export default AdminNavBar;
