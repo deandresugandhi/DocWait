@@ -13,7 +13,7 @@ const BoxContainer = ({ children }) => (
 );
 
 const LinkContainer = ({ imageURL, linkName, path, position }) => {
-  let settings = 'py-1 is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start';
+  let settings = 'py-1 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start';
   if (position === 'bottom') {
     settings += ' is-flex-grow-1';
   }
@@ -25,7 +25,7 @@ const LinkContainer = ({ imageURL, linkName, path, position }) => {
         className={({ isActive }) => `${settings} ${isActive ? 'navbar-active' : ''}`}
       >
         <img src={imageURL} alt={linkName} className="navbar-icon" />
-        <span className="light has-text-white navbar-text-margin">{linkName}</span>
+        <span className="light">{linkName}</span>
       </NavLink>
     </li>
   );

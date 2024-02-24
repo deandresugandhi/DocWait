@@ -4,7 +4,7 @@ import tickIconURL from '../assets/Tick.png'
 import crossIconURL from '../assets/Cross.png' 
 
 const BoxContainer = ({ children }) => (
-  <div className="box p-3 custom-color-2 entry-rounded-box is-flex is-flex-direction-row custom-margin">
+  <div className="box p-3 custom-color-2 entry-rounded-box is-flex is-flex-direction-row mt-2">
     {children}
   </div>
 );
@@ -29,9 +29,9 @@ const CustomerInfo = ( { entry, patient } ) => {
 
 const NotificationIcons = () => (
   <div className="container is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-end">
-    <img src={notifIconURL} alt="Notif Icon" />
-    <img src={tickIconURL} alt="Tick Icon" />
-    <img src={crossIconURL} alt="Notif Icon" />
+    <img src={notifIconURL} alt="Notif Icon" className="image is-16x16" />
+    <img src={tickIconURL} alt="Tick Icon" className="image is-16x16"/>
+    <img src={crossIconURL} alt="Notif Icon" className="image is-16x16"/>
   </div>
 );
 
