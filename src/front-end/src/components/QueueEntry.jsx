@@ -9,7 +9,7 @@ const BoxContainer = ({ children }) => (
   </div>
 );
 
-const CustomerInfo = ( { entry, patient } ) => {
+const CustomerInfo = ( { entry, patient, practitioner } ) => {
   if (entry) {
     return (
       <div className="container is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
@@ -25,6 +25,13 @@ const CustomerInfo = ( { entry, patient } ) => {
       </>
     )
   }
+  else if (practitioner) {
+    return (
+      <>
+        <h2 className="is-size-7 third-width has-text-weight-bold">{practitioner.firstName} {practitioner.lastName}</h2>
+      </>
+    )
+  }
 };
 
 const NotificationIcons = () => (
@@ -35,11 +42,11 @@ const NotificationIcons = () => (
   </div>
 );
 
-const QueueEntry = ({ entry, patient }) => {
+const QueueEntry = ({ entry, patient, practitioner }) => {
   if (entry) {
     return (
       <BoxContainer>
-        <CustomerInfo  entry={entry} />
+        <CustomerInfo entry={entry} />
         <NotificationIcons />
       </BoxContainer>
     )
@@ -50,6 +57,17 @@ const QueueEntry = ({ entry, patient }) => {
         <CustomerInfo  patient={patient} />
         <h2 className="is-size-7 has-text-weight-bold has-text-centered third-width">In Queue</h2>
         <h2 className="is-size-7 has-text-weight-bold has-text-right third-width">Today</h2>
+      </BoxContainer>
+    )
+  }
+  else if (practitioner) {
+    return (
+      <BoxContainer>
+        <CustomerInfo practitioner={practitioner} />
+        <div className="py-1 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start">
+          <div className="circle" />
+          <p className="is-size-7 ml-2">{practitioner.availability}</p>
+        </div>
       </BoxContainer>
     )
   }

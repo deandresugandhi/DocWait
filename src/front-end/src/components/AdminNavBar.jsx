@@ -7,13 +7,13 @@ import settingsIconURL from '../assets/Settings.png';
 import logoURL from '../assets/Logo.png';
 
 const BoxContainer = ({ children }) => (
-  <aside className="menu py-5 px-5 navbar large-rounded-box is-flex is-flex-direction-column">
+  <aside className="menu py-6 px-4 admin-navbar large-rounded-box is-flex is-flex-direction-column">
     {children}
   </aside>
 );
 
 const LinkContainer = ({ imageURL, linkName, path, position }) => {
-  let settings = 'py-1 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start';
+  let settings = 'py-2 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start';
   if (position === 'bottom') {
     settings += ' is-flex-grow-1';
   }
@@ -38,7 +38,7 @@ const AdminNavBar = () => (
       <LinkContainer imageURL={homeIconURL} linkName="Queue" path="/" />
       <LinkContainer imageURL={customerIconURL} linkName="Customer" path="/customers" />
       <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" path="/about-us" />
-      <LinkContainer imageURL={settingsIconURL} linkName="Settings" path="/settings" position="bottom"/>
+      <LinkContainer imageURL={settingsIconURL} linkName="Settings" path="/settings/manage-practitioners" position="bottom"/>
     </ul>
   </BoxContainer>
 );
