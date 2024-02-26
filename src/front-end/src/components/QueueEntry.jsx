@@ -28,7 +28,7 @@ const CustomerInfo = ( { entry, patient, practitioner } ) => {
   else if (practitioner) {
     return (
       <>
-        <h2 className="is-size-7 third-width has-text-weight-bold">{practitioner.firstName} {practitioner.lastName}</h2>
+        <h2 className="is-size-7 half-width has-text-weight-bold">{practitioner.firstName} {practitioner.lastName}</h2>
       </>
     )
   }

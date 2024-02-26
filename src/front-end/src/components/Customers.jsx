@@ -8,8 +8,8 @@ const Customers = ({ patients=[] }) => {
       <div className='full-height is-marginless is-flex is-flex-direction-row'>
         <AdminNavBar />
         <div className='is-marginless fill-width is-flex is-flex-direction-column ml-3'>
-          <h1 className='is-1'>Clinic Name's</h1>
-          <h1 className='black is-size-3 mb-3'>Customers</h1>
+          <h1 className='is-size-4'>Clinic Name's</h1>
+          <h1 className='black is-size-1 mb-3'>Customers</h1>
           <div className="box fill-width fill-height custom-color large-rounded-box is-flex is-flex-direction-column">
             <ul>
               {patients.map((patient, index) => (

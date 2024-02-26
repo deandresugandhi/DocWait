@@ -7,7 +7,7 @@ body {
     padding: 20px;
 }
 
-.is-small { 
+.button.is-small { 
     font-size: .5rem; 
 }
 
@@ -42,7 +42,13 @@ body {
 }
 
 .full-width {
-    width: 100vw ;
+    width: 100vw;
+}
+
+.half-width {
+    width: calc(1/2 * 100%);
+    height: 100%;
+    max-width: none;
 }
 
 .third-width {
@@ -84,6 +90,19 @@ img {
     height: 10px;
     background-color: #0bb327;
     border-radius: 50%;
+}
+
+.bottom-border {
+    border-bottom: 1px solid #7dc1c4;
+}
+
+.input {
+    border-radius: 14px;
+    border: 1px solid #95d1cc;
+}
+
+.input:hover {
+    border: 1px solid #11a89c;
 }
 
 /* Custom Colors */

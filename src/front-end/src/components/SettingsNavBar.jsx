@@ -30,8 +30,8 @@ const SettingsNavBar = () => (
   <BoxContainer>
     <ul className="mb-3 menu-list medium">
       <LinkContainer linkName="Manage Practitioners" path="/settings/manage-practitioners" />
-      <LinkContainer linkName="Update Information" path="/customers/update-information" />
-      <LinkContainer linkName="Notification Settings" path="/about-us" />
+      <LinkContainer linkName="Update Information" path="/settings/update-information" />
+      <LinkContainer linkName="Features & Notifications" path="/settings/features-notifications" />
     </ul>
   </BoxContainer>
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import homeIconURL from '../assets/Home.png';
 import customerIconURL from '../assets/People.png';
 import aboutUsIconURL from '../assets/Info Circle.png';
@@ -13,16 +13,26 @@ const BoxContainer = ({ children }) => (
 );
 
 const LinkContainer = ({ imageURL, linkName, path, position }) => {
-  let settings = 'py-2 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start';
+  let settings = 'py-2 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start'
+  const location = useLocation()
+  const isActive = () => {
+    if (linkName === 'Settings') {
+      return location.pathname.startsWith('/settings/')
+    }
+    else {
+      return location.pathname === path
+    }
+  }
+
   if (position === 'bottom') {
-    settings += ' is-flex-grow-1';
+    settings += ' is-flex-grow-1'
   }
 
   return (
     <li className={`${settings}`}>
       <NavLink
         to={path}
-        className={({ isActive }) => `${settings} ${isActive ? 'navbar-active' : ''}`}
+        className={`${settings} ${isActive() ? 'navbar-active' : ''}`}
       >
         <img src={imageURL} alt={linkName} className="navbar-icon" />
         <span className="light">{linkName}</span>

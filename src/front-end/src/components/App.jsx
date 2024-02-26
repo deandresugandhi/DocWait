@@ -1,6 +1,7 @@
 import { useState, useEffect, React } from 'react'
 import Home from './Home'
 import SettingsManagePractitioner from './SettingsManagePractitioner'
+import SettingsUpdateInformation from './SettingsUpdateInformation'
 import Customers from './Customers'
 import AboutUs from './AboutUs'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -34,6 +35,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home queueEntries={queueEntries}/>} />
           <Route path="/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners}/>} />
+          <Route path="/settings/update-information" element={<SettingsUpdateInformation practitioners={practitioners}/>} />
           <Route path="/customers" element={<Customers patients={patients}/>} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="*" element={<h3>Page Not Found</h3>} />
