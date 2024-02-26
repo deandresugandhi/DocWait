@@ -4,7 +4,7 @@ import { UserModel } from '../db.js';
 const router = Router();
 
 // Login route
-router.post('/login', async (req, res) => {
+router.post('/', async (req, res) => {
     const { username, password } = req.body;
   
     try {

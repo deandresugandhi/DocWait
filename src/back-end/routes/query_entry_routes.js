@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+
 // Handle GET request to fetch one Queue Entry
 router.get('/:id', async (req, res) => {
     try {
@@ -32,6 +33,27 @@ router.get('/:id', async (req, res) => {
         }
     } catch (error) {
         res.status(500).send({ error: 'Internal Server Error' });
+    }
+});
+
+// Handle GET request to fetch entry by patient_id
+
+router.get('/patients/:id', async (req, res) => {
+    const { id: patientId } = req.params; // Extract patient ID from request parameters 
+
+    try {
+        const queueEntries = await QueueEntriesModel.find({ patient: patientId })
+            .populate('patient') 
+            .populate('practitioner'); 
+
+        if (queueEntries.length === 0) {
+            res.status(404).json({ message: 'No queue entries found for this patient' });
+        } else {
+            res.json(queueEntries);
+        }
+    } catch (error) {
+        console.error('Error fetching queue entries:', error);
+        res.status(500).json({ message: 'Internal server error' }); // Generic error message for security
     }
 });
 
