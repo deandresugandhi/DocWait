@@ -68,7 +68,7 @@ const practitionersSchema = new mongoose.Schema({
 
 
 const imagesSchema = new mongoose.Schema({
-    image_url: {type: String, required: true}
+    imageUrl: {type: String, required: true}
 })
 
 const queueEntriesSchema = new mongoose.Schema({

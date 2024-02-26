@@ -1,5 +1,7 @@
-import { AddressModel, PatientModel, QueueEntriesModel, PractitionerModel, UserModel, closeConnection   } from "./db.js";
+import { AddressModel, PatientModel, QueueEntriesModel, PractitionerModel, UserModel, ClinicModel, ImageModel, closeConnection   } from "./db.js";
 import bcrypt from 'bcrypt';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 const addresses = [
     { 
@@ -36,6 +38,15 @@ const addresses = [
         suburb: 'Rosebery',
         state: 'NSW',
         postcode: '2018',
+        country: 'Australia'
+    },
+    { 
+        unitNumber: '4',
+        streetNumber: '45',
+        streetName: 'Wyndham st',
+        suburb: 'Alexandria',
+        state: 'NSW',
+        postcode: '2015',
         country: 'Australia'
     }
 ]
@@ -156,6 +167,30 @@ console.log('Deleted existing users');
 await UserModel.insertMany(hashedUsers);
 console.log('Added user login details');
 
+const imageUrlPath = 'https://www.waterloomedicalcentre.com.au/landinglogo.png'
+
+const images = [{
+    imageUrl: imageUrlPath
+}];
+
+await ImageModel.deleteMany(); 
+console.log('Deleted clinic logos');
+let imagesRef =  await ImageModel.insertMany(images);
+console.log('Added clinic logos')
+
+const clinicsInfo= 
+    {
+        name: 'Waterloo Medical Centre',
+        address: addressesRef[4],
+        url: 'http://www.waterloomedicalcentre.com.au/',
+        logo: imagesRef[0]._id,
+        openingHours: 'Mon-Fri: 5:30am-6pm, Sat: 7am-12pm, Sun: Closed'
+    }
+
+await ClinicModel.deleteMany(); 
+console.log('Deleted clinic information');
+await ClinicModel.insertMany(clinicsInfo);
+console.log('Added clinic information');
 
 closeConnection()
 

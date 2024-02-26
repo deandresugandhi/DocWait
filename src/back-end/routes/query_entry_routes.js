@@ -53,7 +53,7 @@ router.get('/patients/:id', async (req, res) => {
         }
     } catch (error) {
         console.error('Error fetching queue entries:', error);
-        res.status(500).json({ message: 'Internal server error' }); // Generic error message for security
+        res.status(500).json({ message: 'Internal server error' }); 
     }
 });
 
