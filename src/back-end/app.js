@@ -23,7 +23,7 @@ app.use('/entries', entriesRoutes)
 
 app.use( '/practitioners', practitionersRoutes)
 
-app.use('/login', loginRoutes)
+app.use('/users', loginRoutes)
 
 app.use('/clinic', clinicRoutes)
 

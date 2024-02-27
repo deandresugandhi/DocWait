@@ -7,7 +7,6 @@ const router = Router();
 router.get('/', async (req, res) => {
     try {
         const clinicInfo = await ClinicModel.find().populate('openingHours');
-        // Respond with the fetched patients
         res.send(clinicInfo);
     } catch (error) {
         console.error('Error fetching clinic information:', error);
