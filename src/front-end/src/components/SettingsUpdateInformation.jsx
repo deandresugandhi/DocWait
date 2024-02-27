@@ -1,7 +1,7 @@
 import { useState, React } from 'react'
 import AdminNavBar from './AdminNavBar'
 import SettingsNavBar from './SettingsNavBar'
-import InformationField from './InformationField'
+import { InformationField, OpeningHoursField } from './InformationField'
 
 
 
@@ -9,14 +9,12 @@ const SettingsUpdateInformation = ( setClinic ) => {
   const [nameValue, setNameValue]= useState('')
   const [addressValue, setAddressValue]= useState('')
   const [URLValue, setURLValue]= useState('')
-  const [logoValue, setLogoValue]= useState('')
   const [openingHoursValue, setOpeningHoursValue]= useState('')
 
   function reset() {
     setNameValue('')
     setAddressValue('')
     setURLValue('')
-    setLogoValue('')
     setOpeningHoursValue('')
   }
 
@@ -25,7 +23,6 @@ const SettingsUpdateInformation = ( setClinic ) => {
       name: nameValue,
       address: addressValue,
       url: URLValue,
-      logo:logoValue,
       openingHours:openingHoursValue,
     }
     fetch('https://t3a2.onrender.com/clinic', {
@@ -37,8 +34,6 @@ const SettingsUpdateInformation = ( setClinic ) => {
     })
     reset()
   }
-
-  
 
   return (
     <>
@@ -56,8 +51,7 @@ const SettingsUpdateInformation = ( setClinic ) => {
                   <InformationField fieldName="Clinic Name" state={nameValue} setState={setNameValue} />
                   <InformationField fieldName="Address" state={addressValue} setState={setAddressValue} />
                   <InformationField fieldName="URL" state={URLValue} setState={setURLValue} />
-                  <InformationField fieldName="Clinic Logo" state={logoValue} setState={setLogoValue} />
-                  <InformationField fieldName="Opening Hours" state={openingHoursValue} setState={setOpeningHoursValue} />
+                  <OpeningHoursField fieldName="Opening Hours" state={openingHoursValue} setState={setOpeningHoursValue} />
                   <div className="field is-grouped">
                       <div className="control">
                         <button className="button is-link">Save</button>

@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useEffect, React } from 'react'
 import notifIconURL from '../assets/Notification.png'
 import tickIconURL from '../assets/Tick.png' 
 import crossIconURL from '../assets/Cross.png' 
@@ -19,11 +19,59 @@ const CustomerInfo = ( { entry, patient, practitioner } ) => {
     )
   }
   else if (patient) {
-    return (
-      <>
-        <h2 className="is-size-7 third-width has-text-weight-bold">{patient.firstName} {patient.lastName}</h2>
-      </>
-    )
+    const [patientEntry, setPatientEntry] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+      const fetchData = () => {
+        fetch(`https://t3a2.onrender.com/entries/patients/${patient._id}`)
+        .then(response => {
+          if (!response.ok) {
+            setPatientEntry(["ERROR"]);
+            return;
+          }
+          return response.json();
+        })
+        .then(data => {
+          setPatientEntry(data)
+          setIsLoading(false)
+        })
+        .catch(error => {
+          console.error('Error fetching patient data:', error)
+          setPatientEntry(["ERROR"])
+          setIsLoading(false)
+        });
+      }
+      fetchData()
+    }, [patient])
+
+    if (isLoading) {
+      return <p>Loading patient data...</p>
+    } else {
+      const queueState = patientEntry?.[0]?.queueState || "Not in Clinic";
+      const dateObject = patientEntry?.[0]?.time ? new Date(patientEntry[0].time) : "NONE";
+      const formattedDate = dateObject === "NONE" ? "Not in Clinic" : dateObject.toISOString().split('T')[0];
+  
+      return (
+        <>
+          <h2 className="is-size-7 third-width has-text-weight-bold">{patient.firstName} {patient.lastName}</h2>
+          <h2 className={`is-size-7 has-text-weight-bold has-text-centered third-width 
+              ${queueState === "Not in Clinic" ? 'has-text-danger' : '' }
+              ${queueState === "Pending" ? 'has-text-warning' : ''}
+              ${queueState === "In progress" ? 'has-text-success' : ''}
+            `}
+          >
+            {queueState}
+          </h2>
+          <h2 className={`is-size-7 has-text-weight-bold has-text-right third-width
+              ${formattedDate === "Not in Clinic" ? 'has-text-danger' : '' }
+            `}
+          >
+            {formattedDate}
+          </h2>
+        </>
+      );
+    }
   }
   else if (practitioner) {
     return (
@@ -55,8 +103,6 @@ const QueueEntry = ({ entry, patient, practitioner }) => {
     return (
       <BoxContainer>
         <CustomerInfo  patient={patient} />
-        <h2 className="is-size-7 has-text-weight-bold has-text-centered third-width">In Queue</h2>
-        <h2 className="is-size-7 has-text-weight-bold has-text-right third-width">Today</h2>
       </BoxContainer>
     )
   }
