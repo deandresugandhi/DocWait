@@ -5,7 +5,8 @@ import entriesRoutes from './routes/query_entry_routes.js'
 import addressesRoutes from './routes/addresses_routes.js'
 import practitionersRoutes from './routes/practitioners_routes.js'
 import loginRoutes from './routes/login_routes.js'
-import clinic_routes from './routes/clinics_routes.js'
+import clinicRoutes from './routes/clinics_routes.js'
+import openingHoursRoutes from './routes/opening_hours.js'
 
 const app = express()
 
@@ -22,9 +23,11 @@ app.use('/entries', entriesRoutes)
 
 app.use( '/practitioners', practitionersRoutes)
 
-app.use('login', loginRoutes)
+app.use('/login', loginRoutes)
 
-app.use('clinic', clinic_routes)
+app.use('/clinic', clinicRoutes)
+
+app.use('/opening_hours', openingHoursRoutes)
 
 export default app
 

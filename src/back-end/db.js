@@ -36,7 +36,7 @@ const clinicsSchema = new mongoose.Schema({
     address: {type: mongoose.ObjectId, ref: 'Address'},
     url: {type: String, required: true},
     logo: {type: mongoose.ObjectId, ref: 'Image'},
-    openingHours: {type: String, required: true}
+    openingHours: {type: [mongoose.Schema.Types.ObjectId], ref: 'OpeningHours'},
 })
 
 const patientsSchema = new mongoose.Schema({
@@ -78,12 +78,17 @@ const queueEntriesSchema = new mongoose.Schema({
     queueState: { type: String, enum: ['Pending', 'In progress', 'Completed'], default: 'Pending' }
 })
 
-// User schema
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true }
   })
 
+const openingHoursSchema = new mongoose.Schema({
+    day: { type: String, required: true},
+    isOpen: { type: Boolean, required: true},
+    openingTime: { type: String, required: true },
+    closingTime: { type: String, required: true }
+})
 
 //Define DB models
 const ClinicModel = mongoose.model('Clinic', clinicsSchema)
@@ -97,9 +102,11 @@ const PractitionerModel = mongoose.model('Practitioner', practitionersSchema)
 const ImageModel = mongoose.model('Image', imagesSchema)
 
 const QueueEntriesModel = mongoose.model('QueueEntries', queueEntriesSchema)
-///
+
 const UserModel = mongoose.model('User', userSchema)
+
+const OpeningHoursModel = mongoose.model('OpeningHours', openingHoursSchema)
 
 
 // Export
-export { closeConnection, ClinicModel, PatientModel, AddressModel, PractitionerModel, ImageModel, QueueEntriesModel, UserModel } 
+export { closeConnection, ClinicModel, PatientModel, AddressModel, PractitionerModel, ImageModel, QueueEntriesModel, UserModel, OpeningHoursModel } 

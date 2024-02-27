@@ -1,7 +1,6 @@
-import { AddressModel, PatientModel, QueueEntriesModel, PractitionerModel, UserModel, ClinicModel, ImageModel, closeConnection   } from "./db.js";
+import { AddressModel, OpeningHoursModel, PatientModel, QueueEntriesModel, PractitionerModel, UserModel, ClinicModel, ImageModel, closeConnection   } from "./db.js";
 import bcrypt from 'bcrypt';
-import { fileURLToPath } from 'url';
-import path from 'path';
+
 
 const addresses = [
     { 
@@ -178,19 +177,71 @@ console.log('Deleted clinic logos');
 let imagesRef =  await ImageModel.insertMany(images);
 console.log('Added clinic logos')
 
-const clinicsInfo= 
+
+
+const openingHours = [
     {
-        name: 'Waterloo Medical Centre',
-        address: addressesRef[4],
-        url: 'http://www.waterloomedicalcentre.com.au/',
-        logo: imagesRef[0]._id,
-        openingHours: 'Mon-Fri: 5:30am-6pm, Sat: 7am-12pm, Sun: Closed'
+        day: 'Monday',
+        isOpen: true,
+        openingTime: '05:30 AM',
+        closingTime: '06:00 PM'
+    },
+    {
+        day: 'Tuesday',
+        isOpen: true,
+        openingTime: '05:30 AM',
+        closingTime: '06:00 PM'
+    },
+    {
+        day: 'Wednesday',
+        isOpen: true,
+        openingTime: '05:30 AM',
+        closingTime: '06:00 PM'
+    },
+    {
+        day: 'Thursday',
+        isOpen: true,
+        openingTime: '05:30 AM',
+        closingTime: '06:00 PM'
+    },
+    {
+        day: 'Friday',
+        isOpen: true,
+        openingTime: '05:30 AM',
+        closingTime: '06:00 PM'
+    },
+    {
+        day: 'Saturday',
+        isOpen: true,
+        openingTime: '07:00 AM',
+        closingTime: '12:00 PM'
+    },
+    {
+        day: 'Sunday',
+        isOpen: false,
+        openingTime: '0000', 
+        closingTime: '0000'
     }
+];
+
+await OpeningHoursModel.deleteMany(); 
+console.log('Deleted clinic business hours');
+const openingHoursRef = await OpeningHoursModel.insertMany(openingHours);
+const openingHoursObjectIds = openingHoursRef.map(oh => oh._id); 
+console.log('Added clinic business hours');
+
+const clinicsInfo = {
+    name: 'Waterloo Medical Centre',
+    address: addressesRef[4],
+    url: 'http://www.waterloomedicalcentre.com.au/',
+    logo: imagesRef[0]._id,
+    openingHours: openingHoursObjectIds 
+};
 
 await ClinicModel.deleteMany(); 
 console.log('Deleted clinic information');
-await ClinicModel.insertMany(clinicsInfo);
+await ClinicModel.insertMany([clinicsInfo]); 
 console.log('Added clinic information');
 
-closeConnection()
+closeConnection();
 
