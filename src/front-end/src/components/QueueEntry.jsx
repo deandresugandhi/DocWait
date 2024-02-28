@@ -4,7 +4,7 @@ import tickIconURL from '../assets/Tick.png'
 import crossIconURL from '../assets/Cross.png' 
 
 const BoxContainer = ({ children }) => (
-  <div className="box p-3 custom-color-2 entry-rounded-box is-flex is-flex-direction-row mt-2">
+  <div className="box has-background-info entry-rounded-box is-flex is-flex-direction-row p-3  mt-2">
     {children}
   </div>
 );
@@ -12,9 +12,9 @@ const BoxContainer = ({ children }) => (
 const CustomerInfo = ( { entry, patient, practitioner } ) => {
   if (entry) {
     return (
-      <div className="container is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
-        <h2 className="is-size-7 has-text-weight-bold">{entry.patient.firstName} {entry.patient.lastName}</h2>
-        <button className="button is-small is-rounded has-background-grey-light"><p>{entry.practitioner.firstName} {entry.practitioner.lastName}</p></button>
+      <div className="is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
+        <h2 className="is-size-6 has-text-weight-semibold">{entry.patient.firstName} {entry.patient.lastName}</h2>
+        <button className="button is-small is-rounded has-background-grey-lighter"><p>{entry.practitioner.firstName} {entry.practitioner.lastName}</p></button>
       </div>
     )
   }
@@ -54,8 +54,8 @@ const CustomerInfo = ( { entry, patient, practitioner } ) => {
   
       return (
         <>
-          <h2 className="is-size-7 third-width has-text-weight-bold">{patient.firstName} {patient.lastName}</h2>
-          <h2 className={`is-size-7 has-text-weight-bold has-text-centered third-width 
+          <h2 className="is-size-6 is-third-width has-text-weight-semibold">{patient.firstName} {patient.lastName}</h2>
+          <h2 className={`is-size-6 is-third-width has-text-weight-semibold has-text-centered 
               ${queueState === "Not in Clinic" ? 'has-text-danger' : '' }
               ${queueState === "Pending" ? 'has-text-warning' : ''}
               ${queueState === "In progress" ? 'has-text-success' : ''}
@@ -63,7 +63,7 @@ const CustomerInfo = ( { entry, patient, practitioner } ) => {
           >
             {queueState}
           </h2>
-          <h2 className={`is-size-7 has-text-weight-bold has-text-right third-width
+          <h2 className={`is-size-6 is-third-width has-text-weight-semibold has-text-right 
               ${formattedDate === "Not in Clinic" ? 'has-text-danger' : '' }
             `}
           >
@@ -76,7 +76,7 @@ const CustomerInfo = ( { entry, patient, practitioner } ) => {
   else if (practitioner) {
     return (
       <>
-        <h2 className="is-size-7 half-width has-text-weight-bold">{practitioner.firstName} {practitioner.lastName}</h2>
+        <h2 className="is-size-6 is-half-width has-text-weight-semibold">{practitioner.firstName} {practitioner.lastName}</h2>
       </>
     )
   }
@@ -84,9 +84,9 @@ const CustomerInfo = ( { entry, patient, practitioner } ) => {
 
 const NotificationIcons = () => (
   <div className="container is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-end">
-    <img src={notifIconURL} alt="Notif Icon" className="image is-16x16" />
-    <img src={tickIconURL} alt="Tick Icon" className="image is-16x16"/>
-    <img src={crossIconURL} alt="Notif Icon" className="image is-16x16"/>
+    <img src={notifIconURL} alt="Notif Icon" className="image" />
+    <img src={tickIconURL} alt="Tick Icon" className="image"/>
+    <img src={crossIconURL} alt="Notif Icon" className="image"/>
   </div>
 );
 
@@ -110,9 +110,19 @@ const QueueEntry = ({ entry, patient, practitioner }) => {
     return (
       <BoxContainer>
         <CustomerInfo practitioner={practitioner} />
-        <div className="py-1 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start">
-          <div className="circle" />
-          <p className="is-size-7 ml-2">{practitioner.availability}</p>
+        <div className="is-fullwidth is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start py-1">
+          <div className={`circle 
+              ${practitioner.availability === 'On duty' ? 'has-background-success' : ''} 
+              ${practitioner.availability === 'Absent' ? 'has-background-danger' : ''}
+            `} 
+          />
+          <p className={`is-size-6 ml-2 
+              ${practitioner.availability === 'On duty' ? 'has-text-success' : ''} 
+              ${practitioner.availability === 'Absent' ? 'has-text-danger' : ''}
+            `}
+          >
+            {practitioner.availability}
+          </p>
         </div>
       </BoxContainer>
     )

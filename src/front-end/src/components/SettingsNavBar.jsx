@@ -3,13 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 
 const BoxContainer = ({ children }) => (
-  <aside className="menu py-5 px-4 settings-navbar large-rounded-box is-flex is-flex-direction-column">
+  <aside className="menu settings-navbar has-background-primary large-rounded-box is-flex is-flex-direction-column py-5 px-4">
     {children}
   </aside>
 );
 
 const LinkContainer = ({ linkName, path, position }) => {
-  let settings = 'py-2 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start';
+  let settings = 'is-fullwidth is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start py-2 ';
   if (position === 'bottom') {
     settings += ' is-flex-grow-1';
   }
@@ -20,7 +20,7 @@ const LinkContainer = ({ linkName, path, position }) => {
         to={path}
         className={({ isActive }) => `${settings} ${isActive ? 'navbar-active' : ''}`}
       >
-        <span className="light">{linkName}</span>
+        <span className="has-text-weight-light">{linkName}</span>
       </NavLink>
     </li>
   );

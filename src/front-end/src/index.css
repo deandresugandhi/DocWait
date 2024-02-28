@@ -5,6 +5,11 @@
 body {
     font-family: 'Poppins', sans-serif;
     padding: 20px;
+    height: 100vh;
+}
+
+#root {
+    height: 100%;
 }
 
 .button.is-small { 
@@ -37,8 +42,18 @@ body {
 }
 
 /* Common utility classes */
-.full-height {
-    height: 90vh;
+.is-fullheight {
+    height: 100%;
+}
+
+.is-fullwidth {
+    width: 100%;
+}
+
+.is-third-width {
+    width: calc(1/3 * 100%);
+    height: 100%;
+    max-width: none;
 }
 
 .full-width {
@@ -56,11 +71,7 @@ body {
     max-width: none;
 }
 
-.third-width {
-    width: calc(1/3 * 100%);
-    height: 100%;
-    max-width: none;
-}
+
 
 .tenth-width {
     width: 10%;
@@ -68,9 +79,7 @@ body {
     max-width: none;
 }
 
-.fill-width {
-    width: 100%;
-}
+
 
 .fill-height {
     height: 100%;

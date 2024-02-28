@@ -7,13 +7,13 @@ import settingsIconURL from '../assets/Settings.png';
 import logoURL from '../assets/Logo.png';
 
 const BoxContainer = ({ children }) => (
-  <aside className="menu py-6 px-4 admin-navbar large-rounded-box is-flex is-flex-direction-column">
+  <aside className="menu admin-navbar has-background-dark large-rounded-box is-flex is-flex-direction-column py-6 px-4">
     {children}
   </aside>
 );
 
 const LinkContainer = ({ imageURL, linkName, path, position }) => {
-  let settings = 'py-2 fill-width is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start'
+  let settings = 'is-fullwidth is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-start py-2 '
   const location = useLocation()
   const isActive = () => {
     if (linkName === 'Settings') {
@@ -35,7 +35,7 @@ const LinkContainer = ({ imageURL, linkName, path, position }) => {
         className={`${settings} ${isActive() ? 'navbar-active' : ''}`}
       >
         <img src={imageURL} alt={linkName} className="navbar-icon" />
-        <span className="light">{linkName}</span>
+        <span className="has-text-weight-light">{linkName}</span>
       </NavLink>
     </li>
   );
