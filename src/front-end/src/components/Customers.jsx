@@ -1,5 +1,7 @@
 import React from 'react'
 import QueueEntry from './QueueEntry'
+import AddPatient from './AddPatient'
+import { openModal } from './ModalConfig'
 
 const Customers = ({ patients=[] }) => {
   return (
@@ -20,13 +22,14 @@ const Customers = ({ patients=[] }) => {
               </li>          
             ))}
             <li key="add">
-            <div className="box has-background-dark entry-rounded-box is-flex is-justify-content-center p-3 mt-2">
-              <p className="has-text-centered has-text-white has-text-weight-semibold">Add More +</p>
-            </div>
+              <div className="box is-clickable has-background-dark entry-rounded-box is-flex is-justify-content-center p-3 mt-2" onClick={() => openModal('add-patient')}>
+                <p className="has-text-centered has-text-white has-text-weight-semibold">Add More +</p>
+              </div>
             </li>
           </ul>
         </div>
       </div>
+      <AddPatient />
     </>
   )
 }

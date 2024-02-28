@@ -124,7 +124,7 @@ const AddEntry = ( {patients=[], practitioners=[]} ) => {
             </section>
             <footer className="modal-card-foot">
                 <button className="button is-success">Save changes</button>
-                <button className="button">Cancel</button>
+                <button className="button" onClick={() => closeModal("add-entry")}>Cancel</button>
             </footer>
             </form>
             </div>

@@ -1,10 +1,10 @@
 import { React, useState } from 'react'
 import { closeModal } from './ModalConfig'
 
-const Field = ({ labelName, state, setState }) => {
+const Field = ({ labelName, state, setState, nested=false }) => {
     return (
         <div className="field">
-            <label className="label">{labelName}</label>
+            <label className={`label ${nested === true ? "is-size-7" : '' }`}>{labelName}</label>
             <div className="control">
                 <textarea
                     key="random2"
@@ -94,31 +94,34 @@ const AddPatient = () => {
     }
     
     return (
-        <div className="modal" id="add-entry">
+        <div className="modal" id="add-patient">
             <div className="modal-background"></div>
             <div className="modal-card">
             <header className="modal-card-head">
                 <p className="modal-card-title">Add Entry</p>
-                <button className="delete" aria-label="close" onClick={() => closeModal("add-entry")}></button>
+                <button className="delete" aria-label="close" onClick={() => closeModal("add-patient")}></button>
             </header>
             <form onSubmit={updateInfo}>
             <section className="modal-card-body">
                 <Field labelName="First Name" state={firstNameValue} setState={setFirstNameValue} />
                 <Field labelName="Last Name" state={lastNameValue} setState={setLastNameValue} />
-                <Field labelName="Unit Number" state={unitNumber} setState={setUnitNumber} />
-                <Field labelName="Street Number" state={firstNameValue} setState={setFirstNameValue} />
-                <Field labelName="Street Name" state={firstNameValue} setState={setFirstNameValue} />
-                <Field labelName="Suburb" state={firstNameValue} setState={setFirstNameValue} />
-                <Field labelName="State" state={firstNameValue} setState={setFirstNameValue} />
-                <Field labelName="Postcode" state={firstNameValue} setState={setFirstNameValue} />
-                <Field labelName="Country" state={firstNameValue} setState={setFirstNameValue} />
-                <Field labelName="Phone Number" state={firstNameValue} setState={setFirstNameValue} />
+                <label className="label">Address</label>
+                <div className="box is-fullheight is-fullwidth has-background-light large-rounded-box is-flex is-flex-direction-column">
+                    <Field labelName="Unit Number" state={unitNumber} setState={setUnitNumber} nested={true} />
+                    <Field labelName="Street Number" state={streetNumber} setState={setStreetNumber} nested={true} />
+                    <Field labelName="Street Name" state={streetName} setState={setStreetName} nested={true} />
+                    <Field labelName="Suburb" state={suburb} setState={setSuburb} nested={true} />
+                    <Field labelName="State" state={state} setState={setState} nested={true} />
+                    <Field labelName="Postcode" state={postcode} setState={setPostCode} nested={true}/>
+                    <Field labelName="Country" state={country} setState={setCountry}nested={true} />
+                </div>
+                <Field labelName="Phone Number" state={phoneNumber} setState={setPhoneNumber} />
                 {errorMessage && <p className="has-text-danger">{errorMessage}</p>}
                 {successMessage && <p className="has-text-success">{successMessage}</p>}
             </section>
             <footer className="modal-card-foot">
                 <button className="button is-success">Save changes</button>
-                <button className="button">Cancel</button>
+                <button className="button" onClick={() => closeModal("add-patient")}>Cancel</button>
             </footer>
             </form>
             </div>

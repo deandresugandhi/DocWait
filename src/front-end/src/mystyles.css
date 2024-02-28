@@ -7929,6 +7929,9 @@ body {
   font-size: .6rem;
   border: none; }
 
+.modal-card {
+  overflow: auto; }
+
 /* Navbar Styling */
 .admin-navbar {
   height: 100%;
