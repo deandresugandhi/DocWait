@@ -95,32 +95,30 @@ Draw.io & Figma is used to create wireframes, diagrams, and other planning resou
 
 This patient queue monitoring app represents a strategic fusion of technology and healthcare, aimed at improving the efficiency of GP clinics and enriching the patient care experience. Through its innovative features and thoughtful design, the app stands as a testament to our commitment to technological excellence and user-centric development. As we present this project to prospective employers, we are confident in its potential to showcase our technical acumen, problem-solving abilities, and dedication to making a positive impact in the healthcare sector.
 
+
 ___
 
-## R2 - Dataflow Diagram
+### R2 - Dataflow Diagram
 
-### Legend
+#### Legend
+![Legend](./docs/images/DFD_legends.png)
 
-![Legend](./docs/Images/DFD_legends.png)
+#### Login
+![Login](./docs/images/Login_DFD.png)
 
-### Login
-
-![Login](./docs/Images/Login_DFD.png)
-
-### Application
-
-![Dataflow](./docs/Images/Dataflow.png)
+#### Application
+![Dataflow](./docs/images/Dataflow.png)
 ___
 
 ## R3 - Application Architecture Diagram
 
-![Architecture-diagram](./docs/Images/Application_Architecture_Diagram.png)
+![Architecture-diagram](./docs/images/Application_Architecture_Diagram.png)
 
-![Architecture-diagram-legend](./docs/Images/Application_Architecture_Diagram_Legend.png)
+![Architecture-diagram-legend](./docs/images/Application_Architecture_Diagram_legend.png)
 
 ___
 
-## R4 - User Stories
+### R4 - User Stories
 
 User stories are informal descriptions of app features from the perspective of the end user. They articulate how our web app will provide value to the customer.
 User stories divided in two categories:
