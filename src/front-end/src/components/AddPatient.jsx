@@ -47,50 +47,89 @@ const AddPatient = () => {
         setPhoneNumber('')
     }
     
-    function updateInfo(e) {
-        e.preventDefault()
-        let newInfo
-        try {
-            newInfo = {
-                firstName: firstNameValue,
-                lastName: lastNameValue,
-                address: {
-                    unitNumber: unitNumber,
-                    streetNumber: streetNumber,
-                    streetName: streetName,
-                    suburb: suburb,
-                    state: state,
-                    postcode: postcode,
-                    country: country,
-                },
-                phoneNumber: phoneNumber
-            }
-            fetch('https://t3a2.onrender.com/patients', {
+    function addAddress() {
+        let newAddress = {
+            unitNumber: unitNumber,
+            streetNumber: streetNumber,
+            streetName: streetName,
+            suburb: suburb,
+            state: state,
+            postcode: postcode,
+            country: country,
+        };
+    
+        return new Promise((resolve, reject) => {
+            fetch('https://t3a2.onrender.com/addresses/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(newInfo)
+                body: JSON.stringify(newAddress)
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Failed to register new patient');
+                    throw new Error('Failed to register new address');
                 }
                 return response.json();
             })
             .then(data => {
                 reset();
                 setErrorMessage(null);
-                setSuccessMessage("Patient registered successfully.");
+                setSuccessMessage("Address registered successfully.");
+                resolve(data[0]);
             })
             .catch(error => {
                 console.error(error);
-                setErrorMessage("Please check patient details and try again.");
+                setErrorMessage("Please check address details and try again.");
+                reject(error);
+            });
+        });
+    }
+
+
+    function updateInfo(e) {
+        e.preventDefault();
+        addAddress()
+            .then(newAddress => {
+                let newInfo;
+                try {
+                    newInfo = {
+                        firstName: firstNameValue,
+                        lastName: lastNameValue,
+                        address: newAddress,
+                        phoneNumber: phoneNumber
+                    };
+    
+                    fetch('https://t3a2.onrender.com/patients', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(newInfo)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to register new patient');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        reset();
+                        setErrorMessage(null);
+                        setSuccessMessage("Patient registered successfully.");
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        setErrorMessage("Please check patient details and try again.");
+                    });
+                } catch (error) {
+                    console.error(error);
+                    setErrorMessage("Please check patient details and try again.");
+                }
             })
-        } catch (error) {
-            console.error(error);
-            setErrorMessage("Please check patient details and try again.");
-        }
+            .catch(error => {
+                console.error('Error registering address:', error);
+            });
     }
     
     return (
@@ -98,7 +137,7 @@ const AddPatient = () => {
             <div className="modal-background"></div>
             <div className="modal-card">
             <header className="modal-card-head">
-                <p className="modal-card-title">Add Entry</p>
+                <p className="modal-card-title">Add Patient</p>
                 <button className="delete" aria-label="close" onClick={() => closeModal("add-patient")}></button>
             </header>
             <form onSubmit={updateInfo}>

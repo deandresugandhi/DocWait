@@ -12,6 +12,7 @@ const App = () => {
   const [queueEntries, setEntries] = useState([])
   const [practitioners, setPractitioners] = useState([])
   const [clinic, setClinic] = useState([])
+  const [openingHours, setOpeningHours] = useState([])
 
   useEffect(() => {
       fetch('https://t3a2.onrender.com/patients')
@@ -41,6 +42,14 @@ const App = () => {
     })
   }, [])
 
+  useEffect(() => {
+    fetch('https://t3a2.onrender.com/opening_hours')
+    .then(res => res.json())
+    .then(data => {
+      setOpeningHours(data)
+    })
+  }, [])
+
   return (
     <>
       <BrowserRouter>
@@ -49,7 +58,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home queueEntries={queueEntries} patients={patients} practitioners={practitioners}/>} />
             <Route path="/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners}/>} />
-            <Route path="/settings/update-information" element={<SettingsUpdateInformation clinic={clinic}/>} />
+            <Route path="/settings/update-information" element={<SettingsUpdateInformation clinic={clinic} openingHours={openingHours}/>} />
             <Route path="/customers" element={<Customers patients={patients}/>} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="*" element={<h3>Page Not Found</h3>} />

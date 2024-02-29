@@ -24,7 +24,7 @@ const Home = ({ queueEntries=[], patients=[], practitioners=[] }) => {
 
   return (
     <>
-      <div className='is-fullheight is-fullwidth is-marginless is-flex is-flex-direction-column ml-3'>
+      <div className='is-fullwidth is-marginless is-flex is-flex-direction-column ml-3'>
         <h2 className='is-size-4'>Welcome Back,</h2>
         <h1 className='is-size-1 mb-3 has-text-weight-bold'>Clinic Name</h1>
         <div className='is-fullheight is-marginless is-flex is-flex-direction-row'>

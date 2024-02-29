@@ -1,6 +1,7 @@
-import React from 'react'
+import { React } from 'react'
 import QueueEntry from './QueueEntry'
 import AddPatient from './AddPatient'
+import EditPatient from './EditPatient'
 import { openModal } from './ModalConfig'
 
 const Customers = ({ patients=[] }) => {
@@ -11,14 +12,15 @@ const Customers = ({ patients=[] }) => {
         <h1 className='is-size-1 has-text-weight-bold mb-3'>Customers</h1>
         <div className="box is-fullwidth is-fullheight has-background-light large-rounded-box is-flex is-flex-direction-column">
           <div className='is-flex is-flex-direction-row bottom-border'>
-            <h2 className='is-third-width pl-3'>NAME</h2>
-            <h2 className='is-third-width has-text-centered'>STATE</h2>
-            <h2 className='is-third-width has-text-right'>DATE QUEUED</h2>
+            <h2 className='is-fourth-width pl-3'>NAME</h2>
+            <h2 className='is-fourth-width has-text-centered'>STATE</h2>
+            <h2 className='is-fourth-width has-text-right'>DATE QUEUED</h2>
           </div>
           <ul>
             {patients.map((patient, index) => (
               <li key={index}>
                 <QueueEntry patient={patient} />
+                <EditPatient patient={patient} />
               </li>          
             ))}
             <li key="add">
@@ -30,6 +32,7 @@ const Customers = ({ patients=[] }) => {
         </div>
       </div>
       <AddPatient />
+      
     </>
   )
 }
