@@ -55,4 +55,17 @@ router.get('/:id', async (req, res) => {
         res.status(500).send({ error: 'Internal Server Error' });
     }
 });
+
+router.get('/:day', async (req, res) => {
+    try {
+        const openingEntry = await OpeningHoursModel.find({day: req.params.day})
+        if (openingEntry) {
+            res.send(openingEntry);
+        } else {
+            res.status(404).send({ error: 'Entry not found' });
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Internal Server Error' });
+    }
+});
 export default router
