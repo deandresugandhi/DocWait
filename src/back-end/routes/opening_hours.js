@@ -29,6 +29,20 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// handle PUT requests to update opening hours based on day
+router.put('/:day', async (req, res) => {
+    try {
+        const updateOpening = await OpeningHoursModel.findOneAndUpdate({ day: { $regex: new RegExp(req.params.day, 'i') } }, req.body, { new: true })
+        if (updateOpening) {
+            res.send(updateOpening)
+        } else {
+            res.status(404).send({ error: 'Openings not found' });
+        }
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
+
 router.get('/:id', async (req, res) => {
     try {
         const openingEntry = await OpeningHoursModel.findById(req.params.id)
