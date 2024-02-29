@@ -6,7 +6,9 @@ const router = Router();
 // Handle GET request to fetch clinic information
 router.get('/', async (req, res) => {
     try {
-        const clinicInfo = await ClinicModel.find().populate('openingHours');
+        const clinicInfo = await ClinicModel.find()
+        .populate('openingHours')
+        .populate('address');
         res.send(clinicInfo);
     } catch (error) {
         console.error('Error fetching clinic information:', error);

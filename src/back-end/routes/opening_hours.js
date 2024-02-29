@@ -15,6 +15,19 @@ router.get('/', async (req, res) => {
     }
 });
 
+// handle PUT requests to update opening hours details
+router.put('/:id', async (req, res) => {
+    try {
+        const updateOpening = await OpeningHoursModel.findOneAndUpdate({_id:req.params.id}, req.body, { new: true })
+        if (updateOpening) {
+            res.send(updateOpening)
+        } else {
+            res.status(404).send({ error: 'Openings not found' });
+        }
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
 
 router.get('/:id', async (req, res) => {
     try {
