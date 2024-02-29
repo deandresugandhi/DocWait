@@ -30,9 +30,9 @@ router.put('/:id', async (req, res) => {
 });
 
 // handle PUT requests to update opening hours based on day
-router.put('/:day', async (req, res) => {
+router.put('/:dayOfWeek', async (req, res) => {
     try {
-        const updateOpening = await OpeningHoursModel.findOneAndUpdate({day: req.params.day}, req.body, { new: true })
+        const updateOpening = await OpeningHoursModel.findOneAndUpdate({day: req.params.dayOfWeek}, req.body, { new: true })
         if (updateOpening) {
             res.send(updateOpening)
         } else {
@@ -56,9 +56,9 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.get('/:day', async (req, res) => {
+router.get('/:dayOfWeek', async (req, res) => {
     try {
-        const openingEntry = await OpeningHoursModel.find({day: req.params.day})
+        const openingEntry = await OpeningHoursModel.find({day: req.params.dayOfWeek})
         if (openingEntry) {
             res.send(openingEntry);
         } else {
