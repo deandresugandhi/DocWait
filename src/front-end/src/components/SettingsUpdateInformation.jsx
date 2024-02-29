@@ -18,6 +18,8 @@ const SettingsUpdateInformation = ({ clinic=[], openingHours=[] }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
 
+  const setStates = [setMondayValue, setTuesdayValue, setWednesdayValue, setThursdayValue, setFridayValue, setSaturdayValue, setSundayValue]
+
    
   function reset() {
     setNameValue('')
@@ -138,7 +140,7 @@ const SettingsUpdateInformation = ({ clinic=[], openingHours=[] }) => {
                 <InformationField label="Clinic Name" state={nameValue} setState={setNameValue} clinic={clinic} fieldName="name"/>
                 <InformationField label="Address" state={addressValue} setState={setAddressValue} clinic={clinic} fieldName="address"/>
                 <InformationField label="URL" state={URLValue} setState={setURLValue} clinic={clinic} fieldName="url" />
-                <OpeningHoursField label="Opening Hours" state={openingHoursValue} setState={setOpeningHoursValue} openingHours={openingHours}/>
+                <OpeningHoursField label="Opening Hours" setStates={setStates} openingHours={openingHours}/>
                 <div className="field is-grouped">
                     <div className="control">
                       <button className="button is-link">Save</button>

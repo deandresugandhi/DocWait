@@ -106,7 +106,6 @@ const QueueEntry = ({ entry, patient, practitioner }) => {
     )
   }
   else if (patient) {
-    console.log(patient?._id)
     return (
       <BoxContainer>
         <CustomerInfo patient={patient} modalId={`id_${patient?._id}`} />

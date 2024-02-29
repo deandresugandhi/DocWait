@@ -29,7 +29,7 @@ const InformationField = ({ label, state, setState, clinic=[], fieldName }) => {
     );
 }
 
-const OpeningHoursField =  ({ label, state, setState, openingHours=[] }) => {
+const OpeningHoursField =  ({ label, setStates, openingHours=[] }) => {
     const DropDown = ({ day, index }) => {
         const [isOpenPlaceholderValue, setIsOpenPlaceholderValue] = useState('');
         const [openingTimePlaceholderValue, setOpeningTimePlaceholderValue] = useState('');
@@ -55,7 +55,7 @@ const OpeningHoursField =  ({ label, state, setState, openingHours=[] }) => {
                     </div>
                     <div className="control">
                         <div className="select is-rounded is-normal">
-                            <select defaultValue={isOpenPlaceholderValue} onChange={e => setState(e.target.value)}>
+                            <select defaultValue={isOpenPlaceholderValue} onChange={e => set(e.target.value)}>
                                 <option value="true">Open</option>
                                 <option value="false">Closed</option>
                             </select>

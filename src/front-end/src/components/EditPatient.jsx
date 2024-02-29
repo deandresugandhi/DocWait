@@ -6,7 +6,6 @@ const Field = ({ labelName, state, setState, nested=false, patient, fieldName })
 
     useEffect(() => {
         if (patient) {
-            console.log(patient.firstName)
             if (nested === false) {
                 setPlaceholderValue(patient[fieldName]);
             } else if (nested === true) {
