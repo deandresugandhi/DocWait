@@ -103,7 +103,6 @@ const EditPatient = ({ patient, modalId }) => {
         });
     }
 
-
     function updateInfo(e) {
         e.preventDefault();
         editAddress()
