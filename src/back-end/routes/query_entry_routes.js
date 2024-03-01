@@ -86,9 +86,9 @@ router.put('/:id', async (req, res) => {
 //handle DELETE requests to remove queue entry
 router.delete('/:id', async (req, res) => {
     try {
-        const deletedPatient = await QueueEntriesModel.findByIdAndDelete(req.params.id);
-        if (deletedPatient) {
-            res.send(deletedPatient)
+        const deletedEntry = await QueueEntriesModel.findByIdAndDelete(req.params.id);
+        if (deletedEntry) {
+            res.send(deletedEntry)
         } else {
             res.status(404).send({ error: 'patient not found' });
         }
