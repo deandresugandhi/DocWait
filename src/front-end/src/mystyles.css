@@ -4107,7 +4107,7 @@ a.navbar-item,
   .navbar-link:focus-within,
   .navbar-link:hover,
   .navbar-link.is-active {
-    background-color: #fafafa;
+    background-color: #508488;
     color: #147a72; }
 
 .navbar-item {
@@ -4336,7 +4336,7 @@ a.navbar-item,
   .navbar-link.is-active:not(:focus):not(:hover) {
     background-color: transparent; }
   .navbar-item.has-dropdown:focus .navbar-link, .navbar-item.has-dropdown:hover .navbar-link, .navbar-item.has-dropdown.is-active .navbar-link {
-    background-color: #fafafa; } }
+    background-color: #508488; } }
 
 .hero.is-fullheight-with-navbar {
   min-height: calc(100vh - 3.25rem); }
@@ -7882,7 +7882,6 @@ html {
 
 body {
   padding: 20px;
-  height: auto;
   min-height: 100vh;
   line-height: 1.2; }
 
@@ -7957,22 +7956,27 @@ body {
 
 .settings-navbar {
   height: 100%;
-  width: 12vw;
+  width: 220px;
   margin-left: 0px;
   font-size: 12px;
   white-space: nowrap; }
 
 .navbar-active {
-  background-color: #fafafa;
-  border-radius: 12px !important; }
+  background-color: #fafafa !important; }
 
 .navbar-icon {
   width: 13px;
   height: 13px; }
 
-.admin-navbar span {
+.navbar-rounded {
+  border-radius: 12px !important; }
+
+.admin-navbar span, .navbar-item span {
   color: white;
   margin-left: 8px; }
+
+.navbar-item {
+  border-top-left-radius: 20px; }
 
 .settings-navbar span {
   color: white;
@@ -7985,12 +7989,11 @@ body {
 .navbar-active img {
   filter: brightness(0%); }
 
-.menu-list li *:hover {
-  background-color: #508488;
-  border-radius: 12px !important; }
+.menu-list li span:hover, .menu-list li a:hover {
+  background-color: #508488; }
 
-a.navbar-active:hover, a.navbar-active *:hover {
-  background-color: #fafafa; }
+.navbar-active a:hover, .navbar-active span:hover {
+  background-color: #fafafa !important; }
 
 .logo-size {
   width: 65%;
@@ -8001,3 +8004,19 @@ a.navbar-active:hover, a.navbar-active *:hover {
 .bottom-border {
   border-bottom: 1px solid #7dc1c4;
   margin-bottom: 5px; }
+
+@media (min-width: 1780px) {
+  .navbar {
+    display: none; } }
+
+@media (max-width: 1780px) {
+  .admin-navbar {
+    display: none !important; }
+  body {
+    padding-top: 80px; }
+  #root {
+    height: calc(100vh - 100px); } }
+
+@media (max-width: 1300px) {
+  .notification {
+    flex-direction: column !important; } }

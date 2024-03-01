@@ -57,7 +57,7 @@ const App = () => {
           <AdminNavBar />
           <Routes>
             <Route path="/" element={<Home queueEntries={queueEntries} patients={patients} practitioners={practitioners} setQueueEntries={setQueueEntries} />} />
-            <Route path="/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners}/>} />
+            <Route path="/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners} setPractitioners={setPractitioners}/>} />
             <Route path="/settings/update-information" element={<SettingsUpdateInformation clinic={clinic} openingHours={openingHours}/>} />
             <Route path="/customers" element={<Customers patients={patients} setPatients={setPatients}/>} />
             <Route path="/about-us" element={<AboutUs />} />

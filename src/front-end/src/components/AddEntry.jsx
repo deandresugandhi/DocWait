@@ -55,6 +55,7 @@ const AddEntry = ( {patients=[], practitioners=[], queueState, columnName, setQu
         setPatientValue('')
         setPractitionerValue('')
         setTime('')
+        setDate('')
     }
     
     function updateInfo(e) {
@@ -105,7 +106,7 @@ const AddEntry = ( {patients=[], practitioners=[], queueState, columnName, setQu
             setErrorMessage("Please check entry details and try again.");
         }
     }
-    
+
     return (
         <div className="modal" id={`add-entry-${queueState.replace(/\s/g, '-')}`}>
             <div className="modal-background"></div>

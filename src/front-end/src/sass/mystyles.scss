@@ -34,12 +34,9 @@ $body-background-color: white;
 $box-color: black;
 $border: $cyan;
 $border-hover: $cyan-dark;
+$navbar-item-hover-background-color: rgb(80, 132, 136);
+// $widescreen: 1350px;
 
-// Media query example
-@media screen and (min-width: 768px) {
-    // Your styles for screens with a minimum width of 768px and above
-     // Example change for the media query
-  }
 
 // Import only what you need from Bulma
 @import "../../node_modules/bulma/bulma.sass";
@@ -50,7 +47,6 @@ html{
 
 body {
     padding: 20px;
-    height: auto;
     min-height: 100vh;
     line-height: 1.2; 
 }
@@ -144,15 +140,14 @@ body {
 
 .settings-navbar {
     height: 100%;
-    width: 12vw;
+    width: 220px;
     margin-left: 0px;
     font-size: 12px;
     white-space: nowrap;
 }
 
 .navbar-active {
-    background-color: rgb(250, 250, 250);
-    border-radius: 12px !important;
+    background-color: rgb(250, 250, 250) !important;
 }
 
 .navbar-icon {
@@ -160,9 +155,17 @@ body {
     height: 13px;
 }
 
-.admin-navbar span {
+.navbar-rounded {
+    border-radius: 12px !important;
+}
+
+.admin-navbar span, .navbar-item span {
     color: white;
     margin-left: 8px;
+}
+
+.navbar-item {
+    border-top-left-radius: 20px; 
 }
 
 .settings-navbar span {
@@ -179,13 +182,12 @@ body {
     filter: brightness(0%);
 }
 
-.menu-list li *:hover {
+.menu-list li span:hover, .menu-list li a:hover {
     background-color: rgb(80, 132, 136);
-    border-radius: 12px !important;
 }
 
-a.navbar-active:hover, a.navbar-active *:hover {
-    background-color: rgb(250, 250, 250);
+.navbar-active a:hover, .navbar-active span:hover {
+    background-color: rgb(250, 250, 250) !important;
 }
 
 .logo-size {
@@ -198,4 +200,29 @@ a.navbar-active:hover, a.navbar-active *:hover {
 .bottom-border {
     border-bottom: 1px solid #7dc1c4;
     margin-bottom: 5px;
+}
+
+@media (min-width: 1780px) {
+    .navbar {
+    display: none;
+    }
+}
+
+@media (max-width: 1780px) {
+        .admin-navbar {
+        display: none !important;
+        }
+        body {
+            padding-top: 80px;
+        }
+        
+        #root {
+            height: calc(100vh - 100px);
+        }
+}
+
+@media (max-width: 1300px) {
+    .notification {
+    flex-direction: column !important;
+    }
 }

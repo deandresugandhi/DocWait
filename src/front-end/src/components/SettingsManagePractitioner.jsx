@@ -1,8 +1,10 @@
 import React from 'react'
 import SettingsNavBar from './SettingsNavBar'
 import QueueEntry from './QueueEntry'
+import { openModal } from './ModalConfig'
+import AddPractitioner from './AddPractitioner'
 
-const SettingsManagePractitioner = ({ practitioners=[] }) => {
+const SettingsManagePractitioner = ({ practitioners=[], setPractitioners }) => {
   return (
     <>
       <div className='is-fullwidth is-flex is-flex-direction-row ml-3'>
@@ -19,10 +21,16 @@ const SettingsManagePractitioner = ({ practitioners=[] }) => {
           <ul>
             {practitioners.map((practitioner, index) => (
               <li key={index}>
-                <QueueEntry practitioner={practitioner} />
+                <QueueEntry practitioner={practitioner} setPractitioners={setPractitioners} />
               </li>          
             ))}
+            <li key="add">
+              <div className="box is-clickable has-background-dark entry-rounded-box is-flex is-justify-content-center p-3 mt-2" onClick={() => openModal('add-practitioner')}>
+                <p className="has-text-centered has-text-white has-text-weight-semibold">Add More +</p>
+              </div>
+            </li>
           </ul>
+          <AddPractitioner setPractitioners={setPractitioners}/>
         </div>
       </div>
     </>

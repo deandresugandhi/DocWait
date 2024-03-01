@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react'
-import { closeModal } from './ModalConfig'
+import { openModal, closeModal } from './ModalConfig'
+import DeletePatient from './DeletePatient'
 
 const Field = ({ labelName, state, setState, nested=false, patient, fieldName }) => {
     const [placeholderValue, setPlaceholderValue] = useState('');
@@ -140,38 +141,42 @@ const EditPatient = ({ patient, modalId, setPatients }) => {
       }
     
     return (
-        <div className="modal" id={modalId}>
-            <div className="modal-background"></div>
-            <div className="modal-card">
-            <header className="modal-card-head">
-                <p className="modal-card-title">Edit Patient</p>
-                <button className="delete" aria-label="close" onClick={() => closeModal(modalId)}></button>
-            </header>
-            <form onSubmit={updateInfo}>
-            <section className="modal-card-body">
-                <Field labelName="First Name" state={firstNameValue} setState={setFirstNameValue} patient={patient} fieldName="firstName" />
-                <Field labelName="Last Name" state={lastNameValue} setState={setLastNameValue} patient={patient} fieldName="lastName" />
-                <label className="label">Address</label>
-                <div className="box is-fullheight is-fullwidth has-background-light large-rounded-box is-flex is-flex-direction-column">
-                    <Field labelName="Unit Number" state={unitNumber} setState={setUnitNumber} nested={true} patient={patient} fieldName="unitNumber" />
-                    <Field labelName="Street Number" state={streetNumber} setState={setStreetNumber} nested={true} patient={patient} fieldName="streetNumber"/>
-                    <Field labelName="Street Name" state={streetName} setState={setStreetName} nested={true} patient={patient} fieldName="streetName"/>
-                    <Field labelName="Suburb" state={suburb} setState={setSuburb} nested={true} patient={patient} fieldName="suburb"/>
-                    <Field labelName="State" state={state} setState={setState} nested={true} patient={patient} fieldName="state"/>
-                    <Field labelName="Postcode" state={postcode} setState={setPostCode} nested={true} patient={patient} fieldName="postcode"/>
-                    <Field labelName="Country" state={country} setState={setCountry}nested={true} patient={patient} fieldName="country"/>
+        <>
+            <div className="modal" id={modalId}>
+                <div className="modal-background"></div>
+                <div className="modal-card">
+                <header className="modal-card-head">
+                    <p className="modal-card-title">Edit Patient</p>
+                    <button className="delete" aria-label="close" onClick={() => closeModal(modalId)}></button>
+                </header>
+                <form onSubmit={updateInfo}>
+                <section className="modal-card-body">
+                    <Field labelName="First Name" state={firstNameValue} setState={setFirstNameValue} patient={patient} fieldName="firstName" />
+                    <Field labelName="Last Name" state={lastNameValue} setState={setLastNameValue} patient={patient} fieldName="lastName" />
+                    <label className="label">Address</label>
+                    <div className="box is-fullheight is-fullwidth has-background-light large-rounded-box is-flex is-flex-direction-column">
+                        <Field labelName="Unit Number" state={unitNumber} setState={setUnitNumber} nested={true} patient={patient} fieldName="unitNumber" />
+                        <Field labelName="Street Number" state={streetNumber} setState={setStreetNumber} nested={true} patient={patient} fieldName="streetNumber"/>
+                        <Field labelName="Street Name" state={streetName} setState={setStreetName} nested={true} patient={patient} fieldName="streetName"/>
+                        <Field labelName="Suburb" state={suburb} setState={setSuburb} nested={true} patient={patient} fieldName="suburb"/>
+                        <Field labelName="State" state={state} setState={setState} nested={true} patient={patient} fieldName="state"/>
+                        <Field labelName="Postcode" state={postcode} setState={setPostCode} nested={true} patient={patient} fieldName="postcode"/>
+                        <Field labelName="Country" state={country} setState={setCountry}nested={true} patient={patient} fieldName="country"/>
+                    </div>
+                    <Field labelName="Phone Number" state={phoneNumber} setState={setPhoneNumber} patient={patient} fieldName="phoneNumber" />
+                    {errorMessage && <p className="has-text-danger">{errorMessage}</p>}
+                    {successMessage && <p className="has-text-success">{successMessage}</p>}
+                </section>
+                <footer className="modal-card-foot">
+                    <button className="button is-success" type="submit">Save changes</button>
+                    <button className="button is-danger" type="button" onClick={() => openModal(`delete-patient-${patient?._id}`)}>Delete Patient</button>
+                    <button className="button" type="button" onClick={() => closeModal(modalId)}>Cancel</button>
+                </footer>
+                </form>
                 </div>
-                <Field labelName="Phone Number" state={phoneNumber} setState={setPhoneNumber} patient={patient} fieldName="phoneNumber" />
-                {errorMessage && <p className="has-text-danger">{errorMessage}</p>}
-                {successMessage && <p className="has-text-success">{successMessage}</p>}
-            </section>
-            <footer className="modal-card-foot">
-                <button className="button is-success">Save changes</button>
-                <button className="button" onClick={() => closeModal(modalId)}>Cancel</button>
-            </footer>
-            </form>
             </div>
-        </div>
+        <DeletePatient patient={patient} modalID={`delete-patient-${patient?._id}`} setPatients={setPatients}/>
+        </>
     )
 }
 
