@@ -83,4 +83,19 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+//handle DELETE requests to remove queue entry
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletedPatient = await QueueEntriesModel.findByIdAndDelete(req.params.id);
+        if (deletedPatient) {
+            res.status(200).send({message:'Patient info deletion succesful'})
+        } else {
+            res.status(404).send({ error: 'patient not found' });
+        }
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
+
 export default router
