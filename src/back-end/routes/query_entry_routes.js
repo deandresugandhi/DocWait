@@ -67,4 +67,20 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    try {                
+        const updateEntry = await QueueEntriesModel.findOneAndUpdate({_id:req.params.id}, req.body, { new: true });
+        if (updateEntry) {
+            const populatedEntry = await QueueEntriesModel.findById(updateEntry._id)
+                .populate('patient') 
+                .populate('practitioner');
+            res.send(populatedEntry);
+        } else {
+            res.status(404).send({ error: 'Entry not found' });
+        }
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
+
 export default router
