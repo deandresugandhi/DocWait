@@ -37,7 +37,9 @@ router.get('/:id', async (req, res) => {
 router.post('/create', async (req, res) => {
     try {
         const insertedPatient = await PatientModel.create(req.body)
-        res.status(201).send(insertedPatient)
+        const populatedPatient = await PatientModel.findById(insertedPatient._id)
+            .populate('address');
+        res.send(populatedPatient);
     }
     catch (err) {
         res.status(500).send({ error: err.message })
