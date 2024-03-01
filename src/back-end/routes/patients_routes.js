@@ -49,7 +49,9 @@ router.put('/:id', async (req, res) => {
     try {                
         const updatePatient = await PatientModel.findOneAndUpdate({_id:req.params.id}, req.body, { new: true });
         if (updatePatient) {
-            res.send(updatePatient);
+            const populatedPatient = await PatientModel.findById(updatePatient._id)
+                .populate('address');
+            res.send(populatedPatient);
         } else {
             res.status(404).send({ error: 'Patient not found' });
         }
