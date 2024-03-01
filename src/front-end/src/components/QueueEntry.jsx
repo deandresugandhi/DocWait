@@ -5,19 +5,29 @@ import crossIconURL from '../assets/Cross.png'
 import optionsIconURL from '../assets/Options.svg' 
 import { openModal, closeModal } from './ModalConfig'
 import EditPatient from './EditPatient'
+import MoveEntry from './MoveEntry'
+import DeleteEntry from './DeleteEntry'
 
-const BoxContainer = ({ children }) => (
-  <div className="box has-background-info entry-rounded-box is-flex is-flex-direction-row p-4 mt-2 pl-5 pr-5">
+const BoxContainer = ({ children, entry, clickable="false"}) => (
+  <div className={`box has-background-info entry-rounded-box is-flex is-flex-direction-row p-4 mt-2 pl-5 pr-5 ${clickable === "true" ? 'is-clickable' : ''}`}
+    onClick={() =>{openModal(`move-entry-${entry?._id}`)}}
+  >
     {children}
   </div>
 );
 
 const CustomerInfo = ( { entry, patient, practitioner, modalId } ) => {
   if (entry) {
+    const dateObject = new Date(entry.time);
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false};
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(dateObject);
     return (
       <div className="is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
         <h2 className="is-size-6 has-text-weight-semibold">{entry.patient.firstName} {entry.patient.lastName}</h2>
-        <button className="button is-small is-rounded has-background-grey-lighter"><p>{entry.practitioner.firstName} {entry.practitioner.lastName}</p></button>
+        <div className="is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-flex-start mt-1">
+          <button className="button is-small is-rounded has-background-grey-light mr-1"><p>{entry.practitioner.firstName} {entry.practitioner.lastName}</p></button>
+          <button className="button is-small is-rounded has-background-grey-lighter"><p>{formattedDate}</p></button>
+        </div>
       </div>
     )
   }
@@ -88,29 +98,39 @@ const CustomerInfo = ( { entry, patient, practitioner, modalId } ) => {
   }
 };
 
-const NotificationIcons = () => (
+const NotificationIcons = ({entry}) => (
   <div className="container is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-end">
-    <img src={notifIconURL} alt="Notif Icon" className="image" />
+    <img src={notifIconURL} alt="Notif Icon" className="image is-clickable"/>
     <img src={tickIconURL} alt="Tick Icon" className="image is-clickable"/>
-    <img src={crossIconURL} alt="Cross Icon" className="image is-clickable"/>
+    <img src={crossIconURL} alt="Cross Icon" className="image is-clickable" 
+      onClick={(e) => {
+        e.stopPropagation()
+        openModal(`delete-entry-${entry?._id}`)
+    }}/>
   </div>
 );
 
-const QueueEntry = ({ entry, patient, practitioner }) => {
+const QueueEntry = ({ entry, patient, practitioner, setPatients, setQueueEntries }) => {
   if (entry) {
     return (
-      <BoxContainer>
-        <CustomerInfo entry={entry} />
-        <NotificationIcons />
-      </BoxContainer>
+      <>
+        <BoxContainer clickable="true" entry={entry}>
+          <CustomerInfo entry={entry} />
+          <NotificationIcons entry={entry} />
+        </BoxContainer>
+        <MoveEntry entry={entry} modalID={`move-entry-${entry?._id}`} setQueueEntries={setQueueEntries}/>
+        <DeleteEntry entry={entry} modalID={`delete-entry-${entry?._id}`} setQueueEntries={setQueueEntries}/>
+      </>
     )
   }
   else if (patient) {
     return (
-      <BoxContainer>
-        <CustomerInfo patient={patient} modalId={`id_${patient?._id}`} />
-        <EditPatient patient={patient} modalId={`id_${patient?._id}`} />
-      </BoxContainer>
+      <>
+        <BoxContainer>
+          <CustomerInfo patient={patient} modalId={`id_${patient?._id}`} />
+        </BoxContainer>
+        <EditPatient patient={patient} modalId={`id_${patient?._id}`} setPatients={setPatients}/>
+      </>
     )
   }
   else if (practitioner) {

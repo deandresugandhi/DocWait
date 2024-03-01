@@ -32,7 +32,7 @@ const Field = ({ labelName, state, setState, nested=false, patient, fieldName })
     )
 }
 
-const EditPatient = ({ patient, modalId }) => {
+const EditPatient = ({ patient, modalId, setPatients }) => {
     
     const [firstNameValue, setFirstNameValue] = useState('')
     const [lastNameValue, setLastNameValue] = useState('')
@@ -48,19 +48,6 @@ const EditPatient = ({ patient, modalId }) => {
     const [successMessage, setSuccessMessage] = useState(null)
     
 
-    function reset() {
-        setFirstNameValue('')
-        setLastNameValue('')
-        setUnitNumber('')
-        setStreetNumber('')
-        setStreetName('')
-        setSuburb('')
-        setState('')
-        setPostCode('')
-        setCountry('')
-        setPhoneNumber('')
-    }
-    
     function editAddress() {
         let newAddress = {
             unitNumber: unitNumber.trim() !== '' ? unitNumber : undefined,
@@ -90,10 +77,9 @@ const EditPatient = ({ patient, modalId }) => {
                 return response.json();
             })
             .then(data => {
-                reset();
                 setErrorMessage(null);
                 setSuccessMessage("Address registered successfully.");
-                resolve(data[0]);
+                resolve(data);
             })
             .catch(error => {
                 console.error(error);
@@ -134,9 +120,10 @@ const EditPatient = ({ patient, modalId }) => {
                 return response.json();
               })
               .then(data => {
-                reset();
+                console.log(data)
                 setErrorMessage(null);
                 setSuccessMessage("Patient details updated successfully.");
+                setPatients(prevArray => prevArray.map(item => (item._id === data._id ? data : item)));
               })
               .catch(error => {
                 console.error(error);

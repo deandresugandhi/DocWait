@@ -118,7 +118,7 @@ const SettingsUpdateInformation = ({ clinic=[], openingHours=[] }) => {
         country: country.trim() !== '' ? country : undefined,
     };
 
-    // Remove undefined properties from newInfo
+    // Remove undefined properties from newAddress
     newAddress = Object.fromEntries(Object.entries(newAddress).filter(([_, v]) => v !== undefined));
 
     fetch(`https://t3a2.onrender.com/addresses/${clinic[0].address._id}`, {

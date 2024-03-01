@@ -18,7 +18,7 @@ const Field = ({ labelName, state, setState, nested=false }) => {
     )
 }
 
-const AddPatient = () => {
+const AddPatient = ({ setPatients }) => {
     
     const [firstNameValue, setFirstNameValue] = useState('')
     const [lastNameValue, setLastNameValue] = useState('')
@@ -76,7 +76,7 @@ const AddPatient = () => {
                 reset();
                 setErrorMessage(null);
                 setSuccessMessage("Address registered successfully.");
-                resolve(data[0]);
+                resolve(data);
             })
             .catch(error => {
                 console.error(error);
@@ -88,7 +88,7 @@ const AddPatient = () => {
 
 
     function updateInfo(e) {
-        e.preventDefault();
+        e.preventDefault()
         addAddress()
             .then(newAddress => {
                 let newInfo;
@@ -96,11 +96,11 @@ const AddPatient = () => {
                     newInfo = {
                         firstName: firstNameValue,
                         lastName: lastNameValue,
-                        address: newAddress,
+                        address: newAddress._id,
                         phoneNumber: phoneNumber
                     };
-    
-                    fetch('https://t3a2.onrender.com/patients', {
+                    console.log(newInfo)
+                    fetch('https://t3a2.onrender.com/patients/create', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -116,7 +116,9 @@ const AddPatient = () => {
                     .then(data => {
                         reset();
                         setErrorMessage(null);
-                        setSuccessMessage("Patient registered successfully.");
+                        setSuccessMessage("Patient registered successfully.")
+                        console.log(data)
+                        setPatients(prevArray => [...prevArray, data])
                     })
                     .catch(error => {
                         console.error(error);

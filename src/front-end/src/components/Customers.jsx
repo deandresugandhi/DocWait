@@ -4,7 +4,7 @@ import AddPatient from './AddPatient'
 import EditPatient from './EditPatient'
 import { openModal } from './ModalConfig'
 
-const Customers = ({ patients=[] }) => {
+const Customers = ({ patients=[], setPatients }) => {
   return (
     <>
       <div className='is-fullwidth is-flex is-flex-direction-column ml-3'>
@@ -19,8 +19,7 @@ const Customers = ({ patients=[] }) => {
           <ul>
             {patients.map((patient, index) => (
               <li key={index}>
-                <QueueEntry patient={patient} />
-                <EditPatient patient={patient} />
+                <QueueEntry patient={patient} setPatients={setPatients}/>
               </li>          
             ))}
             <li key="add">
@@ -31,7 +30,7 @@ const Customers = ({ patients=[] }) => {
           </ul>
         </div>
       </div>
-      <AddPatient />
+      <AddPatient setPatients={setPatients}/>
       
     </>
   )
