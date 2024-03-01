@@ -35,7 +35,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const deletedPractitioner = await PractitionerModel.findByIdAndDelete(req.params.id);
         if (deletedPractitioner) {
-            res.status(200).send({message:'Practitioner info deletion succesful'})
+            res.send(deletedPractitioner)
         } else {
             res.status(404).send({ error: 'Practitioner not found' });
         }
