@@ -5,6 +5,20 @@ import jwt from 'jsonwebtoken';
 
 const router = Router();
 
+// Handle GET request to fetch all users
+router.get('/', async (req, res) => {
+    try {
+        // Fetch all users from the database
+        const users = await UserModel.find();
+
+        // Respond with the fetched patients
+        res.send(users);
+    } catch (error) {
+        
+        console.error('Error fetching users ', error);
+        res.status(500).send({ error: 'Internal Server Error' });
+    }
+});
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
   const token = req.headers['authorization'];
