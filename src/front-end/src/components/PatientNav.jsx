@@ -1,22 +1,22 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const PatientNav = ({ previousDisabled, nextDisabled, previousPage, nextPage }) => {
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   //  Go back to the previous page in the history stack
   const handlePreviousClick = () => {
     if (previousPage) {
-      navigate(previousPage);
+      navigate(previousPage)
     } else {
-      navigate(-1);
+      navigate(-1)
     }
   };
 
   //  Go to the next page in the stack
   const handleNextClick = () => {
     if (nextPage) {
-      navigate(nextPage);
+      navigate(nextPage)
     }
   
   };
@@ -33,7 +33,7 @@ const PatientNav = ({ previousDisabled, nextDisabled, previousPage, nextPage }) 
           )}
       </nav>
     </>
-  );
+  )
 }
 
 export default PatientNav;

@@ -1,14 +1,14 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import '../patientstyles.css'
 
 const PatientHome = () => {
 
-    let navigate = useNavigate();
+    let navigate = useNavigate()
 
     const handleJoinQueueClick = () => {
       navigate('/patient/queue') // Navigate to the Practitioner Type page
-    };
+    }
 
   return (
     <>

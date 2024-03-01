@@ -1,0 +1,230 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+/* Set font */
+body {
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+}
+
+.is-small { 
+    font-size: .5rem; 
+}
+
+.logo-size {
+    width: 65%;
+    align-self: center;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Font styles */
+.light {
+    font-weight: 400;
+}
+
+.medium {
+    font-weight: 600;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.black {
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* Common utility classes */
+.full-height {
+    height: 90vh;
+}
+
+.full-width {
+    width: 100vw ;
+}
+
+.third-width {
+    width: calc(1/3 * 100%);
+    height: 100%;
+    max-width: none;
+}
+
+.tenth-width {
+    width: 10%;
+    height: 100%;
+    max-width: none;
+    margin: 1vw;
+}
+
+.fill-width {
+    width: 100%;
+}
+
+.fill-height {
+    height: 100%;
+}
+
+/* Common Container Styles */
+.large-rounded-box {
+    border-radius: 18px;
+}
+
+.entry-rounded-box {
+    border-radius: 23px;
+}
+
+img {
+    margin: 2px;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    background-color: #0bb327;
+    border-radius: 50%;
+}
+
+/* Custom Colors */
+.custom-color {
+    background-color: #c1e1e2;
+}
+
+.custom-color-2 {
+    background-color: #eff5f5;
+}
+
+/* Admin Navbar styles */
+.admin-navbar {
+    height: 100%;
+    width: 15vw;
+    margin-left: 0px;
+    font-size: 12px;
+    background-color: #147a72;
+    white-space: nowrap;
+}
+
+.settings-navbar {
+    height: 100%;
+    width: 12vw;
+    margin-left: 0px;
+    font-size: 12px;
+    background-color: #3db3ad;
+    white-space: nowrap;
+}
+
+.navbar-active {
+    background-color: rgb(250, 250, 250);
+    border-radius: 12px !important;
+}
+
+.navbar-icon {
+    width: 13px;
+    height: 13px;
+}
+
+.admin-navbar span {
+    color: white;
+    margin-left: 8px;
+}
+
+.settings-navbar span {
+    color: white;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.navbar-active span {
+    color: black;
+}
+
+.navbar-active img {
+    filter: brightness(0%);
+}
+
+.menu-list li *:hover{
+    background-color: rgb(80, 132, 136);
+}
+
+a.navbar-active:hover, a.navbar-active *:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+/* Patient side styles */
+
+.centered-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  width: 100%; /* Take full width to center within the parent */
+}
+
+.code-entry {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically if needed */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.copyright {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically if needed */
+}
+
+.field.is-grouped.is-grouped-multiline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* This spreads out the items evenly */
+}
+
+.field.is-grouped.is-grouped-multiline .control {
+  width: calc(32.333% - 10px); /* Adjusts for 3 items per row, accounting for some margin */
+  margin-bottom: 1rem; /* Adds some space below each row */
+}
+
+.button.is-large {
+  width: 100%; /* Makes the button expand to fill the .control container */
+  text-align: center; /* Centers the button text */
+}
+
+.queue-join {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.centered-container > * {
+  display: block; /* Ensures each element takes up a full row */
+  text-align: center; /* Keeps the text centered, assuming that's desired */
+}
+
+.name-of-patient {
+  padding-bottom: 2rem;
+}
+
+.practice-details {
+  display: block; /* This makes each link appear on a new line */
+  margin-bottom: 10px; /* Optional: Adds some space between the links */
+}
+
+.custom-padding {
+    width: 95vw;
+    height: 100vh;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.box {
+    all: reset;
+}
+
+.practice-details .link {
+    display: block; /* Makes each link appear on a new line */
+    margin-bottom: 10px; /* Optional: adds some space between the links */;
+    font-size: 1.5em;
+  }
+
+  .link:hover {
+    color: darkblue; /* Color changes on hover */
+    text-decoration: underline; /* Adds underline on hover */
+  }

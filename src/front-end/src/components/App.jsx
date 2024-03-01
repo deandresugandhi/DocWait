@@ -17,27 +17,40 @@ const MainContent = ({ queueEntries, patients, practitioners, clinic }) => {
   const location = useLocation()
   const isPatientRoute = location.pathname.startsWith('/patient')
 
-  return (
-    <>
-      <div className='is-fullheight is-marginless is-flex is-flex-direction-row'>
-        {!isPatientRoute && <AdminNavBar />}
-        <Routes>
-          <Route path="/" element={<Home queueEntries={queueEntries} patients={patients} practitioners={practitioners}/>} />
-          <Route path="/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners}/>} />
-          <Route path="/settings/update-information" element={<SettingsUpdateInformation clinic={clinic}/>} />
-          <Route path="/customers" element={<Customers patients={patients}/>} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="*" element={<h3>Page Not Found</h3>} />
-          <Route path="/patient" element={<PatientHome />} />
-          <Route path="/patient/practicioner" element={<PatientPracticioner />} />
-          <Route path="/patient/queue" element={<PatientQueue />} />
-          <Route path="/patient/time" element={<PatientTime />} />
-          <Route path="/patient/details" element={<PatientDetails />} />
-          <Route path="/patient/confirmation" element={<PatientConfirmation />} />
-        </Routes>
-      </div>
-    </>
-  )
+  if (isPatientRoute) {
+    // Patient-specific container and styling
+    return (
+      <>
+        <div className='patient-specific-class'>
+          <Routes>
+            <Route path="/patient" element={<PatientHome />} />
+            <Route path="/patient/practicioner" element={<PatientPracticioner />} />
+            <Route path="/patient/queue" element={<PatientQueue />} />
+            <Route path="/patient/time" element={<PatientTime />} />
+            <Route path="/patient/details" element={<PatientDetails />} />
+            <Route path="/patient/confirmation" element={<PatientConfirmation />} />
+          </Routes>
+        </div>
+      </>
+    );
+  } else {
+    // Admin and general routes container and styling
+    return (
+      <>
+        <div className='is-fullheight is-marginless is-flex is-flex-direction-row'>
+          {!isPatientRoute && <AdminNavBar />}
+          <Routes>
+            <Route path="/" element={<Home queueEntries={queueEntries} patients={patients} practitioners={practitioners}/>} />
+            <Route path="/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners}/>} />
+            <Route path="/settings/update-information" element={<SettingsUpdateInformation clinic={clinic}/>} />
+            <Route path="/customers" element={<Customers patients={patients}/>} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="*" element={<h3>Page Not Found</h3>} />
+          </Routes>
+        </div>
+      </>
+    );
+  }
 }
 
 const App = () => {
