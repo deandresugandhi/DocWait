@@ -60,9 +60,6 @@ router.get('/patients/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const insertedEntry = await QueueEntriesModel.create(req.body)
-            .populate('patient')
-            .populate('address')
-            .populate('practitioner');
         res.status(201).send(insertedEntry)
     }
     catch (err) {
