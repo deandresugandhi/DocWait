@@ -154,38 +154,38 @@ a.navbar-active:hover, a.navbar-active *:hover {
 
 .centered-container {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  width: 100%; /* Take full width to center within the parent */
+  justify-content: center; 
+  width: 100%; 
 }
 
 .code-entry {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically if needed */
+  justify-content: center;
+  align-items: center; 
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
 .copyright {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically if needed */
+  justify-content: center;
+  align-items: center; 
 }
 
 .field.is-grouped.is-grouped-multiline {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* This spreads out the items evenly */
+  justify-content: space-between;
 }
 
 .field.is-grouped.is-grouped-multiline .control {
-  width: calc(32.333% - 10px); /* Adjusts for 3 items per row, accounting for some margin */
-  margin-bottom: 1rem; /* Adds some space below each row */
+  width: calc(32.333% - 10px); 
+  margin-bottom: 1rem; 
 }
 
 .button.is-large {
-  width: 100%; /* Makes the button expand to fill the .control container */
-  text-align: center; /* Centers the button text */
+  width: 100%; 
+  text-align: center; 
 }
 
 .queue-join {
@@ -194,17 +194,17 @@ a.navbar-active:hover, a.navbar-active *:hover {
 }
 
 .centered-container > * {
-  display: block; /* Ensures each element takes up a full row */
-  text-align: center; /* Keeps the text centered, assuming that's desired */
+  display: block; 
+  text-align: center; 
 }
 
 .name-of-patient {
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .practice-details {
-  display: block; /* This makes each link appear on a new line */
-  margin-bottom: 10px; /* Optional: Adds some space between the links */
+  display: block; 
+  margin-bottom: 10px; 
 }
 
 .custom-padding {
@@ -219,14 +219,14 @@ a.navbar-active:hover, a.navbar-active *:hover {
 }
 
 .practice-details .link {
-    display: block; /* Makes each link appear on a new line */
-    margin-bottom: 10px; /* Optional: adds some space between the links */;
+    display: block; 
+    margin-bottom: 10px; 
     font-size: 1.5em;
   }
 
   .link:hover {
-    color: darkblue; /* Color changes on hover */
-    text-decoration: underline; /* Adds underline on hover */
+    color: darkblue;
+    text-decoration: underline; 
   }
 
   .button.is-selected {
@@ -236,4 +236,16 @@ a.navbar-active:hover, a.navbar-active *:hover {
 
   .button {
     border-color: black;
+  }
+
+  .name-of-patient {
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+
+  @media screen and (min-width: 769px) {
+    .box {
+      max-width: 70%;
+      margin: 0 auto;
+    }
   }

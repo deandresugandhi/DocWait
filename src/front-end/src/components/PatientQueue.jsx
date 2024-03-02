@@ -7,7 +7,6 @@ const PatientQueue = () => {
 
   const handleButtonClick = (appointmentType) => {
     setSelectedAppointment(appointmentType);
-    // You can also add navigation or other logic here
   }
 
   return (
@@ -17,7 +16,7 @@ const PatientQueue = () => {
             <hr />
             <h3 className="title is-3 has-text-centered">Appointment Type</h3>
             <div className="buttons has-addons is-centered">
-          {['Standard GP Consult', 'Immunisation', 'Vaccination', 'Script', 'Physiotherapy', 'Nurse'].map((type) => (
+              {['Standard GP Consult', 'Immunisation', 'Vaccination', 'Script', 'Physiotherapy', 'Nurse'].map((type) => (
             <button
               key={type}
               className={`button is-large is-fullwidth ${selectedAppointment === type ? 'is-selected' : ''}`}
@@ -27,14 +26,14 @@ const PatientQueue = () => {
             </button>
           ))}
         </div>
-            <PatientNav 
-              previousPage="/patient" // Route back to the home page
-              nextPage="/patient/practicioner" // Route to the select practitioner page
-            />
-            <div className="code-entry">
-              <p>&#169; DocWait</p>
-            </div>
+        <PatientNav 
+          previousPage="/patient" // Route back to the home page
+          nextPage="/patient/practicioner" // Route to the select practitioner page
+        />
+        <div className="code-entry">
+          <p>&#169; DocWait</p>
         </div>
+      </div>
     </>
   )
 }

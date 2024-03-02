@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PatientNav from './PatientNav'
 
 const PatientDetails = () => {
+    const [name, setName] = useState('')
     let navigate = useNavigate()
 
     const handleJoinQueueClick = () => {
-      navigate('/patient/confirmation')
+        navigate(`/patient/confirmation?name=${encodeURIComponent(name)}`) // Navigate to the confirmation page
     }
 
   return (
@@ -20,7 +21,7 @@ const PatientDetails = () => {
             <div className="field">
                 <label className="label">Name</label>
                 <div className="control">
-                    <input className="input" type="text" placeholder="Text input"></input>
+                <input className="input" type="text" placeholder="Text input" value={name} onChange={(e) => setName(e.target.value)}></input>
                 </div>
             </div>
             <div className="field">
@@ -50,7 +51,7 @@ const PatientDetails = () => {
                 </div>
             </div>
             <div className="code-entry">
-            <p>&#169; QueueMate</p>
+            <p>&#169; DocWait</p>
             </div>
             <PatientNav 
                 previousPage="/patient/time" // Go back to the select time page
