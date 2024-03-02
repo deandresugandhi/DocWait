@@ -1,13 +1,12 @@
 import { React, useState, useEffect } from 'react'
 import QueueColumn from './QueueColumn'
-import AddEntry from './AddEntry'
-import MoveEntry from './MoveEntry'
 
 
 const Home = ({ queueEntries=[], patients=[], practitioners=[], setQueueEntries }) => {
   const [pendingEntries, setPendingEntries] = useState([])
   const [inProgressEntries, setInProgressEntries] = useState([])
   const [completedEntries, setCompletedEntries] = useState([])
+  
   useEffect(() => {
     const entries = queueEntries.filter(entry => entry["queueState"] === "Pending")
     setPendingEntries(entries)
@@ -37,22 +36,5 @@ const Home = ({ queueEntries=[], patients=[], practitioners=[], setQueueEntries 
     </>
   )
 }
-// return (
-//   <div class="columns is-3">
-//     <div class="column has-background-primary">
-//       No gap
-//     </div>
-//     <div class="column has-background-primary">
-//       No gap
-//     </div>
-//     <div class="column has-background-primary">
-//       No gap
-//     </div>
-//     <div class="column has-background-primary">
-//       No gap
-//     </div>
-//   </div>
-// )
-// }
 
 export default Home

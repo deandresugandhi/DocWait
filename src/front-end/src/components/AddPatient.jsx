@@ -3,7 +3,7 @@ import { closeModal } from './ModalConfig'
 
 const Field = ({ labelName, state, setState, nested=false }) => {
     return (
-        <div className="field">
+        <div className="field" data-testid="patient-details-entry">
             <label className={`label ${nested === true ? "is-size-7" : '' }`}>{labelName}</label>
             <div className="control">
                 <textarea
@@ -161,7 +161,7 @@ const AddPatient = ({ setPatients }) => {
                 {successMessage && <p className="has-text-success">{successMessage}</p>}
             </section>
             <footer className="modal-card-foot">
-                <button className="button is-success">Save changes</button>
+                <button className="button is-success" data-testid="save-changes">Save changes</button>
                 <button className="button" onClick={() => closeModal("add-patient")}>Cancel</button>
             </footer>
             </form>

@@ -7,7 +7,7 @@ import settingsIconURL from '../assets/Settings.png';
 import logoURL from '../assets/Logo.png';
 
 const BoxContainer = ({ children }) => (
-  <aside className="menu admin-navbar has-background-dark large-rounded-box is-flex is-flex-direction-column py-6 px-4">
+  <aside className="menu admin-navbar has-background-dark large-rounded-box is-flex is-flex-direction-column py-6 px-4" data-testid="admin-navbar-side">
     {children}
   </aside>
 );
@@ -51,7 +51,7 @@ const LinkContainer = ({ imageURL, linkName, path, position, topNavBar=false }) 
         </NavLink>
     )
   }
-};
+}
 
 const AdminNavBar = () => {
   const [isActive, setIsActive] = useState(false);
@@ -111,4 +111,4 @@ const AdminNavBar = () => {
   </>
   )
 }
-export default AdminNavBar;
+export default AdminNavBar

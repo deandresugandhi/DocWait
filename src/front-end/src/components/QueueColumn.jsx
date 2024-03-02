@@ -7,7 +7,7 @@ import AddEntry from './AddEntry'
 
 const QueueColumn = ({ columnName, state=[], patients=[], practitioners=[], queueState, setQueueEntries }) => {
     return (
-        <div className="column is-full is-one-third-widescreen is-fullheight">
+        <div className="column is-full is-one-third-widescreen is-fullheight" data-testid="queue-column">
             <div className="p-5 has-background-light is-fullheight large-rounded-box">
                 <div className="bottom-border is-flex is-flex-direction-row">
                     <h2 className="is-size-5 has-text-weight-semibold">{columnName}</h2>
