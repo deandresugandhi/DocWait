@@ -149,17 +149,20 @@ console.log('Added queue entries')
 
 
 const users = [
-        {
-            username: 'testuser',
-            password: 'testpassword'
-        }
-    ];
+    { 
+    username: 'eliteadmin', 
+    password: 'spameggs', 
+    name: 'Adam Minister', 
+    isAdmin: true 
+    }
+];
 
- // Hash passwords using bcrypt
+// Hash passwords using bcrypt
 const hashedUsers = await Promise.all(users.map(async (user) => {
-    const hashedPassword = await bcrypt.hash(user.password, 10); 
-    return { ...user, password: hashedPassword };
+const hashedPassword = await bcrypt.hash(user.password, 10); 
+return { ...user, password: hashedPassword };
 }));
+
              
 await UserModel.deleteMany(); 
 console.log('Deleted existing users');

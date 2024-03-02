@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import bcrypt from 'bcrypt'
 
 dotenv.config()
 
@@ -79,10 +80,15 @@ const queueEntriesSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
-  })
+    username: {type: String, required: true},
+    password: {type: String, required: true},
+    name: {type: String, required: true},
+    isAdmin: {type: Boolean, required: true}
+})
 
+userSchema.methods.comparePassword = async function(candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password);
+};
 const openingHoursSchema = new mongoose.Schema({
     day: { type: String, required: true},
     isOpen: { type: Boolean, required: true},
