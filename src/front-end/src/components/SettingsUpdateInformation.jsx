@@ -167,8 +167,8 @@ const SettingsUpdateInformation = ({ clinic=[], openingHours=[] }) => {
 
   return (
     <>
-      <div className='is-fullwidth is-flex is-flex-direction-row ml-3'>
-        <div className='is-flex is-flex-direction-column'>
+      <div className='settings is-fullwidth is-flex is-flex-direction-row ml-3'>
+        <div className='settings-2 is-flex is-flex-direction-column'>
           <h1 className='is-size-4'>Clinic Name's</h1>
           <h1 className='is-size-1 has-text-weight-bold mb-3'>Settings</h1>
           <SettingsNavBar />
@@ -189,7 +189,7 @@ const SettingsUpdateInformation = ({ clinic=[], openingHours=[] }) => {
                 </div>
                 <InformationField label="URL" state={URLValue} setState={setURLValue} clinic={clinic} fieldName="url" />
                 {OpeningHoursField({label:"Opening Hours", setStates:setStates, openingHours:openingHours})}
-                <div className="field is-grouped">
+                <div className="field is-grouped is-justify-content-flex-end">
                     <div className="control">
                       <button className="button is-link">Save</button>
                     </div>

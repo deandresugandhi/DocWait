@@ -2,6 +2,7 @@
 
 // Color Scheme
 $cyan-dark: #147a72;
+$cyan-dark-2: #258b83;
 $cyan: #3db3ad;
 $cyan-light: #c1e1e2;
 $cyan-lighter: #eff5f5;
@@ -22,6 +23,7 @@ $weight-bold: 900;
 
 // Colors
 $primary: $cyan;
+$primary-dark: $cyan-dark-2;
 $light: $cyan-light;
 $dark: $cyan-dark;
 $success: $green-success;
@@ -101,7 +103,17 @@ body {
     margin-left: auto;
 }
 
+.is-custom-width {
+    width: 225px;
+}
 
+.is-custom-width-2 {
+    width: 100px;
+}
+
+.margin-fix {
+    margin-right: 90px;
+}
 /* Common Component Styling */
 .large-rounded-box {
     border-radius: 18px;
@@ -221,8 +233,34 @@ body {
         }
 }
 
-@media (max-width: 1300px) {
-    .notification {
-    flex-direction: column !important;
+@media (max-width: 768px) {
+    .details {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .details h2 {
+        margin: 3px;
+    }
+}
+
+@media (max-width: 900px) {
+    .settings {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    .settings-2, .settings-navbar {
+        width: 100%;
+    }
+
+    .settings-navbar {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 676px) {
+    .field {
+        justify-content: center !important;
     }
 }

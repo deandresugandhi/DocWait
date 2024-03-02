@@ -59,12 +59,12 @@ const DropDown = ({ day, index, setStates, openingHours=[] }) => {
 
     return (
         <>
-            <div className="field is-grouped is-align-items-center">
-                <div className="control is-tenth-width mr-6">
-                    <label className="label">{day}</label>
+            <div className="field is-grouped is-grouped-multiline is-align-items-center my-3">
+                <div className="control is-custom-width-2">
+                    <label className="label is-flex is-justify-content-center">{day}</label>
                 </div>
                 <div className="control">
-                    <div className="select is-rounded is-normal">
+                    <div className="select is-rounded is-normal mr-2">
                         <select 
                             value={isOpenPlaceholderValue} 
                             onChange={(e) => {
@@ -77,8 +77,7 @@ const DropDown = ({ day, index, setStates, openingHours=[] }) => {
                         </select>
                     </div>
                 </div>
-                <div className="control is-tenth-width" />
-                <div className="control is-tenth-width">
+                <div className="control is-flex is-flex-direction-row is-custom-width">
                     <textarea className="input" 
                         value={openingTimePlaceholderValue} 
                         onChange={(e) => {
@@ -87,12 +86,15 @@ const DropDown = ({ day, index, setStates, openingHours=[] }) => {
                         }}
                     >
                     </textarea>
-                </div>
-                <div className="control">
-                    <p> - </p>
-                </div>
-                <div className="control is-tenth-width">
-                    <textarea className="input" defaultValue={closingTimePlaceholderValue} onChange={e => setStates[index][2](e.target.value)}></textarea>
+                    <p className="p-2">-</p>
+                    <textarea className="input" 
+                        value={closingTimePlaceholderValue} 
+                        onChange={e => {
+                            setClosingTimePlaceholderValue(e.target.value);
+                            setStates[index][2](e.target.value);
+                        }}
+                    >
+                    </textarea>
                 </div>
             </div>
         </>
@@ -104,7 +106,8 @@ const OpeningHoursField =  ({ label, setStates, openingHours=[] }) => {
     return (
         <div className="field">
             <label className="label">{label}</label>
-            <div className="large-rounded-box has-background-info p-4 is-three-fourth-width">
+            <div className="large-rounded-box has-background-info p-4 is-fullwidth
+            ">
                 {DropDown({day:"Monday", index:0, setStates:setStates, openingHours:openingHours})}
                 {DropDown({day:"Tuesday", index:1, setStates:setStates, openingHours:openingHours})}
                 {DropDown({day:"Wednesday", index:2, setStates:setStates, openingHours:openingHours})}

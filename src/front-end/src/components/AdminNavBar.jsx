@@ -42,15 +42,13 @@ const LinkContainer = ({ imageURL, linkName, path, position, topNavBar=false }) 
     )
   } else {
     return (
-      <a className={`navbar-item ${isActive() ? 'navbar-active' : ''}`}>
         <NavLink
           to={path}
-          className="px-5"
+          className={`navbar-item px-5 ${isActive() ? 'navbar-active' : ''}`}
         >
           <img src={imageURL} alt={linkName} className="navbar-icon" />
           <span className="has-text-weight-light is-size-7">{linkName}</span>
         </NavLink>
-      </a>
     )
   }
 };
@@ -85,13 +83,13 @@ const AdminNavBar = () => {
         aria-expanded="false" 
         data-target="navbarBasicExample"
       >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+        <span aria-hidden="true" className="has-text-white"></span>
+        <span aria-hidden="true" className="has-text-white"></span>
+        <span aria-hidden="true" className="has-text-white"></span>
       </a>
     </div>
 
-    <div id="navbarBasicExample" className={`navbar-menu has-background-dark ${isActive ? "is-active" : ""}`}>
+    <div id="navbarBasicExample" className={`navbar-menu has-background-primary-dark ${isActive ? "is-active" : ""}`}>
       <div className="navbar-start">
         <LinkContainer imageURL={homeIconURL} linkName="Queue" path="/" topNavBar={true} />
         <LinkContainer imageURL={customerIconURL} linkName="Customer" path="/customers" topNavBar={true} />

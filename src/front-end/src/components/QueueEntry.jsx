@@ -9,11 +9,11 @@ import MoveEntry from './MoveEntry'
 import DeleteEntry from './DeleteEntry'
 import EditPractitioner from './EditPractitioner'
 
-const BoxContainer = ({ children, entry, clickable="false"}) => (
+const BoxContainer = ({ children, entry, clickable="false", isMobile="false"}) => (
   <div className={`is-fullwidth box has-background-info entry-rounded-box mt-2 ${clickable === "true" ? 'is-clickable' : ''}`}
       onClick={() =>{openModal(`move-entry-${entry?._id}`)}}
     >
-    <div className="columns is-multiline">
+    <div className={`columns ${isMobile === "false" ? "" : "is-mobile" }`}>
       {children}
     </div>
   </div>
@@ -26,7 +26,7 @@ const CustomerInfo = ( { entry, patient, practitioner, modalId } ) => {
     const formattedDate = new Intl.DateTimeFormat('en-US', options).format(dateObject);
     return (
       <div className="column is-three-quarters">
-      <div className="is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
+      <div className="details is-flex is-flex-direction-column is-align-items-flex-start is-justify-content-flex-start">
         <h2 className="is-size-6 has-text-weight-semibold">{entry.patient.firstName} {entry.patient.lastName}</h2>
         <div className="is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-flex-start mt-1">
           <button className="button is-small is-rounded has-background-grey-light mr-1"><p>{entry.practitioner.firstName} {entry.practitioner.lastName}</p></button>
@@ -90,7 +90,7 @@ const CustomerInfo = ( { entry, patient, practitioner, modalId } ) => {
               }
             })()}
           </h2>
-          <h2 className={`column has-text-weight-semibold has-text-right 
+          <h2 className={`column has-text-weight-semibold has-text-right is-hidden-mobile 
               ${formattedDate === "Not in Clinic" ? 'has-text-danger' : '' }
             `}
           >
@@ -106,8 +106,8 @@ const CustomerInfo = ( { entry, patient, practitioner, modalId } ) => {
   else if (practitioner) {
     return (
       <>
-        <h2 className="column is-flex is-align-items-center is-size-6 has-text-weight-semibold ">{practitioner.firstName} {practitioner.lastName}</h2>
-        <div className="column is-flex is-flex-direction-row is-align-items-center is-justify-content-center py-1">
+        <h2 className="column has-text-weight-semibold ">{practitioner.firstName} {practitioner.lastName}</h2>
+        <div className="column is-flex is-flex-direction-row is-align-items-center is-justify-content-center">
           <div className={`circle 
               ${practitioner.availability === 'On duty' ? 'has-background-success' : ''} 
               ${practitioner.availability === 'Absent' ? 'has-background-danger' : ''}
@@ -161,7 +161,7 @@ const QueueEntry = ({ entry, patient, practitioner, setPatients, setQueueEntries
   else if (patient) {
     return (
       <>
-        <BoxContainer>
+        <BoxContainer isMobile="true">
           <CustomerInfo patient={patient} modalId={`edit-patient-${patient?._id}`} />
         </BoxContainer>
         <EditPatient patient={patient} modalId={`edit-patient-${patient?._id}`} setPatients={setPatients}/>
@@ -171,7 +171,7 @@ const QueueEntry = ({ entry, patient, practitioner, setPatients, setQueueEntries
   else if (practitioner) {
     return (
       <>
-        <BoxContainer>
+        <BoxContainer isMobile="true">
           <CustomerInfo practitioner={practitioner} modalId={`edit-practitioner-${practitioner?._id}`}/>
         </BoxContainer>
         <EditPractitioner practitioner={practitioner} modalId={`edit-practitioner-${practitioner?._id}`} setPractitioners={setPractitioners}/>
