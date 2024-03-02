@@ -228,3 +228,12 @@ a.navbar-active:hover, a.navbar-active *:hover {
     color: darkblue; /* Color changes on hover */
     text-decoration: underline; /* Adds underline on hover */
   }
+
+  .button.is-selected {
+    background-color: #147a72;
+    color: white; 
+  }
+
+  .button {
+    border-color: black;
+  }

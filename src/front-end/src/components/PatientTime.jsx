@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../patientstyles.css'
 import PatientNav from './PatientNav'
 
 const PatientTime = () => {
+    const [selectedTime, setSelectedTime] = useState('');
+
+    const selectTime = (time) => {
+        setSelectedTime(time)
+    }
+
+    const times = [
+        "09:00", "09:30", "10:00", "10:30", 
+        "11:00", "11:30", "12:00", "12:30", 
+        "13:00", "13:30", "14:00", "14:30"
+    ]
+
     return (
       <>
         <div className="box custom-padding">
@@ -13,66 +25,13 @@ const PatientTime = () => {
                 <label className="label">Current Time</label>
             </div>
             <div className="field is-grouped is-grouped-multiline">
-                <p className="control">
-                    <a className="button is-large">
-                    09:00
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    09:30
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    10:00
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    10:30
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    11:00
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    11:30
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    12:00
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    12:30
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    13:00
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    13:30
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    14:00
-                    </a>
-                </p>
-                <p className="control">
-                    <a className="button is-large">
-                    14:30
-                    </a>
-                </p>
+                {times.map((time) => (
+                    <p className="control" key={time}>
+                        <button className={`button is-large ${selectedTime === time ? 'is-selected' : ''}`} onClick={() => selectTime(time)}>
+                            {time}
+                        </button>
+                    </p>
+                ))}
             </div>
             <PatientNav 
                 previousPage="/patient/practicioner" // Go back to the select practitioner page

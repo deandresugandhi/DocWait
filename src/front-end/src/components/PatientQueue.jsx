@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../patientstyles.css'
 import PatientNav from './PatientNav'
 
 const PatientQueue = () => {
+  const [selectedAppointment, setSelectedAppointment] = useState('');
+
+  const handleButtonClick = (appointmentType) => {
+    setSelectedAppointment(appointmentType);
+    // You can also add navigation or other logic here
+  }
+
   return (
     <>
         <div className="box custom-padding">
@@ -10,13 +17,16 @@ const PatientQueue = () => {
             <hr />
             <h3 className="title is-3 has-text-centered">Appointment Type</h3>
             <div className="buttons has-addons is-centered">
-                <button className="button is-large is-fullwidth">Standard GP Consult</button>
-                <button className="button is-large is-fullwidth">Immunisation</button>
-                <button className="button is-large is-fullwidth">Vaccination</button>
-                <button className="button is-large is-fullwidth">Script</button>
-                <button className="button is-large is-fullwidth">Physiotherapy</button>
-                <button className="button is-large is-fullwidth">Nurse</button>
-            </div>
+          {['Standard GP Consult', 'Immunisation', 'Vaccination', 'Script', 'Physiotherapy', 'Nurse'].map((type) => (
+            <button
+              key={type}
+              className={`button is-large is-fullwidth ${selectedAppointment === type ? 'is-selected' : ''}`}
+              onClick={() => handleButtonClick(type)}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
             <PatientNav 
               previousPage="/patient" // Route back to the home page
               nextPage="/patient/practicioner" // Route to the select practitioner page
