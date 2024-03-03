@@ -4,7 +4,7 @@ import homeIconURL from '../assets/Home.png';
 import customerIconURL from '../assets/People.png';
 import aboutUsIconURL from '../assets/Info Circle.png';
 import settingsIconURL from '../assets/Settings.png';
-import logoURL from '../assets/Logo.png';
+import logoURL from '../assets/Logo.svg';
 
 const BoxContainer = ({ children }) => (
   <aside className="menu admin-navbar has-background-dark large-rounded-box is-flex is-flex-direction-column py-6 px-4" data-testid="admin-navbar-side">
@@ -70,7 +70,7 @@ const AdminNavBar = () => {
   
   <nav className="navbar has-background-dark is-fixed-top" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
-      <a className="navbar-item px-6">
+      <a className="navbar-item px-4">
         <img src={logoURL} />
       </a>
       <a
