@@ -37,19 +37,17 @@ const MainContent = ({ queueEntries, patients, practitioners, clinic, openingHou
     // Admin and general routes container and styling
     return (
       <>
-      <BrowserRouter>
         <div className='is-fullheight is-marginless is-flex is-flex-direction-row'>
           <AdminNavBar />
           <Routes>
-            <Route path="/" element={<Home queueEntries={queueEntries} patients={patients} practitioners={practitioners} setQueueEntries={setQueueEntries} />} />
-            <Route path="/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners} setPractitioners={setPractitioners}/>} />
-            <Route path="/settings/update-information" element={<SettingsUpdateInformation clinic={clinic} openingHours={openingHours}/>} />
-            <Route path="/customers" element={<Customers patients={patients} setPatients={setPatients}/>} />
-            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/admin" element={<Home queueEntries={queueEntries} patients={patients} practitioners={practitioners} setQueueEntries={setQueueEntries} />} />
+            <Route path="/admin/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners} setPractitioners={setPractitioners}/>} />
+            <Route path="/admin/settings/update-information" element={<SettingsUpdateInformation clinic={clinic} openingHours={openingHours}/>} />
+            <Route path="/admin/customers" element={<Customers patients={patients} setPatients={setPatients}/>} />
+            <Route path="/admin/about-us" element={<AboutUs />} />
             <Route path="*" element={<h3>Page Not Found</h3>} />
           </Routes>
         </div>
-      </BrowserRouter>
     </>
     );
   }

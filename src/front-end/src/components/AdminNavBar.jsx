@@ -17,7 +17,7 @@ const LinkContainer = ({ imageURL, linkName, path, position, topNavBar=false }) 
   const location = useLocation()
   const isActive = () => {
     if (linkName === 'Settings') {
-      return location.pathname.startsWith('/settings/')
+      return location.pathname.startsWith('/admin/settings/')
     }
     else {
       return location.pathname === path
@@ -61,10 +61,10 @@ const AdminNavBar = () => {
   <BoxContainer>
     <img src={logoURL} alt="Logo" className="logo-size" />
     <ul className="mb-3 menu-list medium">
-      <LinkContainer imageURL={homeIconURL} linkName="Queue" path="/" />
-      <LinkContainer imageURL={customerIconURL} linkName="Customer" path="/customers" />
-      <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" path="/about-us" />
-      <LinkContainer imageURL={settingsIconURL} linkName="Settings" path="/settings/manage-practitioners" position="bottom"/>
+      <LinkContainer imageURL={homeIconURL} linkName="Queue" path="/admin" />
+      <LinkContainer imageURL={customerIconURL} linkName="Customer" path="/admin/customers" />
+      <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" path="/admin/about-us" />
+      <LinkContainer imageURL={settingsIconURL} linkName="Settings" path="/admin/settings/manage-practitioners" position="bottom"/>
     </ul>
   </BoxContainer>
   
@@ -91,10 +91,10 @@ const AdminNavBar = () => {
 
     <div id="navbarBasicExample" className={`navbar-menu has-background-primary-dark ${isActive ? "is-active" : ""}`}>
       <div className="navbar-start">
-        <LinkContainer imageURL={homeIconURL} linkName="Queue" path="/" topNavBar={true} />
-        <LinkContainer imageURL={customerIconURL} linkName="Customer" path="/customers" topNavBar={true} />
-        <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" path="/about-us" topNavBar={true} />
-        <LinkContainer imageURL={settingsIconURL} linkName="Settings" path="/settings/manage-practitioners" topNavBar={true}/>
+        <LinkContainer imageURL={homeIconURL} linkName="Queue" path="/admin" topNavBar={true} />
+        <LinkContainer imageURL={customerIconURL} linkName="Customer" path="/admin/customers" topNavBar={true} />
+        <LinkContainer imageURL={aboutUsIconURL} linkName="About Us" path="/admin/about-us" topNavBar={true} />
+        <LinkContainer imageURL={settingsIconURL} linkName="Settings" path="/admin/settings/manage-practitioners" topNavBar={true}/>
       </div>
 
       <div className="navbar-end">

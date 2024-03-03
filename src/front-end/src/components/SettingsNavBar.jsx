@@ -29,8 +29,8 @@ const LinkContainer = ({ linkName, path, position }) => {
 const SettingsNavBar = () => (
   <BoxContainer>
     <ul className="mb-3 menu-list medium">
-      <LinkContainer linkName="Manage Practitioners" path="/settings/manage-practitioners" />
-      <LinkContainer linkName="Update Information" path="/settings/update-information" />
+      <LinkContainer linkName="Manage Practitioners" path="/admin/settings/manage-practitioners" />
+      <LinkContainer linkName="Update Information" path="/admin/settings/update-information" />
     </ul>
   </BoxContainer>
 );

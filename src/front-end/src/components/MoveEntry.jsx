@@ -35,7 +35,7 @@ const DropDown = ({ labelName, state, setState, entry }) => {
 
 const MoveEntry = ( {entry, modalID, setQueueEntries} ) => {
     
-    const [queueStateValue, setQueueStateValue] = useState('')
+    const [queueStateValue, setQueueStateValue] = useState('Pending')
     const [errorMessage, setErrorMessage] = useState(null)
     const [successMessage, setSuccessMessage] = useState(null)
     
