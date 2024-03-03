@@ -33,4 +33,20 @@ describe("GET /practitioners", () => {
     });
 });
 
+describe("GET /practitioners/:id", () => {
+    let res;
+
+    beforeEach(async () => {
+        res = await request(app).get('/practitioners/65e45ae72492001791c4ca06');
+    });
+
+    test('Returns JSON content and gets existing practitioner by ID', async () => {
+        expect(res.status).toBe(200);
+        expect(res.header['content-type']).toContain('json');
+        
+        expect(res.body).toEqual(expect.objectContaining({
+            _id: expect.any(String)
+        }));
+    });
+});
 

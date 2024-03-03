@@ -18,6 +18,21 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Handle GET request to fetch one patient
+router.get('/:id', async (req, res) => {
+    try {
+        const practitioner = await PractitionerModel.findById(req.params.id);
+
+        if (practitioner) {
+            res.send(practitioner);
+        } else {
+            res.status(404).send({ error: 'Practitioner not found' });
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Internal Server Error' });
+    }
+});
+
 //handle POST request to create one practitioner
 
 router.post('/create', async (req, res) => {
@@ -27,6 +42,21 @@ router.post('/create', async (req, res) => {
     }
     catch (err) {
         res.status(500).send({ error: err.message })
+    }
+})
+
+// handle PUT requests to update patient details
+router.put('/:id', async (req, res) => {
+    try {                
+        const updatePractitioner = await PractitionerModel.findOneAndUpdate({_id:req.params.id}, req.body, { new: true });
+        if (updatePractitioner) {
+            const populatedPractioner = await PractitionerModel.findById(updatePractitioner._id)
+            res.send(populatedPractioner);
+        } else {
+            res.status(404).send({ error: 'Practitioner not found' });
+        }
+    } catch (err) {
+        res.status(500).send({ error: err.message });
     }
 })
 
