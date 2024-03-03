@@ -1,27 +1,32 @@
 import { React, useState, useEffect } from 'react'
 
 
-const InformationField = ({ label, state, setState, clinic=[], fieldName }) => {
+const InformationField = ({ label, setState, clinic=[], nested=false, fieldName }) => {
     const [placeholderValue, setPlaceholderValue] = useState('');
 
     useEffect(() => {
         if (clinic.length > 0) {
-          setPlaceholderValue(clinic[0][fieldName]);
+            if (nested === false) {
+                setPlaceholderValue(clinic[0][fieldName]);
+            } else if (nested === true) {
+                setPlaceholderValue(clinic[0].address[fieldName])
+            }
         } else {
           setPlaceholderValue("Loading...");
         }
       }, [clinic]);
 
-
-
     return (
         <div className="field">
-            <label className="label">{label}</label>
+            <label className={`label ${nested === true ? "is-size-7" : '' }`}>{label}</label>
             <div className="control">
                 <textarea
                 className="input"
-                value={state}
-                onChange={e => setState(e.target.value)}
+                value={placeholderValue}
+                onChange={e => {
+                    setState(e.target.value)
+                    setPlaceholderValue(e.target.value)
+                }}
                 placeholder={placeholderValue}
                 />
             </div>
@@ -29,64 +34,87 @@ const InformationField = ({ label, state, setState, clinic=[], fieldName }) => {
     );
 }
 
-const OpeningHoursField =  ({ label, setStates, openingHours=[] }) => {
-    const DropDown = ({ day, index }) => {
-        const [isOpenPlaceholderValue, setIsOpenPlaceholderValue] = useState('');
-        const [openingTimePlaceholderValue, setOpeningTimePlaceholderValue] = useState('');
-        const [closingTimePlaceholderValue, setClosingTimePlaceholderValue] = useState('');
+const DropDown = ({ day, index, setStates, openingHours=[] }) => {
+    const [isOpenPlaceholderValue, setIsOpenPlaceholderValue] = useState('');
+    const [openingTimePlaceholderValue, setOpeningTimePlaceholderValue] = useState('');
+    const [closingTimePlaceholderValue, setClosingTimePlaceholderValue] = useState('');
 
-        useEffect(() => {
-            if (openingHours.length > 0) {
-                setIsOpenPlaceholderValue(openingHours[index]["isOpen"]);
-                setOpeningTimePlaceholderValue(openingHours[index]["openingTime"])
-                setClosingTimePlaceholderValue(openingHours[index]["closingTime"])
-            } else {
-                setIsOpenPlaceholderValue(false);
-                setOpeningTimePlaceholderValue("Loading...")
-                setClosingTimePlaceholderValue("Loading...")
-            }
-        }, [openingHours]);
+    useEffect(() => {
+        if (openingHours.length > 0) {
+            let filteredData = openingHours.filter(item => item.day === day)
+            setIsOpenPlaceholderValue((filteredData[0]["isOpen"] === false ? "false" : "true"));
+            setOpeningTimePlaceholderValue(filteredData[0]["openingTime"])
+            setClosingTimePlaceholderValue(filteredData[0]["closingTime"])
+        } else {
+            setIsOpenPlaceholderValue("test");
+            setOpeningTimePlaceholderValue("Loading...")
+            setClosingTimePlaceholderValue("Loading...")
+        }
+        
+    }, [openingHours]);
 
-        return (
-            <>
-                <div className="field is-grouped is-align-items-center">
-                    <div className="control is-tenth-width mr-6">
-                        <label className="label">{day}</label>
-                    </div>
-                    <div className="control">
-                        <div className="select is-rounded is-normal">
-                            <select defaultValue={isOpenPlaceholderValue} onChange={e => set(e.target.value)}>
-                                <option value="true">Open</option>
-                                <option value="false">Closed</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="control is-tenth-width" />
-                    <div className="control is-tenth-width">
-                        <textarea className="input" defaultValue={openingTimePlaceholderValue} onChange={e => setState(e.target.value)}></textarea>
-                    </div>
-                    <div className="control">
-                        <p> - </p>
-                    </div>
-                    <div className="control is-tenth-width">
-                        <textarea className="input" defaultValue={closingTimePlaceholderValue} onChange={e => setState(e.target.value)}></textarea>
+    useEffect(() => {
+        console.log(isOpenPlaceholderValue);
+      }, [isOpenPlaceholderValue]);
+
+    return (
+        <>
+            <div className="field is-grouped is-grouped-multiline is-align-items-center my-3">
+                <div className="control is-custom-width-2">
+                    <label className="label is-flex is-justify-content-center">{day}</label>
+                </div>
+                <div className="control">
+                    <div className="select is-rounded is-normal mr-2">
+                        <select 
+                            value={isOpenPlaceholderValue} 
+                            onChange={(e) => {
+                                setIsOpenPlaceholderValue(e.target.value);
+                                setStates[index][0](e.target.value);
+                            }}
+                        >
+                            <option value="true">Open</option>
+                            <option value="false">Closed</option>
+                        </select>
                     </div>
                 </div>
-            </>
-        )
-    }
+                <div className="control is-flex is-flex-direction-row is-custom-width">
+                    <textarea className="input" 
+                        value={openingTimePlaceholderValue} 
+                        onChange={(e) => {
+                            setOpeningTimePlaceholderValue(e.target.value);
+                            setStates[index][1](e.target.value);
+                        }}
+                    >
+                    </textarea>
+                    <p className="p-2">-</p>
+                    <textarea className="input" 
+                        value={closingTimePlaceholderValue} 
+                        onChange={e => {
+                            setClosingTimePlaceholderValue(e.target.value);
+                            setStates[index][2](e.target.value);
+                        }}
+                    >
+                    </textarea>
+                </div>
+            </div>
+        </>
+    )
+}
 
+const OpeningHoursField =  ({ label, setStates, openingHours=[] }) => {
+    
     return (
         <div className="field">
             <label className="label">{label}</label>
-            <div className="large-rounded-box has-background-info p-4 is-three-fourth-width">
-                <DropDown day="Monday" index={0}/>
-                <DropDown day="Tuesday" index={1}/>
-                <DropDown day="Wednesday" index={2}/>
-                <DropDown day="Thursday" index={3}/>
-                <DropDown day="Friday" index={4}/>
-                <DropDown day="Saturday" index={5}/>
-                <DropDown day="Sunday" index={6}/>
+            <div className="large-rounded-box has-background-info p-4 is-fullwidth
+            ">
+                {DropDown({day:"Monday", index:0, setStates:setStates, openingHours:openingHours})}
+                {DropDown({day:"Tuesday", index:1, setStates:setStates, openingHours:openingHours})}
+                {DropDown({day:"Wednesday", index:2, setStates:setStates, openingHours:openingHours})}
+                {DropDown({day:"Thursday", index:3, setStates:setStates, openingHours:openingHours})}
+                {DropDown({day:"Friday", index:4, setStates:setStates, openingHours:openingHours})}
+                {DropDown({day:"Saturday", index:5, setStates:setStates, openingHours:openingHours})}
+                {DropDown({day:"Sunday", index:6, setStates:setStates, openingHours:openingHours})}
             </div>
         </div>
     )

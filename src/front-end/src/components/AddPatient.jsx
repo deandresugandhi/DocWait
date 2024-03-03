@@ -3,7 +3,7 @@ import { closeModal } from './ModalConfig'
 
 const Field = ({ labelName, state, setState, nested=false }) => {
     return (
-        <div className="field">
+        <div className="field" data-testid="patient-details-entry">
             <label className={`label ${nested === true ? "is-size-7" : '' }`}>{labelName}</label>
             <div className="control">
                 <textarea
@@ -18,7 +18,7 @@ const Field = ({ labelName, state, setState, nested=false }) => {
     )
 }
 
-const AddPatient = () => {
+const AddPatient = ({ setPatients }) => {
     
     const [firstNameValue, setFirstNameValue] = useState('')
     const [lastNameValue, setLastNameValue] = useState('')
@@ -57,7 +57,6 @@ const AddPatient = () => {
             postcode: postcode,
             country: country,
         };
-    
         return new Promise((resolve, reject) => {
             fetch('https://t3a2.onrender.com/addresses/create', {
                 method: 'POST',
@@ -76,7 +75,7 @@ const AddPatient = () => {
                 reset();
                 setErrorMessage(null);
                 setSuccessMessage("Address registered successfully.");
-                resolve(data[0]);
+                resolve(data);
             })
             .catch(error => {
                 console.error(error);
@@ -88,7 +87,7 @@ const AddPatient = () => {
 
 
     function updateInfo(e) {
-        e.preventDefault();
+        e.preventDefault()
         addAddress()
             .then(newAddress => {
                 let newInfo;
@@ -96,11 +95,10 @@ const AddPatient = () => {
                     newInfo = {
                         firstName: firstNameValue,
                         lastName: lastNameValue,
-                        address: newAddress,
+                        address: newAddress._id,
                         phoneNumber: phoneNumber
                     };
-    
-                    fetch('https://t3a2.onrender.com/patients', {
+                    fetch('https://t3a2.onrender.com/patients/create', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -116,7 +114,9 @@ const AddPatient = () => {
                     .then(data => {
                         reset();
                         setErrorMessage(null);
-                        setSuccessMessage("Patient registered successfully.");
+                        setSuccessMessage("Patient registered successfully.")
+                        setPatients(prevArray => [...prevArray, data])
+                        console.log(data)
                     })
                     .catch(error => {
                         console.error(error);
@@ -159,7 +159,7 @@ const AddPatient = () => {
                 {successMessage && <p className="has-text-success">{successMessage}</p>}
             </section>
             <footer className="modal-card-foot">
-                <button className="button is-success">Save changes</button>
+                <button className="button is-success" data-testid="save-changes">Save changes</button>
                 <button className="button" onClick={() => closeModal("add-patient")}>Cancel</button>
             </footer>
             </form>

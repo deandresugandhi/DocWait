@@ -2,6 +2,7 @@
 
 // Color Scheme
 $cyan-dark: #147a72;
+$cyan-dark-2: #258b83;
 $cyan: #3db3ad;
 $cyan-light: #c1e1e2;
 $cyan-lighter: #eff5f5;
@@ -22,6 +23,7 @@ $weight-bold: 900;
 
 // Colors
 $primary: $cyan;
+$primary-dark: $cyan-dark-2;
 $light: $cyan-light;
 $dark: $cyan-dark;
 $success: $green-success;
@@ -34,12 +36,9 @@ $body-background-color: white;
 $box-color: black;
 $border: $cyan;
 $border-hover: $cyan-dark;
+$navbar-item-hover-background-color: rgb(80, 132, 136);
+// $widescreen: 1350px;
 
-// Media query example
-@media screen and (min-width: 768px) {
-    // Your styles for screens with a minimum width of 768px and above
-     // Example change for the media query
-  }
 
 // Import only what you need from Bulma
 @import "../../node_modules/bulma/bulma.sass";
@@ -50,17 +49,22 @@ html{
 
 body {
     padding: 20px;
-    height: auto;
-    min-height: calc(100vh - 20px);
+    min-height: 100vh;
     line-height: 1.2; 
 }
 
 #root {
+    height: calc(100vh - 40px);
+}
+
+.is-overflow {
     height: 100%;
+    overflow-y: auto;
 }
 
 .is-fullheight {
     height: 100%;
+    max-height: 100%;
 }
 
 .is-fullwidth {
@@ -80,7 +84,6 @@ body {
 
 .is-third-width {
     width: calc(1/3 * 100%);
-    height: 100%;
     max-width: none;
 }
 
@@ -100,7 +103,17 @@ body {
     margin-left: auto;
 }
 
+.is-custom-width {
+    width: 225px;
+}
 
+.is-custom-width-2 {
+    width: 100px;
+}
+
+.margin-fix {
+    margin-right: 90px;
+}
 /* Common Component Styling */
 .large-rounded-box {
     border-radius: 18px;
@@ -139,15 +152,14 @@ body {
 
 .settings-navbar {
     height: 100%;
-    width: 12vw;
+    width: 220px;
     margin-left: 0px;
     font-size: 12px;
     white-space: nowrap;
 }
 
 .navbar-active {
-    background-color: rgb(250, 250, 250);
-    border-radius: 12px !important;
+    background-color: rgb(250, 250, 250) !important;
 }
 
 .navbar-icon {
@@ -155,9 +167,17 @@ body {
     height: 13px;
 }
 
-.admin-navbar span {
+.navbar-rounded {
+    border-radius: 12px !important;
+}
+
+.admin-navbar span, .navbar-item span {
     color: white;
     margin-left: 8px;
+}
+
+.navbar-item {
+    border-top-left-radius: 20px; 
 }
 
 .settings-navbar span {
@@ -174,13 +194,12 @@ body {
     filter: brightness(0%);
 }
 
-.menu-list li *:hover {
+.menu-list li span:hover, .menu-list li a:hover {
     background-color: rgb(80, 132, 136);
-    border-radius: 12px !important;
 }
 
-a.navbar-active:hover, a.navbar-active *:hover {
-    background-color: rgb(250, 250, 250);
+.navbar-active a:hover, .navbar-active span:hover {
+    background-color: rgb(250, 250, 250) !important;
 }
 
 .logo-size {
@@ -193,4 +212,55 @@ a.navbar-active:hover, a.navbar-active *:hover {
 .bottom-border {
     border-bottom: 1px solid #7dc1c4;
     margin-bottom: 5px;
+}
+
+@media (min-width: 1780px) {
+    .navbar {
+    display: none;
+    }
+}
+
+@media (max-width: 1780px) {
+        .admin-navbar {
+        display: none !important;
+        }
+        body {
+            padding-top: 80px;
+        }
+        
+        #root {
+            height: calc(100vh - 100px);
+        }
+}
+
+@media (max-width: 768px) {
+    .details {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .details h2 {
+        margin: 3px;
+    }
+}
+
+@media (max-width: 900px) {
+    .settings {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    .settings-2, .settings-navbar {
+        width: 100%;
+    }
+
+    .settings-navbar {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 676px) {
+    .field {
+        justify-content: center !important;
+    }
 }

@@ -7,7 +7,7 @@ const AboutUs = ({ }) => {
       <div className='is-fullwidth is-flex is-flex-direction-column ml-3'>
         <h1 className='is-size-4'>DOC WAIT</h1>
         <h1 className='is-size-1 has-text-weight-bold mb-3'>About Us</h1>
-        <div className="box is-fullwidth is-fullheight has-background-light large-rounded-box is-flex is-flex-direction-column">
+        <div className="box is-fullwidth is-fullheight is-overflow has-background-light large-rounded-box is-flex is-flex-direction-column">
           <h1 className='is-size-2-mobile is-size-2-tablet has-text-weight-bold mb-2'>Our Mission</h1>
           <p className="is-size-5 is-three-fourth-width has-text-weight-light mb-6">
             <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
