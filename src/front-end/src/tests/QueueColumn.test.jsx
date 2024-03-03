@@ -84,5 +84,6 @@ describe('QueueColumn Component', () => {
         await userEvent.click(saveChangesButton)
         await new Promise((resolve) => setTimeout(resolve, 0))
         expect(mockSetQueueEntries).toHaveBeenCalledOnce
+        consoleMock.mockReset()
     })
 })
