@@ -24,9 +24,9 @@ const PatientTime = () => {
             <div className="field">
                 <label className="label">Current Time</label>
             </div>
-            <div className="field is-grouped is-grouped-multiline">
+            <div className="field is-grouped is-grouped-multiline time-field">
                 {times.map((time) => (
-                    <p className="control" key={time}>
+                    <p className="control timeslot" key={time}>
                         <button className={`button is-large ${selectedTime === time ? 'is-selected' : ''}`} onClick={() => selectTime(time)}>
                             {time}
                         </button>

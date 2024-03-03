@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "css-build": "node-sass --omit-source-map-url ./src/sass/mystyles.scss ./src/mystyles.css",
+    "css-build": "node-sass --omit-source-map-url ./src/sass/adminstyles.scss ./src/adminstyles.css",
     "css-watch": "npm run css-build -- --watch",
     "start": "npm run css-watch",
     "test": "vitest"
