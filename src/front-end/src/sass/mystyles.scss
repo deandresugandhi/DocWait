@@ -1,0 +1,266 @@
+@charset "utf-8";
+
+// Color Scheme
+$cyan-dark: #147a72;
+$cyan-dark-2: #258b83;
+$cyan: #3db3ad;
+$cyan-light: #c1e1e2;
+$cyan-lighter: #eff5f5;
+$green-success: #18882a;
+$red-danger: #99100b;
+$yellow-warning: #d6a606;
+
+// Bulma Global Variables
+
+// Font
+$family-sans-serif: "Poppins", sans-serif;
+
+// Font Weight
+$weight-light: 400;
+$weight-normal: 600;
+$weight-semibold: 700;
+$weight-bold: 900;
+
+// Colors
+$primary: $cyan;
+$primary-dark: $cyan-dark-2;
+$light: $cyan-light;
+$dark: $cyan-dark;
+$success: $green-success;
+$danger: $red-danger;
+$warning: $yellow-warning;
+$info: $cyan-lighter;
+$link: $cyan-dark;
+$body-color: black;
+$body-background-color: white;
+$box-color: black;
+$border: $cyan;
+$border-hover: $cyan-dark;
+$navbar-item-hover-background-color: rgb(80, 132, 136);
+// $widescreen: 1350px;
+
+
+// Import only what you need from Bulma
+@import "../../node_modules/bulma/bulma.sass";
+html{
+    min-height: 100vh;
+    height: auto;
+}
+
+body {
+    padding: 20px;
+    min-height: 100vh;
+    line-height: 1.2; 
+}
+
+#root {
+    height: calc(100vh - 40px);
+}
+
+.is-overflow {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.is-fullheight {
+    height: 100%;
+    max-height: 100%;
+}
+
+.is-fullwidth {
+    width: 100%;
+}
+
+.is-three-fourth-width {
+    width: calc(3/4 * 100%);
+    max-width: none;
+}
+
+.is-half-width {
+    width: calc(1/2 * 100%);
+    height: 100%;
+    max-width: none;
+}
+
+.is-third-width {
+    width: calc(1/3 * 100%);
+    max-width: none;
+}
+
+.is-fourth-width {
+    width: 25%;
+    height: 100%;
+    max-width: none;
+}
+
+.is-tenth-width {
+    width: 10%;
+    height: 100%;
+    max-width: none;
+}
+
+.is-align-end {
+    margin-left: auto;
+}
+
+.is-custom-width {
+    width: 225px;
+}
+
+.is-custom-width-2 {
+    width: 100px;
+}
+
+.margin-fix {
+    margin-right: 90px;
+}
+/* Common Component Styling */
+.large-rounded-box {
+    border-radius: 18px;
+}
+
+.entry-rounded-box {
+    border-radius: 23px;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    background-color: #0bb327;
+    border-radius: 50%;
+}
+
+.button.is-small { 
+    font-size: .6rem; 
+    border: none;
+}
+
+.modal-card {
+    overflow: auto;
+}
+
+
+/* Navbar Styling */
+.admin-navbar {
+    height: auto;
+    min-height: calc(100vh - 40px);
+    width: 15vw;
+    margin-left: 0px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.settings-navbar {
+    height: 100%;
+    width: 220px;
+    margin-left: 0px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.navbar-active {
+    background-color: rgb(250, 250, 250) !important;
+}
+
+.navbar-icon {
+    width: 13px;
+    height: 13px;
+}
+
+.navbar-rounded {
+    border-radius: 12px !important;
+}
+
+.admin-navbar span, .navbar-item span {
+    color: white;
+    margin-left: 8px;
+}
+
+.navbar-item {
+    border-top-left-radius: 20px; 
+}
+
+.settings-navbar span {
+    color: white;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.navbar-active span {
+    color: black;
+}
+
+.navbar-active img {
+    filter: brightness(0%);
+}
+
+.menu-list li span:hover, .menu-list li a:hover {
+    background-color: rgb(80, 132, 136);
+}
+
+.navbar-active a:hover, .navbar-active span:hover {
+    background-color: rgb(250, 250, 250) !important;
+}
+
+.logo-size {
+    width: 65%;
+    align-self: center;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.bottom-border {
+    border-bottom: 1px solid #7dc1c4;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 1780px) {
+    .navbar {
+    display: none;
+    }
+}
+
+@media (max-width: 1780px) {
+        .admin-navbar {
+        display: none !important;
+        }
+        body {
+            padding-top: 80px;
+        }
+        
+        #root {
+            height: calc(100vh - 100px);
+        }
+}
+
+@media (max-width: 768px) {
+    .details {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .details h2 {
+        margin: 3px;
+    }
+}
+
+@media (max-width: 900px) {
+    .settings {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    .settings-2, .settings-navbar {
+        width: 100%;
+    }
+
+    .settings-navbar {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 676px) {
+    .field {
+        justify-content: center !important;
+    }
+}
