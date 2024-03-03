@@ -57,7 +57,6 @@ const AddPatient = ({ setPatients }) => {
             postcode: postcode,
             country: country,
         };
-    
         return new Promise((resolve, reject) => {
             fetch('https://t3a2.onrender.com/addresses/create', {
                 method: 'POST',
@@ -99,7 +98,6 @@ const AddPatient = ({ setPatients }) => {
                         address: newAddress._id,
                         phoneNumber: phoneNumber
                     };
-                    console.log(newInfo)
                     fetch('https://t3a2.onrender.com/patients/create', {
                         method: 'POST',
                         headers: {
@@ -117,8 +115,8 @@ const AddPatient = ({ setPatients }) => {
                         reset();
                         setErrorMessage(null);
                         setSuccessMessage("Patient registered successfully.")
-                        console.log(data)
                         setPatients(prevArray => [...prevArray, data])
+                        console.log(data)
                     })
                     .catch(error => {
                         console.error(error);

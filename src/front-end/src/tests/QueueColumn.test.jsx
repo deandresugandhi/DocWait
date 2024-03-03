@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import '@testing-library/jest-dom'
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import userEvent from '@testing-library/user-event'
 import { mockPatients, mockPractitioners, mockEntries } from './MockData'
 import QueueColumn from "../components/QueueColumn"
@@ -10,7 +10,6 @@ describe('QueueColumn Component', () => {
     let containerInProgress
     let containerCompleted
     const mockSetQueueEntries = vi.fn()
-    const queueState = "Pending"
     const statePending = mockEntries.filter(entry => entry["queueState"] === "Pending")
     const stateInProgress = mockEntries.filter(entry => entry["queueState"] === "In progress")
     const stateCompleted = mockEntries.filter(entry => entry["queueState"] === "Completed")
@@ -18,21 +17,21 @@ describe('QueueColumn Component', () => {
     beforeEach(() => {
         containerPending = render(
           <QueueColumn
-            columnName="Pending"
+            columnName="In Queue"
             state={statePending}
             patients={mockPatients}
             practitioners={mockPractitioners}
-            queueState={queueState}
+            queueState="Pending"
             setQueueEntries={mockSetQueueEntries}
           />
         ).container
         containerInProgress = render(
             <QueueColumn
-              columnName="In progress"
+              columnName="Serving"
               state={stateInProgress}
               patients={mockPatients}
               practitioners={mockPractitioners}
-              queueState={queueState}
+              queueState="In progress"
               setQueueEntries={mockSetQueueEntries}
             />
         ).container
@@ -42,7 +41,7 @@ describe('QueueColumn Component', () => {
             state={stateCompleted}
             patients={mockPatients}
             practitioners={mockPractitioners}
-            queueState={queueState}
+            queueState="Completed"
             setQueueEntries={mockSetQueueEntries}
         />
         ).container
@@ -52,7 +51,7 @@ describe('QueueColumn Component', () => {
         const image = containerPending.querySelector('img')
         expect(image).toBeInTheDocument()
         userEvent.click(image)
-        const modal = containerPending.querySelector(`#add-entry-${queueState}`)
+        const modal = containerPending.querySelector(`#add-entry-Pending`)
         expect(modal).toBeInTheDocument()
     });
 
@@ -67,5 +66,23 @@ describe('QueueColumn Component', () => {
         testAmount(containerCompleted, 1)
     });
 
-    
+    it('Ensure adding entry work as expected to add new queue entries', async () => {
+        const consoleMock = vi.spyOn(console, 'log').mockImplementation(() => undefined)
+        const addEntryButton = containerPending.querySelector('.image')
+        expect(addEntryButton).toBeInTheDocument()
+        userEvent.click(addEntryButton)
+        const addEntry = containerPending.querySelector('.modal')
+        expect(addEntry).toBeInTheDocument()
+        const textAreas = containerPending.querySelectorAll('.input-date-time')
+        await userEvent.type(textAreas[0], "11/11/2001")
+        await userEvent.type(textAreas[1], "11:11")
+        await new Promise((resolve) => setTimeout(resolve, 0))
+        const dropdowns = containerPending.querySelectorAll('.select-add-entry')
+        await userEvent.selectOptions(dropdowns[0], "Michael Jordan")
+        await userEvent.selectOptions(dropdowns[1], "Priya Kumar")
+        const saveChangesButton = addEntry.querySelector('.is-success')
+        await userEvent.click(saveChangesButton)
+        await new Promise((resolve) => setTimeout(resolve, 0))
+        expect(mockSetQueueEntries).toHaveBeenCalledOnce
+    })
 })

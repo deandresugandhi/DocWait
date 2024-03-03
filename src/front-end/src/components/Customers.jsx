@@ -32,7 +32,6 @@ const Customers = ({ patients=[], setPatients }) => {
         </div>
       </div>
       <AddPatient setPatients={setPatients}/>
-      
     </>
   )
 }

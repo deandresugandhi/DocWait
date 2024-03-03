@@ -25,7 +25,7 @@ const SettingsManagePractitioner = ({ practitioners=[], setPractitioners }) => {
               </li>          
             ))}
             <li key="add">
-              <div className="box is-clickable has-background-dark entry-rounded-box is-flex is-justify-content-center p-3 mt-2" onClick={() => openModal('add-practitioner')}>
+              <div className="box is-clickable has-background-dark entry-rounded-box is-flex is-justify-content-center p-3 mt-2"data-testid="add-more-practitioner" onClick={() => openModal('add-practitioner')}>
                 <p className="has-text-centered has-text-white has-text-weight-semibold">Add More +</p>
               </div>
             </li>

@@ -19,7 +19,7 @@ const BoxContainer = ({ children, entry, clickable="false", isMobile="false"}) =
   </div>
 );
 
-const CustomerInfo = ( { entry, patient, practitioner, modalId } ) => {
+const CustomerInfo = ({ entry, patient, practitioner, modalId }) => {
   if (entry) {
     const dateObject = new Date(entry.time);
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false};

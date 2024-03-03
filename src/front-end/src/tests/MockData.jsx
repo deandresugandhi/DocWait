@@ -180,5 +180,134 @@ let mockEntries = [
     }
 ]
 
-export { mockPatients, mockPractitioners, mockEntries }
+let mockClinic = [
+{
+  "_id": "65e2a00dfeba5336f6627068",
+  "name": "Waterloo Medical Centre",
+  "address": {
+    "_id": "65e2a00cfeba5336f6627045",
+    "unitNumber": "4",
+    "streetNumber": "45",
+    "streetName": "Wyndham st",
+    "suburb": "Alexandria",
+    "state": "NSW",
+    "postcode": "2015",
+    "country": "Australia"
+  },
+  "url": "http://www.waterloomedicalcentre.com.au/",
+  "logo": "65e2a00dfeba5336f662705c",
+  "openingHours": [
+    {
+      "_id": "65e2a00dfeba5336f662705f",
+      "day": "Monday",
+      "isOpen": true,
+      "openingTime": "05:30 AM",
+      "closingTime": "06:00 PM"
+    },
+    {
+      "_id": "65e2a00dfeba5336f6627060",
+      "day": "Tuesday",
+      "isOpen": true,
+      "openingTime": "05:30 AM",
+      "closingTime": "06:00 PM"
+    },
+    {
+      "_id": "65e2a00dfeba5336f6627061",
+      "day": "Wednesday",
+      "isOpen": true,
+      "openingTime": "05:30 AM",
+      "closingTime": "06:00 PM"
+    },
+    {
+      "_id": "65e2a00dfeba5336f6627062",
+      "day": "Thursday",
+      "isOpen": true,
+      "openingTime": "05:30 AM",
+      "closingTime": "06:00 PM"
+    },
+    {
+      "_id": "65e2a00dfeba5336f6627063",
+      "day": "Friday",
+      "isOpen": true,
+      "openingTime": "05:30 AM",
+      "closingTime": "06:00 PM"
+    },
+    {
+      "_id": "65e2a00dfeba5336f6627064",
+      "day": "Saturday",
+      "isOpen": true,
+      "openingTime": "07:00 AM",
+      "closingTime": "12:00 PM"
+    },
+    {
+      "_id": "65e2a00dfeba5336f6627065",
+      "day": "Sunday",
+      "isOpen": false,
+      "openingTime": "0000",
+      "closingTime": "0000"
+    }
+  ]
+}
+]
+
+const mockOpeningHours = [
+  {
+    "_id": "65e2a00dfeba5336f662705f",
+    "day": "Monday",
+    "isOpen": true,
+    "openingTime": "05:30 AM",
+    "closingTime": "06:00 PM",
+    "__v": 0
+  },
+  {
+    "_id": "65e2a00dfeba5336f6627060",
+    "day": "Tuesday",
+    "isOpen": true,
+    "openingTime": "05:30 AM",
+    "closingTime": "06:00 PM",
+    "__v": 0
+  },
+  {
+    "_id": "65e2a00dfeba5336f6627061",
+    "day": "Wednesday",
+    "isOpen": true,
+    "openingTime": "05:30 AM",
+    "closingTime": "06:00 PM",
+    "__v": 0
+  },
+  {
+    "_id": "65e2a00dfeba5336f6627062",
+    "day": "Thursday",
+    "isOpen": true,
+    "openingTime": "05:30 AM",
+    "closingTime": "06:00 PM",
+    "__v": 0
+  },
+  {
+    "_id": "65e2a00dfeba5336f6627063",
+    "day": "Friday",
+    "isOpen": true,
+    "openingTime": "05:30 AM",
+    "closingTime": "06:00 PM",
+    "__v": 0
+  },
+  {
+    "_id": "65e2a00dfeba5336f6627064",
+    "day": "Saturday",
+    "isOpen": true,
+    "openingTime": "07:00 AM",
+    "closingTime": "12:00 PM",
+    "__v": 0
+  },
+  {
+    "_id": "65e2a00dfeba5336f6627065",
+    "day": "Sunday",
+    "isOpen": false,
+    "openingTime": "0000",
+    "closingTime": "0000",
+    "__v": 0
+  }
+]
+
+export { mockPatients, mockPractitioners, mockEntries, mockClinic, mockOpeningHours }
 

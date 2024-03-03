@@ -8,7 +8,7 @@ const Field = ({ labelName, state, setState, placeholder="" }) => {
             <div className="control">
                 <textarea
                     key="random2"
-                    className="input"
+                    className="input input-date-time"
                     type="text"
                     value={state}
                     onInput={e => setState(e.target.value)}
@@ -27,7 +27,7 @@ const DropDown = ({ labelName, items, state, setState }) => {
             </div>
             <div className="control">
                 <div className="select is-rounded is-normal">
-                    <select value={state} onChange={(e) => setState(e.target.value)}>
+                    <select className="select-add-entry" value={state} onChange={(e) => setState(e.target.value)}>
                         <option key="default" value="">Select {labelName}</option>
                         {items.map((item, index) => (
                             <option key={index} value={JSON.stringify(item)}>
@@ -77,7 +77,6 @@ const AddEntry = ( {patients=[], practitioners=[], queueState, columnName, setQu
                 time: dateObject.toISOString(),
                 queueState: queueState
             }
-            console.log(newInfo)
             fetch('https://t3a2.onrender.com/entries', {
                 method: 'POST',
                 headers: {
@@ -96,6 +95,7 @@ const AddEntry = ( {patients=[], practitioners=[], queueState, columnName, setQu
                 setErrorMessage(null);
                 setSuccessMessage("Entry created successfully.");
                 setQueueEntries(prevArray => [...prevArray, newInfo])
+                console.log(newInfo)
             })
             .catch(error => {
                 console.error(error);
