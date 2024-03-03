@@ -26,9 +26,10 @@ describe("GET /Addresses", () => {
         expect(res.body).toEqual(
             expect.arrayContaining([
                 expect.objectContaining({ unitNumber: '1' }),
-                expect.objectContaining({ streetNumber: '123' }),
-                expect.objectContaining({ streetName: 'Main Street' }),
-                expect.objectContaining({ country: 'Countryland' })
+                expect.objectContaining({ streetNumber: '249' }),
+                expect.objectContaining({ streetName: 'George Street' }),
+                expect.objectContaining({ postcode: '2017' }),
+                expect.objectContaining({ country: 'Australia' })
             ])
         );
     });
@@ -38,7 +39,7 @@ describe("GET /addresses/:id", () => {
     let res;
 
     beforeEach(async () => {
-        res = await request(app).get('/addresses/65e4215d01977415e77aadb0');
+        res = await request(app).get('/addresses/65e45ae62492001791c4c9f8');
     });
 
     test('Returns JSON content and gets existing address by ID', async () => {

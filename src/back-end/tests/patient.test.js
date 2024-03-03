@@ -24,9 +24,9 @@ describe("GET /patients", () => {
     test('Contains one unique elements as key:value pairs', async () => {
         expect(res.body).toEqual(
             expect.arrayContaining([
-                expect.objectContaining({firstName: 'Laura'}),
-                expect.objectContaining({lastName: 'Cordoba'}),
-                expect.objectContaining({phoneNumber: '0421547777'})
+                expect.objectContaining({firstName: 'John'}),
+                expect.objectContaining({lastName: 'Smith'}),
+                expect.objectContaining({phoneNumber: '0421544658'})
             ])
         );
     });
@@ -36,7 +36,7 @@ describe("GET /patients/:id", () => {
     let res;
 
     beforeEach(async () => {
-        res = await request(app).get('/patients/65e2a00cfeba5336f6627048');
+        res = await request(app).get('/patients/65e45ae72492001791c4c9ff');
     });
 
     test('Returns JSON content and gets existing patients by ID', async () => {

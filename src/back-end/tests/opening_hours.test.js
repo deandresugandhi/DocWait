@@ -38,7 +38,7 @@ describe("GET /opening_hours/:id", () => {
     let res;
 
     beforeEach(async () => {
-        res = await request(app).get('/opening_hours/65e2a00dfeba5336f662705f');
+        res = await request(app).get('/opening_hours/65e45ae72492001791c4ca16');
     });
 
     test('Returns JSON content', async () => {
@@ -73,7 +73,7 @@ describe("PUT /opening_hours/:id", () => {
               };
     
             const res = await request(app)
-                .put(`/opening_hours/65e2a00dfeba5336f6627065`)
+                .put(`/opening_hours/65e45ae72492001791c4ca1c`)
                 .send(updatedOpeningData);
     
             expect(res.status).toBe(200);

@@ -34,7 +34,7 @@ describe("GET /entries/:id", () => {
     let res;
 
     beforeEach(async () => {
-        res = await request(app).get('/entries/65e2a00cfeba5336f6627054');
+        res = await request(app).get('/entries/65e45ae72492001791c4ca0a');
     });
 
     test('Returns JSON content and gets existing entry by ID', async () => {
