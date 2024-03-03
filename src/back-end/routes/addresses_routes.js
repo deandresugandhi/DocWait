@@ -65,7 +65,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const deletedAddress = await AddressModel.findByIdAndDelete(req.params.id);
         if (deletedAddress) {
-            res.status(200).send({message:'Address deletion succesful'})
+            res.status(200).send({message:'Address deletion successful'})
         } else {
             res.status(404).send({ error: 'Address not found' });
         }
