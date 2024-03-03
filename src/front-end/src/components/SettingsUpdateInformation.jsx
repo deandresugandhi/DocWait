@@ -57,15 +57,7 @@ const SettingsUpdateInformation = ({ clinic=[], openingHours=[] }) => {
     [setIsOpenSunday, setOpeningTimeSunday, setClosingTimeSunday],
   ]
 
-  const dayStates = [
-
-  ]
-  useEffect(() => {
-    console.log(eval('openingTimeMonday'))
-  }, [openingTimeMonday]);
-  
-  function reset() {
-  }
+  function reset() {}
 
   async function editOpeningHours() {
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
