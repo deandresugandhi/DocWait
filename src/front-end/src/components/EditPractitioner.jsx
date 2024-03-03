@@ -30,12 +30,43 @@ const Field = ({ labelName, setState, practitioner, fieldName }) => {
     )
 }
 
+const DropDown = ({ labelName, state, setState, practitioner }) => {
+  const [placeholderValue, setPlaceholderValue] = useState('');
+
+  useEffect(() => {
+      if (practitioner) {
+        setPlaceholderValue(practitioner.availability)
+      } else {
+        setPlaceholderValue("Loading...");
+      }
+    }, [practitioner]);
+
+  return (
+      <div className="field is-grouped is-align-items-center">
+          <div className="control is-tenth-width mr-6">
+              <label className="label">{labelName}</label>
+          </div>
+          <div className="control">
+              <div className="select is-rounded is-normal">
+                  <select value={placeholderValue} onChange={(e) => {
+                      setPlaceholderValue(e.target.value)
+                      setState(e.target.value)}
+                  }>
+                      <option value="On duty">On duty</option>
+                      <option value="Off duty">Off duty</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+  )
+}
+
 const EditPractitioner = ({ practitioner, modalId, setPractitioners }) => {
     
   const [firstNameValue, setFirstNameValue] = useState('')
   const [lastNameValue, setLastNameValue] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
   const [availability, setAvailability] = useState('On duty')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
     
@@ -44,10 +75,11 @@ const EditPractitioner = ({ practitioner, modalId, setPractitioners }) => {
     e.preventDefault();
     try {
       // Construct the newInfo object conditionally
-      newInfo = {
+      let newInfo = {
         firstName: firstNameValue.trim() !== '' ? firstNameValue : undefined,
         lastName: lastNameValue.trim() !== '' ? lastNameValue : undefined,
-        phoneNumber: phoneNumber.trim() !== '' ? phoneNumber : undefined
+        phoneNumber: phoneNumber.trim() !== '' ? lastNameValue : undefined,
+        availability: availability !== '' ? availability : undefined
       };
 
       // Remove undefined properties from newInfo
@@ -96,6 +128,7 @@ const EditPractitioner = ({ practitioner, modalId, setPractitioners }) => {
             <Field labelName="First Name" setState={setFirstNameValue} practitioner={practitioner} fieldName="firstName" />
             <Field labelName="Last Name" setState={setLastNameValue} practitioner={practitioner} fieldName="lastName" />
             <Field labelName="Phone Number" setState={setPhoneNumber} practitioner={practitioner} fieldName="phoneNumber" />
+            <DropDown labelName="Availability" state={availability} setState={setAvailability} practitioner={practitioner} />
             {errorMessage && <p className="has-text-danger">{errorMessage}</p>}
             {successMessage && <p className="has-text-success">{successMessage}</p>}
         </section>

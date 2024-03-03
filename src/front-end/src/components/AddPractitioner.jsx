@@ -98,7 +98,7 @@ const AddPractitioner = ({ setPractitioners }) => {
                         <div className="select is-rounded is-normal">
                             <select value={availability} onChange={(e) => setAvailability(e.target.value)}>
                                 <option key="On duty" value="On duty">On duty</option>
-                                <option key="Unavailable" value="Off duty">Unavailable</option>
+                                <option key="Unavailable" value="Off duty">Off duty</option>
                             </select>
                         </div>
                     </div>

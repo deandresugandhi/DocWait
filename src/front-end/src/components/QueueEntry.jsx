@@ -110,12 +110,12 @@ const CustomerInfo = ({ entry, patient, practitioner, modalId }) => {
         <div className="column is-flex is-flex-direction-row is-align-items-center is-justify-content-center">
           <div className={`circle 
               ${practitioner.availability === 'On duty' ? 'has-background-success' : ''} 
-              ${practitioner.availability === 'Absent' ? 'has-background-danger' : ''}
+              ${practitioner.availability === 'Off duty' ? 'has-background-danger' : ''}
             `} 
           />
           <p className={`is-size-6 ml-2 
               ${practitioner.availability === 'On duty' ? 'has-text-success' : ''} 
-              ${practitioner.availability === 'Absent' ? 'has-text-danger' : ''}
+              ${practitioner.availability === 'Off duty' ? 'has-text-danger' : ''}
             `}
           >
             {practitioner.availability}
