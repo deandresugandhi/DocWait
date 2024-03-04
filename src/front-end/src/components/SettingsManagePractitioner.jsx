@@ -3,8 +3,9 @@ import SettingsNavBar from './SettingsNavBar'
 import QueueEntry from './QueueEntry'
 import { openModal } from './ModalConfig'
 import AddPractitioner from './AddPractitioner'
+import loadingIcon from '../assets/LoadingIcon.gif'
 
-const SettingsManagePractitioner = ({ practitioners=[], setPractitioners }) => {
+const SettingsManagePractitioner = ({ practitioners=[], setPractitioners, loadingPractitioners }) => {
   return (
     <>
       <div className='settings is-fullwidth is-flex is-flex-direction-row ml-3'>
@@ -18,18 +19,25 @@ const SettingsManagePractitioner = ({ practitioners=[], setPractitioners }) => {
             <h2 className='is-half-width pl-3'>NAME</h2>
             <h2 className='is-half-width margin-fix'>AVAILABILITY</h2>
           </div>
-          <ul>
-            {practitioners.map((practitioner, index) => (
-              <li key={index}>
-                <QueueEntry practitioner={practitioner} setPractitioners={setPractitioners} />
-              </li>          
-            ))}
-            <li key="add">
-              <div className="box is-clickable has-background-dark entry-rounded-box is-flex is-justify-content-center p-3 mt-2"data-testid="add-more-practitioner" onClick={() => openModal('add-practitioner')}>
-                <p className="has-text-centered has-text-white has-text-weight-semibold">Add More +</p>
-              </div>
-            </li>
-          </ul>
+          {loadingPractitioners ? (
+            <div className="is-fullwidth is-flex is-justify-content-center is-align-items-center mt-6"> 
+                <img src={loadingIcon} alt="Loading..." className="loading-icon"/>
+            </div>
+            ) : (
+              <ul>
+                {practitioners.map((practitioner, index) => (
+                  <li key={index}>
+                    <QueueEntry practitioner={practitioner} setPractitioners={setPractitioners} />
+                  </li>          
+                ))}
+                <li key="add">
+                  <div className="box is-clickable has-background-dark entry-rounded-box is-flex is-justify-content-center p-3 mt-2"data-testid="add-more-practitioner" onClick={() => openModal('add-practitioner')}>
+                    <p className="has-text-centered has-text-white has-text-weight-semibold">Add More +</p>
+                  </div>
+                </li>
+              </ul>
+            )
+          }
           <AddPractitioner setPractitioners={setPractitioners}/>
         </div>
       </div>

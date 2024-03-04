@@ -40,8 +40,9 @@ $navbar-item-hover-background-color: rgb(80, 132, 136);
 // $widescreen: 1350px;
 
 
-// Import only what you need from Bulma
+// Import Bulma
 @import "../../node_modules/bulma/bulma.sass";
+
 html{
     min-height: 100vh;
     height: auto;
@@ -114,6 +115,7 @@ body {
 .margin-fix {
     margin-right: 90px;
 }
+
 /* Common Component Styling */
 .large-rounded-box {
     border-radius: 18px;
@@ -137,6 +139,13 @@ body {
 
 .modal-card {
     overflow: auto;
+}
+
+.loading-icon {
+    width: 350px;
+    height: auto;
+    align-self: center;
+    justify-self: center;
 }
 
 
@@ -214,6 +223,8 @@ body {
     margin-bottom: 5px;
 }
 
+
+// Media Queries
 @media (min-width: 1780px) {
     .navbar {
     display: none;

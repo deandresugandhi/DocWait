@@ -7954,6 +7954,12 @@ body {
 .modal-card {
   overflow: auto; }
 
+.loading-icon {
+  width: 350px;
+  height: auto;
+  align-self: center;
+  justify-self: center; }
+
 /* Navbar Styling */
 .admin-navbar {
   height: auto;

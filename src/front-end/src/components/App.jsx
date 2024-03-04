@@ -13,7 +13,7 @@ import PatientTime from './PatientTime'
 import PatientDetails from './PatientDetails'
 import PatientConfirmation from './PatientConfirmation'
 
-const MainContent = ({ queueEntries, patients, practitioners, clinic, openingHours, setQueueEntries, setPatients, setPractitioners, setClinic, setOpeningHours }) => {
+const MainContent = ({ queueEntries, patients, practitioners, clinic, openingHours, setQueueEntries, setPatients, setPractitioners, setClinic, setOpeningHours, loadingQueues, loadingPatients, loadingPractitioners }) => {
   const location = useLocation()
   const isPatientRoute = location.pathname.startsWith('/patient')
 
@@ -40,10 +40,10 @@ const MainContent = ({ queueEntries, patients, practitioners, clinic, openingHou
         <div className='is-fullheight is-marginless is-flex is-flex-direction-row'>
           <AdminNavBar />
           <Routes>
-            <Route path="/admin" element={<Home queueEntries={queueEntries} patients={patients} practitioners={practitioners} setQueueEntries={setQueueEntries} />} />
-            <Route path="/admin/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners} setPractitioners={setPractitioners}/>} />
+            <Route path="/admin" element={<Home queueEntries={queueEntries} patients={patients} practitioners={practitioners} setQueueEntries={setQueueEntries} loadingQueues={loadingQueues}/>} />
+            <Route path="/admin/settings/manage-practitioners" element={<SettingsManagePractitioner practitioners={practitioners} setPractitioners={setPractitioners} loadingPractitioners={loadingPractitioners}/>} />
             <Route path="/admin/settings/update-information" element={<SettingsUpdateInformation clinic={clinic} openingHours={openingHours}/>} />
-            <Route path="/admin/customers" element={<Customers patients={patients} setPatients={setPatients}/>} />
+            <Route path="/admin/customers" element={<Customers patients={patients} setPatients={setPatients} loadingPatients={loadingPatients}/>} />
             <Route path="/admin/about-us" element={<AboutUs />} />
             <Route path="*" element={<h3>Page Not Found</h3>} />
           </Routes>
@@ -59,25 +59,35 @@ const App = () => {
   const [practitioners, setPractitioners] = useState([])
   const [clinic, setClinic] = useState([])
   const [openingHours, setOpeningHours] = useState([])
+  const [loadingQueues, setLoadingQueues] = useState(true)
+  const [loadingPatients, setLoadingPatients] = useState(true)
+  const [loadingPractitioners, setLoadingPractitioners] = useState(true)
 
   useEffect(() => {
       fetch('https://t3a2.onrender.com/patients')
       .then(res => res.json())
       .then(data => {
         setPatients(data)
+        setLoadingPatients(false)
       })
   }, [])
 
   useEffect(() => {
       fetch('https://t3a2.onrender.com/entries')
       .then(res => res.json())
-      .then(data => setQueueEntries(data))
+      .then(data => {
+        setQueueEntries(data)
+        setLoadingQueues(false)
+      })
   }, [])
 
   useEffect(() => {
     fetch('https://t3a2.onrender.com/practitioners')
     .then(res => res.json())
-    .then(data => setPractitioners(data))
+    .then(data => {
+      setPractitioners(data)
+      setLoadingPractitioners(false)
+    })
   }, [])
 
   useEffect(() => {
@@ -96,17 +106,9 @@ const App = () => {
     })
   }, [])
 
-  useEffect(() => {
-    fetch('https://t3a2.onrender.com/opening_hours')
-    .then(res => res.json())
-    .then(data => {
-      setOpeningHours(data)
-    })
-  }, [])
-
   return (
     <BrowserRouter>
-      <MainContent queueEntries={queueEntries} patients={patients} practitioners={practitioners} clinic={clinic} openingHours={openingHours} setQueueEntries={setQueueEntries} setPatients={setPatients} setPractitioners={setPractitioners} setClinic={setClinic} setOpeningHours={setOpeningHours} />
+      <MainContent queueEntries={queueEntries} patients={patients} practitioners={practitioners} clinic={clinic} openingHours={openingHours} setQueueEntries={setQueueEntries} setPatients={setPatients} setPractitioners={setPractitioners} setClinic={setClinic} setOpeningHours={setOpeningHours} loadingQueues={loadingQueues} loadingPatients={loadingPatients} loadingPractitioners={loadingPractitioners}/>
     </BrowserRouter>
   );
 }
