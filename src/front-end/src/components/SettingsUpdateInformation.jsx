@@ -165,7 +165,7 @@ const SettingsUpdateInformation = ({ clinic=[], openingHours=[] }) => {
           <h1 className='is-size-1 has-text-weight-bold mb-3'>Settings</h1>
           <SettingsNavBar />
         </div>
-        <div className="box is-fullwidth has-background-light large-rounded-box is-flex is-flex-direction-column ml-3 is-overflow">
+        <div className="box is-fullwidth has-background-light large-rounded-box is-flex is-flex-direction-column is-overflow">
           <h1 className='is-size-3 pl-5 pt-5 has-text-weight-bold'>Update Information</h1>
             <form className="section pl-5" onSubmit={updateInfo}>
                 <InformationField label="Clinic Name" state={nameValue} setState={setNameValue} clinic={clinic} fieldName="name"/>
