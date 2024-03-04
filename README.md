@@ -297,3 +297,8 @@ The project is completed in 7 days.
 ### Day 10 (Part B) Screenshots
 
 ![Overview1](./docs/Images/Trello%20Screenshots/Part%20B%20Day%2010/Day%2010.png)
+
+## User Testing
+
+![UserTestingPage1](./docs/Images/UserTesting_Page_1.jpg)
+![UserTestingPage2](./docs/Images/UserTesting_Page_2.jpg)
