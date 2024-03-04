@@ -168,9 +168,9 @@ const EditPatient = ({ patient, modalId, setPatients }) => {
                     {successMessage && <p className="has-text-success">{successMessage}</p>}
                 </section>
                 <footer className="modal-card-foot">
-                    <button className="button is-success" type="submit">Save changes</button>
-                    <button className="button is-danger" type="button" onClick={() => openModal(`delete-patient-${patient?._id}`)}>Delete Patient</button>
-                    <button className="button" type="button" onClick={() => closeModal(modalId)}>Cancel</button>
+                    <button className="button is-success is-small" type="submit">Save changes</button>
+                    <button className="button is-danger is-small" type="button" onClick={() => openModal(`delete-patient-${patient?._id}`)}>Delete Patient</button>
+                    <button className="button is-small" type="button" onClick={() => closeModal(modalId)}>Cancel</button>
                 </footer>
                 </form>
                 </div>

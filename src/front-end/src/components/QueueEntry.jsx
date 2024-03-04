@@ -72,7 +72,7 @@ const CustomerInfo = ({ entry, patient, practitioner, modalId }) => {
       return (
         <>
           <h2 className="column has-text-weight-semibold">{patient.firstName} {patient.lastName}</h2>
-          <h2 className={`column has-text-weight-semibold has-text-centered 
+          <h2 className={`column has-text-weight-semibold has-text-centered is-flex is-justify-content-center is-align-items-center
               ${queueState === "Not in Clinic" ? 'has-text-danger' : '' }
               ${queueState === "Pending" ? 'has-text-warning' : ''}
               ${queueState === "In progress" ? 'has-text-primary' : ''}
@@ -96,7 +96,7 @@ const CustomerInfo = ({ entry, patient, practitioner, modalId }) => {
           >
             {formattedDate}
           </h2>
-          <div className="column is-flex is-justify-content-flex-end">
+          <div className="column is-flex is-justify-content-flex-end is-align-items-center">
             <img src={optionsIconURL} className="image is-16x16 is-clickable" onClick={() => openModal(modalId)}/>
           </div>
         </>
