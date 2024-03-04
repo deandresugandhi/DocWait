@@ -2,6 +2,16 @@
 
 ## Students: Deandre Sugandhi, John Faber Rodriguez, Shahil Prasad
 
+### Links
+
+Github Repository: [https://github.com/deandresugandhi/T3A2](https://github.com/deandresugandhi/T3A2)
+
+Front-end Deployment (Admin-Side): [https://docwait.netlify.app/admin](https://docwait.netlify.app/admin)
+
+Front-end Deployment (Patient-Side): [https://docwait.netlify.app/patient](https://docwait.netlify.app/patient)
+
+Back-end Deployment: [https://t3a2.onrender.com/](https://t3a2.onrender.com/)
+
 ### Table of Contents
 
 - [R1 - Website Description](#r1---website-description)
@@ -11,7 +21,6 @@
 - [R5 - Wireframes](#r5---wireframes)
 - [R6 - Trello Board](#r6---trello-board)
 
-[Link to Github Repository](https://github.com/deandresugandhi/T3A2)
 ___
 
 ## R1 - Website Description
@@ -266,3 +275,25 @@ The project is completed in 7 days.
 ![Overview1](./docs/Images/Trello%20Screenshots/Day%203/PatientQueueFE_3.png)
 ![Overview1](./docs/Images/Trello%20Screenshots/Day%203/RemoteBE_3.png)
 ![Overview1](./docs/Images/Trello%20Screenshots/Day%203/RemoteFE_3.png)
+
+## Part B Trello Board
+
+[Link to Trello board](https://trello.com/b/WM1m0qWu/t3a2-full-stack-app)
+
+### Final Trello Board State (Part B)
+
+![Overview1](./docs/Images/Trello%20Screenshots/Part%20B%20Final%20Day/FINAL%20STATE-1.png)
+![Overview2](./docs/Images/Trello%20Screenshots/Part%20B%20Final%20Day/FINAL%20STATE-2.png)
+
+### Day 1 (Part B) Screenshots
+
+![Overview1](./docs/Images/Trello%20Screenshots/Part%20B%20Day%201/Overview_1.png)
+![Overview2](./docs/Images/Trello%20Screenshots/Part%20B%20Day%201/Overview_2.png)
+
+### Day 6 (Part B) Screenshots
+
+![Overview1](./docs/Images/Trello%20Screenshots/Part%20B%20Day%206/Day%206.png)
+
+### Day 10 (Part B) Screenshots
+
+![Overview1](./docs/Images/Trello%20Screenshots/Part%20B%20Day%2010/Day%2010.png)
