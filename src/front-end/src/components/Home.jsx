@@ -16,7 +16,7 @@ const Home = ({ queueEntries=[], patients=[], practitioners=[], setQueueEntries,
 
   return (
     <>
-      <div className='is-fullwidth is-fullheight is-marginless is-flex is-flex-direction-column ml-3'>
+      <div className='is-fullwidth is-fullheight is-marginless is-flex is-flex-direction-column'>
         <h2 className='is-size-4'>Welcome Back,</h2>
         <h1 className='is-size-1 mb-3 has-text-weight-bold'>Clinic Name</h1>
         <div className='columns is-multiline is-fullheight is-overflow is-3'>

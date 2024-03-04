@@ -8,7 +8,7 @@ import loadingIcon from '../assets/LoadingIcon.gif'
 const Customers = ({ patients=[], setPatients, loadingPatients }) => {
   return (
     <>
-      <div className='is-fullwidth is-flex is-flex-direction-column ml-3'>
+      <div className='is-fullwidth is-flex is-flex-direction-column'>
         <h2 className='is-size-4'>Clinic Name's</h2>
         <h1 className='is-size-1 has-text-weight-bold mb-3'>Customers</h1>
         <div className="box is-fullwidth is-fullheight is-overflow has-background-light large-rounded-box is-flex is-flex-direction-column">

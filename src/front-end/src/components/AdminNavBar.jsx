@@ -7,7 +7,7 @@ import settingsIconURL from '../assets/Settings.png';
 import logoURL from '../assets/Logo.svg';
 
 const BoxContainer = ({ children }) => (
-  <aside className="menu admin-navbar has-background-dark large-rounded-box is-flex is-flex-direction-column py-6 px-4" data-testid="admin-navbar-side">
+  <aside className="menu admin-navbar has-background-dark large-rounded-box is-flex is-flex-direction-column py-6 px-4 mr-3" data-testid="admin-navbar-side">
     {children}
   </aside>
 );

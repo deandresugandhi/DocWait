@@ -4,7 +4,7 @@ import AdminNavBar from './AdminNavBar'
 const AboutUs = ({ }) => {
   return (
     <>
-      <div className='is-fullwidth is-flex is-flex-direction-column ml-3'>
+      <div className='is-fullwidth is-flex is-flex-direction-column'>
         <h1 className='is-size-4'>DOC WAIT</h1>
         <h1 className='is-size-1 has-text-weight-bold mb-3'>About Us</h1>
         <div className="box is-fullwidth is-fullheight is-overflow has-background-light large-rounded-box is-flex is-flex-direction-column">

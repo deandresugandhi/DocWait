@@ -159,7 +159,7 @@ const SettingsUpdateInformation = ({ clinic=[], openingHours=[] }) => {
 
   return (
     <>
-      <div className='settings is-fullwidth is-flex is-flex-direction-row ml-3'>
+      <div className='settings is-fullwidth is-flex is-flex-direction-row'>
         <div className='settings-2 is-flex is-flex-direction-column'>
           <h1 className='is-size-4'>Clinic Name's</h1>
           <h1 className='is-size-1 has-text-weight-bold mb-3'>Settings</h1>
