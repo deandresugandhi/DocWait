@@ -1,6 +1,6 @@
-# T3A2-A - Full Stack App (Part A)
+# DocWait - Full Stack App
 
-## Students: Deandre Sugandhi, John Faber Rodriguez, Shahil Prasad
+## Created by Deandre Sugandhi, John Faber Rodriguez, Shahil Prasad
 
 ### Links
 
